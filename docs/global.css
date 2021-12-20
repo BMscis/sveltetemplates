@@ -401,12 +401,16 @@ h2 {
   width: 100%;
   color:var(--background);
 }
-@media  screen and (min-width:600px) {
+@media only screen and (max-width: 600px) {
   .formcontainer{
     width: 100%;
+    padding: 24px 20px 18px;
+  }
+  main{
+    max-width: none;
   }
 }
-@media  screen and (min-width:800px) {
+@media only screen and (min-width: 800px) {
   .formcontainer{
     width: 750px;
   }
