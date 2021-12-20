@@ -401,7 +401,7 @@ h2 {
   width: 100%;
   color:var(--background);
 }
-@media  screen and (mi-width:600px) {
+@media  screen and (min-width:600px) {
   .formcontainer{
     width: 100%;
   }
