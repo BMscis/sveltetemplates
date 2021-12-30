@@ -142,6 +142,8 @@
 		text-align: center;
 		padding: 1em;
 		margin: auto;
+		position: relative;
+		max-width: calc(100vw - 1em);
 	}
 
 	h1 {
@@ -152,8 +154,5 @@
 	}
 
 	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>
