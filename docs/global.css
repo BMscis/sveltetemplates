@@ -140,6 +140,7 @@ input[type=number] {
 	border-radius: 2pt;
   border-width: thin;
   border-style: solid;
+  -moz-appearance: textfield;
 }
 input[pullupdialog=true]{
   border:2px solid var(--square);
@@ -264,7 +265,6 @@ input[type="checkbox"]:checked ~.checkbox-text{
   margin:0;
 }
 input[type=text]{
-  -moz-appearance: textfield;
   width: 170pt;
   color:var(--shades);
 }
