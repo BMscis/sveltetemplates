@@ -3,14 +3,15 @@ function buildValidator (validators) {
       if (!validators || validators.length === 0) {
         return { dirty, valid: true }
       }
-  
+      
       const failing = validators.find(v => v(value) !== true)
-      const response = validators.find(v => typeof v(value)  === "object")
   
       return {
         dirty,
         valid: !failing ,
         message: failing && failing(value),
+        state: !!failing,
+        response: failing && failing(value)
       }
     }
   }
