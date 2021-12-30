@@ -301,7 +301,7 @@ span.outline-symbol-slot[isinputok=true]{
   font-size: 10px;
   color: #4514a6;
   font-weight: 600;
-  top: 14px;
+  top: 5px;
   transition: .5s cubic-bezier(0.4,0,0.2,1);
 }
 
