@@ -34,7 +34,8 @@
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-inner-spin-button,
+input::-moz-b {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -263,6 +264,7 @@ input[type="checkbox"]:checked ~.checkbox-text{
   margin:0;
 }
 input[type=text]{
+  -moz-appearance: textfield;
   width: 170pt;
   color:var(--shades);
 }
@@ -333,14 +335,38 @@ span.outline-symbol-slot[isinputok=true]{
   right:0;
   }
   
-  :-ms-input-placeholder,
-  :-moz-placeholder,::placeholder { /* Internet Explorer 10-11 */
-	text-align: center;
-	transition:.3s cubic-bezier(0.4,0,0.2,1);
-	font-family: 'Comfortaa', cursive;
-	color: var(--shades);
-  margin-left: 20px;
-  font-weight: 600;
+  :-ms-input-placeholder{ /* Internet Explorer 10-11 */
+    text-align: center;
+    transition:.3s cubic-bezier(0.4,0,0.2,1);
+    font-family: 'Comfortaa', cursive;
+    color: var(--shades);
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 0;
+    right:0;
+    }
+  :-moz-placeholder{ /* Internet Explorer 10-11 */
+    text-align: center;
+    transition:.3s cubic-bezier(0.4,0,0.2,1);
+    font-family: 'Comfortaa', cursive;
+    color: var(--shades);
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 0;
+    right:0;
+    }
+  ::placeholder { /* Internet Explorer 10-11 */
+    text-align: center;
+    transition:.3s cubic-bezier(0.4,0,0.2,1);
+    font-family: 'Comfortaa', cursive;
+    color: var(--shades);
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 0;
+    right:0;
   }
 
  
@@ -378,13 +404,16 @@ progress::-webkit-progress-value {
 	background-color: #0FD930
 	/* style rules */
   }
+progress::-moz-range-progress{
+	border-radius: 5px;
+	background-color: #0FD930
+	/* style rules */
+  }
 progress::-moz-progress-bar {
 	/* style rules */
 	border-radius: 5px;
+	background-color: var(--background);
   }
-::-moz-progress-bar{
-	background-color: #F2A0A7;
-}
 .tooltip.extra{
   background-color: var(--shades);
   color: var(--background);
