@@ -18,7 +18,7 @@
         isRequired,
         expandMore(extracheckboxfocus)
     );
-    if(isRequired === true ||  isRequired === "true"){
+    if (isRequired === true || isRequired === "true") {
         const derivedClass = derived(validity, ($validity, set) => {
             set($validity);
         });
@@ -48,7 +48,7 @@
             bind:value={extracheckboxfocus}
             isinputok={$validity.valid}
         />
-        <div class="checkbox-text">{checkboxtext}</div>
+        <label for={inputName} class="checkbox-text">{checkboxtext}</label>
     </div>
     <div
         slot="extra-input-slot"

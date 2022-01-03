@@ -45,7 +45,6 @@
         isinputok={$validity.valid}
     >
     <PopDialog popupHeading={helpTextHeading} popupText={helpText} visibility={false} >
-        <button slot="user-button"></button>
     </PopDialog>
     <PopDialog popupText={$validity.message != undefined ? $validity.message : "cool"} slot="outline-dialog-slot" />
     <span class="outline-text-slot" slot="outline-text-slot">{inputPlaceholder}</span>

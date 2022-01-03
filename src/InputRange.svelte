@@ -30,7 +30,7 @@
     })
     }
 </script>
-
+<div class="range-pocket">
 <InputContainer>
     <div slot="input-slot" class="input-range-container">
         <progress value={inputValue} min={inputMin} max={inputMax} />
@@ -55,12 +55,7 @@
         {/if}
     </div>
 </InputContainer>
-
+</div>
 <style>
-    .input-range-container {
-        margin: 0;
-        padding: 0;
-        width: 250px;
-        height: 56px;
-    }
+
 </style>
