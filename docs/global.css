@@ -56,21 +56,30 @@ body {
 	font-family: 'Montserrat Alternates', sans-serif;
 }
 .head {
-  width: 100%;
-  margin-bottom: 1vh;
+  width: auto;
+  margin-bottom: 5vh;
 }
 p{
-    color: var(--coplementary2);
+    color: var(--shades);
     font-size: small;
     padding: auto;
     margin: auto;
 }
+h3 p{
+  color:var(--compound)
+}
 
-input,button{
+input,button,a{
 	pointer-events: all;
   cursor: pointer;
   font:400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
   margin-top: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 button.navbutton{
   transform-origin: center 110px;
@@ -138,7 +147,7 @@ input{
   height: 44px;
   width: 200px;
   padding: 0 30px;
-  border:2px solid var(--secondary);
+  border:1px solid var(--secondary);
 }
   input:focus-visible{
   border:2px solid var(--primary);
@@ -158,6 +167,7 @@ input[pullupdialog=true]{
   text-align: left;
   background-color: var(--surface);
   flex-wrap: wrap;
+  font-weight: bold;
 }
 .top.visible{
   display: flex;
@@ -167,7 +177,7 @@ input[pullupdialog=true] ~ .top.side {
   background-color: var(--coplementary);
   flex-wrap: wrap;
   opacity: 1;
-  left: 100%;
+  left: 30%;
 }
 .top.extra{
   background-color: var(--shades);
@@ -215,7 +225,6 @@ input[type="range"]{
   position: absolute;
   top: 50%;
   display: block;
-  border:none;
 }
 input[type="range"]::-webkit-slider-thumb{
 	appearance: none;
@@ -244,6 +253,7 @@ input[type="checkbox"]{
   display: block;
   float: left;
   padding:0;
+  margin-left: auto;
 }
 span.outline-emoji {
   position: absolute;
@@ -272,6 +282,9 @@ input[type="checkbox"]:active{
 }
 input[type="checkbox"]:checked ~.checkbox-text{
   font-weight: 700;
+}
+.checkbox-container {
+  display: flex;
 }
 #morecheckbox {
   display: none;
@@ -306,6 +319,7 @@ span.outline-symbol-slot{
   align-content: flex-end;
   width: 24px;
   justify-content: center;
+  font-size: 10px;
 }
 span.outline-symbol-slot[isinputok=true],
 span.outline-symbol-slot[isinputok=true] ~ span.outline-symbol-text{
@@ -337,7 +351,7 @@ span.outline-symbol-text {
   left: 0;
   right: 0;
   top:-5px;
-  width: 109px;
+  width: fit-content;
   margin: 0 auto;
   white-space: nowrap;
   background-color: white;
@@ -346,6 +360,7 @@ span.outline-symbol-text {
   font-weight: 600;
   transition: .5s cubic-bezier(0.4,0,0.2,1);
   border-radius: 0;
+  text-transform: capitalize;
 }
 
 .input-container,.empty-input {
@@ -355,6 +370,7 @@ span.outline-symbol-text {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: flex-start;
 }
 .empty-input{
   height: 0;
@@ -363,11 +379,10 @@ span.outline-symbol-text {
 .inner-form {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50px 50px 50px 100px 2fr;
   max-width: 100%;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  justify-items: center;
+  justify-items: start;
 }
 ::-webkit-input-placeholder { /* Edge */
 	text-align: center;
@@ -379,6 +394,7 @@ span.outline-symbol-text {
   position: relative;
   left: 0;
   right:0;
+  text-transform: capitalize;
   }
   
   :-ms-input-placeholder{ /* Internet Explorer 10-11 */
@@ -391,6 +407,7 @@ span.outline-symbol-text {
     position: relative;
     left: 0;
     right:0;
+    text-transform: capitalize;
     }
   :-moz-placeholder{ /* Internet Explorer 10-11 */
     text-align: center;
@@ -402,6 +419,7 @@ span.outline-symbol-text {
     position: relative;
     left: 0;
     right:0;
+    text-transform: capitalize;
     }
   ::placeholder { /* Internet Explorer 10-11 */
     text-align: center;
@@ -413,6 +431,7 @@ span.outline-symbol-text {
     position: relative;
     left: 0;
     right:0;
+    text-transform: capitalize;
   }
 
  
@@ -470,14 +489,25 @@ svg{
   position: absolute;
   right: 0;
   top:-9px;
-  margin: auto;
-  padding: 2px;
+  margin: 0;
+  padding: 0;
   background: var(--background);
   display: flex;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background-image: url(./assets/help.svg);
 }
+
 .range-pocket {
-  width: 100%;
+  position: relative;
+  min-height: 44px;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  grid-column-end: 3;
+  grid-column-start: 1;
 }
 h2 {
   text-align: center;
@@ -487,10 +517,18 @@ h2 {
   font-size: 24px;
   font-weight: 400;
 }
+h3 {
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--basic);
+  font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+  font-size: 24px;
+  text-transform: capitalize;
+  grid-column-start: 1;
+  white-space: nowrap;
+}
 
-
-
-.formcontainer{
+.form-container{
   border:1px solid #dadce0;
   margin: auto;
   padding: 48px 40px 36px;
@@ -503,15 +541,19 @@ h2 {
   flex-direction: row;
   justify-content: space-evenly;
 }
-.formcontainer::before{
+.form-container::before{
   content: '';
   width: 100%;
   color:var(--background);
 }
 @media only screen and (max-width: 600px) {
-  .formcontainer{
+  .form-container{
     width: 100%;
     padding: 24px 20px 18px;
+    margin:auto
+  }
+  .range-pocket{
+    grid-row-start: unset;
   }
   main{
     max-width: none;
@@ -542,9 +584,10 @@ h2 {
   }
 }
 @media only screen and (min-width: 800px) {
-  .formcontainer{
+  .form-container{
     width: 750px;
     padding: 24px 20px 18px;
+    margin:auto
   }
   .input-container,input,.empty-input{
     min-width: 250px;

@@ -1,18 +1,25 @@
-import { writable } from 'svelte/store'
+import { writable, get } from 'svelte/store'
 import { buildValidator } from './validate.js'
 import { accumulator } from "./formAccumulator";
-export function createFieldValidator(componentName, isRequired, ...validators) {
-  const { subscribe, set } = writable({ dirty: false, valid: false, message: null, response: null, state: false })
-  const validator = buildValidator(validators)
+export function createFieldValidator(componentName, isRequired,isValidation, ...validators) {
+  const { subscribe, set } = writable({ dirty: false, valid: false, message: null, response: null, state: false, value: null })
+  const validator = buildValidator(validators,isValidation)
+  let accum = get(accumulator);
+  let accumComponent = accum.find((v) => v.component === componentName);
+  let accumCase = accumComponent === undefined ? true : false;
   if (isRequired || isRequired === "true") {
-    accumulator.update((n) =>
-      n.concat([{ component: componentName, ready: false }])
-    );
+    if (accumCase === true) {
+      console.log("Created: ", componentName)
+      accumulator.update((n) =>
+        n.concat([{ component: componentName, ready: false, value: "" }])
+      );
+    }
   }
   function action(node, binding) {
     function validate(value, dirty) {
       const result = validator(value, dirty)
       set(result)
+      return
     }
 
     validate(binding, false)

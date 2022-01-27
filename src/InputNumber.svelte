@@ -1,39 +1,42 @@
 <script>
-    import InputContainer from "./InputContainer.svelte";
-    import PopDialog from "./PopDialog.svelte";
-    import { get, derived } from "svelte/store";
-    import { accumulator } from "./functions/formAccumulator";
-    import {
-        requiredRange,
-        requiredValidator,
-    } from "./functions/validators.js";
+    import {requiredRange,requiredValidator,} from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    export let inputValue;
-    export let inputName;
-    export let inputId;
-    export let inputPlaceholder;
+    import { accumulator } from "./functions/formAccumulator";
+    import { validityCheck, validityRangeCheck } from "./functions/validCheck";
+    import InputContainer from "./InputContainer.svelte";
+    import { afterUpdate, onMount } from "svelte";
+    import { get, derived } from "svelte/store";
+    import PopDialog from "./PopDialog.svelte";
     export let isRequired = false;
-    export let levelRange = 0;
-    export let sign = "";
-    export let emoji = "";
+    export let inputPlaceholder;
     export let hasHelp = false;
+    export let levelRange = 0;
+    export let inputValue;
+    export let emoji = "";
+    export let sign = "";
+    export let inputName;
+    let addVal = ""
+    const placeHolder = inputPlaceholder;
     const [validity, validate] = createFieldValidator(
         inputName,
         isRequired,
+        true,
         requiredValidator(),
         requiredRange(levelRange)
     );
-    if (isRequired === true || isRequired === "true") {
-        const derivedClass = derived(validity, ($validity, set) => {
-            set($validity);
-        });
-        derivedClass.subscribe((value) => {
-            let accum = get(accumulator);
-            let thisAccum = accum.find((v) => v.component === inputName);
-            thisAccum.ready = $validity.valid;
-            accumulator.update((n) => (n = n));
-        });
-    }
+    onMount(() => {
+        let accum = get(accumulator);
+        let thisAccum = accum.find((v) => v.component === inputName);
+        if (thisAccum !== undefined) {
+            if (thisAccum.value) inputPlaceholder = thisAccum.value;
+        }
+    });
+    $: $validity.valid? (inputPlaceholder = $validity.value): (inputPlaceholder = placeHolder);
+    $: $validity.valid ? accumulatorCheck()  : accumulatorCheck()
+    const accumulatorCheck = (() => {
+        validityCheck(inputName, $validity.value,$validity.valid)
+        validityRangeCheck(inputName, $validity.value,$validity.valid);
+    })
 </script>
 
 <InputContainer>
@@ -41,31 +44,37 @@
         slot="input-slot"
         type="number"
         name={inputName}
-        id={inputId}
+        id={inputName}
         bind:value={inputValue}
         placeholder={inputPlaceholder}
         class:activated={$validity.valid}
         onscreenvalue={inputValue}
         use:validate={inputValue}
-        pullupdialog={$validity.dirty && !$validity.valid}
+        pullupdialog={$validity.dirty && !$validity.valid && inputValue > 0}
         isinputok={$validity.valid}
     />
     <span
         isinputok={$validity.valid}
         class="outline-symbol-slot"
-        slot="outline-symbol-slot">{@html sign}</span
+        slot="outline-symbol-slot">{@html sign} </span
     >
     <PopDialog
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"
-        isExtra=false
-        isSide=true
+        isExtra="false"
+        isSide="true"
     />
     <span class="outline-text-slot" slot="outline-text-slot"
-        >{inputPlaceholder}</span
+        >{$validity.valid && inputValue > 0
+            ? inputPlaceholder
+            : placeHolder}</span
     >
-    <slot slot=outline-help-slot name="container-help-slot"></slot>
-    
-    <span class="outline-emoji" isinputok={$validity.valid} slot="outline-emoji-slot">{emoji}</span>
-    <slot  slot="extra-dialog-slot" name="extra-dialog"></slot>
+    <slot slot="outline-help-slot" name="container-help-slot" />
+
+    <span
+        class="outline-emoji"
+        isinputok={$validity.valid}
+        slot="outline-emoji-slot">{emoji}</span
+    >
+    <slot slot="extra-dialog-slot" name="extra-dialog" />
 </InputContainer>

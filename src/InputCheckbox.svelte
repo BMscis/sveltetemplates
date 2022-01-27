@@ -1,34 +1,37 @@
 <script>
+    import { createFieldValidator } from "./functions/validation.js";
+    import { accumulator } from "./functions/formAccumulator";
+    import { validityCheck, validityRangeCheck, validityOr } from "./functions/validCheck";
     import InputContainer from "./InputContainer.svelte";
     import { expandMore } from "./functions/validators";
-    import { createFieldValidator } from "./functions/validation.js";
+    import { afterUpdate, onMount } from "svelte";
     import { get, derived } from "svelte/store";
-    import { accumulator } from "./functions/formAccumulator";
-    export let inputValue = 1;
-    export let inputId = "";
-    export let inputName = "";
-    export let checkboxtext = "";
-    export let isRequired = false;
     export let extracheckboxfocus = false;
     export let extracheckboxtext = "";
     export let extracheckbox = false;
-
-    let [validity, validate] = createFieldValidator(
+    export let inputValue = false;
+    export let isRequired = false;
+    export let checkboxtext = "";
+    export let inputName = "";
+    const [validity, validate] = createFieldValidator(
         inputName,
         isRequired,
-        expandMore(extracheckboxfocus)
+        true,
+        expandMore()
     );
-    if (isRequired === true || isRequired === "true") {
-        const derivedClass = derived(validity, ($validity, set) => {
-            set($validity);
-        });
-        derivedClass.subscribe((value) => {
-            let accum = get(accumulator);
-            let thisAccum = accum.find((v) => v.component === inputName);
-            thisAccum.ready = $validity.valid;
-            accumulator.update((n) => (n = n));
-        });
-    }
+    onMount(() => {
+        let accum = get(accumulator);
+        let thisAccum = accum.find((v) => v.component === inputName);
+        if (thisAccum !== undefined) {
+            if (thisAccum.value) inputValue = thisAccum.value;
+        }
+    });
+    $: $validity.valid ? accumulatorCheck() : accumulatorCheck();
+    const accumulatorCheck = () => {
+        validityCheck(inputName, $validity.value, $validity.valid);
+        validityRangeCheck(inputName, $validity.value, $validity.valid);
+        validityOr(inputName, $validity.value, $validity.valid);
+    };
 </script>
 
 <InputContainer>
@@ -40,12 +43,9 @@
         <input
             type="checkbox"
             name={inputName}
-            id={inputId}
-            on:change={() => {
-                validate(this, extracheckboxfocus);
-                extracheckboxfocus = $validity.valid;
-            }}
-            bind:value={extracheckboxfocus}
+            id={inputName}
+            bind:checked={inputValue}
+            use:validate={inputValue}
             isinputok={$validity.valid}
         />
         <label for={inputName} class="checkbox-text">{checkboxtext}</label>
@@ -60,7 +60,7 @@
         <input
             type="checkbox"
             name={inputName}
-            id={inputId}
+            id={inputName}
             on:input
             bind:value={inputValue}
         />

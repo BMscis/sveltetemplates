@@ -1,61 +1,103 @@
 <script>
-    import InputContainer from "./InputContainer.svelte";
-    import { timeConverter }from "./functions/validators.js";
-    import { get, derived } from "svelte/store";
-    import {accumulator} from "./functions/formAccumulator"
+    import { timeConverter, requiredRange } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
+    import { accumulator } from "./functions/formAccumulator";
+    import { validityCheck } from "./functions/validCheck";
+    import InputContainer from "./InputContainer.svelte";
+    import PopDialog from "./PopDialog.svelte";
+    import { get } from "svelte/store";
+    import { onMount } from "svelte";
+    export let isTimeBound = false;
     export let isRequired = false;
+    export let rangeType = "";
+    export let inputName = "";
+    export let rangeText = "";
     export let inputValue = 0;
     export let inputMin = 0;
     export let inputMax = 0;
-    export let inputName = "";
-    export let rangeText = "";
     export let sign = "";
-    export let isTimeBound = false
 
-    const [validity, validate] = createFieldValidator(
-        inputName,
-        isRequired,
-       timeConverter(inputMax)
-    );
-    if(isRequired === true ||  isRequired === "true"){
-        const derivedClass = derived(validity, ($validity, set)=>{
-        set($validity)
-    })
-    derivedClass.subscribe(value =>{
-        let accum = get(accumulator)
-        let thisAccum = accum.find(v => v.component === inputName)
-        thisAccum.ready = $validity.state
-        accumulator.update(n => n = n)
-    })
+    let validate;
+    let validity;
+    onMount(() => {
+        let accum = get(accumulator);
+        let thisAccum = accum.find((v) => v.component === inputName);
+        if (thisAccum !== undefined) {
+            if (thisAccum.value.length > 0) inputValue = thisAccum.value;
+        }
+    });
+    switch (rangeType) {
+        case "time":
+            [validity, validate] = createFieldValidator(
+                inputName,
+                isRequired,
+                false,
+                requiredRange(parseInt(inputMin)),
+                timeConverter(inputMax)
+            );
+            break;
+        default:
+            [validity, validate] = createFieldValidator(
+                inputName,
+                isRequired,
+                true,
+                requiredRange(parseInt(inputMin))
+            );
+            break;
     }
+    $: $validity.valid
+        ? validityCheck(inputName, $validity.value, rangeType == "time"? $validity.state: $validity.valid)
+        : validityCheck(inputName, $validity.value, rangeType == "time"? $validity.state: $validity.valid)
 </script>
-<div class="range-pocket">
-<InputContainer>
-    <div slot="input-slot" class="input-range-container">
-        <progress value={inputValue} min={inputMin} max={inputMax} />
-        <input
-            bind:value={inputValue}
-            min={inputMin}
-            max={inputMax}
-            name={inputName}
-            type="range"
-            use:validate={inputValue}
-            isinputok={$validity.state}
-        />
-    </div>
-</InputContainer>
-<InputContainer>
-    <div slot="input-slot" class="input-range-container">
-        <span class="checkbox-text">{rangeText}</span>
-        {#if isTimeBound}
-        <span isinputok={$validity.state} class="outline-symbol-text">{$validity.response}</span>
-        {:else}
-        <span isinputok={$validity.state} class="outline-symbol-text">{@html sign} {inputValue * 1000}</span>
-        {/if}
-    </div>
-</InputContainer>
-</div>
-<style>
 
+<div class="range-pocket">
+    <InputContainer>
+        <div slot="input-slot" class="input-range-container">
+            <progress value={inputValue} min={inputMin} max={inputMax} />
+            <input
+                bind:value={inputValue}
+                min={inputMin}
+                max={inputMax}
+                name={inputName}
+                type="range"
+                use:validate={inputValue}
+                isinputok={rangeType == "time"
+                    ? $validity.state
+                    : $validity.valid}
+                pullupdialog={rangeType == "time"? $validity.state: !($validity.valid)}
+            />
+            <PopDialog
+                popupText={$validity.message != undefined
+                    ? $validity.message
+                    : "cool"}
+                slot="outline-dialog-slot"
+                isExtra="false"
+                isSide="true"
+            />
+        </div>
+    </InputContainer>
+    <InputContainer>
+        <div slot="input-slot" class="input-range-container">
+            <span class="checkbox-text">{rangeText}</span>
+            {#if isTimeBound}
+                <span
+                    isinputok={rangeType == "time"
+                        ? $validity.state
+                        : $validity.valid}
+                    class="outline-symbol-text">{$validity.response}</span
+                >
+            {:else}
+                <span
+                    isinputok={rangeType == "time"
+                        ? $validity.state
+                        : $validity.valid}
+                    class="outline-symbol-text"
+                    >{@html sign} {inputValue * 1000}</span
+                >
+            {/if}
+        </div>
+    </InputContainer>
+</div>
+
+<style>
 </style>

@@ -1,11 +1,38 @@
+import { accumulator } from "./formAccumulator"
+import { get } from "svelte/store"
 function emailValidator() {
   return function email(value) {
-    return (value && !!value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) || 'Please enter a valid email'
+    return (value && !!value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+(com)))$/)) || 'Please enter a valid email'
   }
 }
-function nameValidator(){
-  return function name(value){
-    return (value != undefined && value.length > 2) || "Enter a valid name."
+function nameValidator() {
+  return function name(value) {
+    return (value && !!value.match(/[^0-9]+[^<>()[\]\\.,;:\s@"]/) || "Enter a valid name.")
+  }
+}
+function heightValidator() {
+  return function name(value) {
+    const reg = /(\')/g
+    let setVal = null
+    let accum = get(accumulator)
+    let heightComp = accum.find(v => v.component === "text-height")
+    if (heightComp.value != null && heightComp.value != undefined) {
+      if (heightComp.value.length > 0) {
+        heightComp.value.match(reg) ? setVal = value : setVal
+      }
+      else{
+        value.match(reg) ? setVal = value : setVal = value + "\'"
+        
+      }
+    }
+    else {
+      if (value != null && value != undefined) {
+        value.match(reg) ? setVal = value : setVal = value + "\'"
+      }
+
+    }
+    setVal != null && setVal != undefined ? value = setVal : value
+    return setVal != null && setVal != undefined ? value = setVal : value
   }
 }
 function requiredValidator() {
@@ -15,14 +42,12 @@ function requiredValidator() {
 }
 function requiredRange(levelRange) {
   return function range(value) {
-    return (value >= levelRange) || `The amount must be above ${levelRange}`
+    return (value > parseInt(levelRange)) || `The amount must be above ${levelRange}`
   }
 }
-function expandMore(expandCheck) {
+function expandMore() {
   return function more(value) {
-    //expandCheck == "false" ? (valCheck = "true") : (valCheck = "false")
-    value == true || value == 'true' ? value = false : value = true
-    return (value)
+    return (value == true) || "You need to check this box."
   }
 }
 function timeConverter() {
@@ -32,7 +57,7 @@ function timeConverter() {
     let checkVal = value % 2 == 0
     checkVal ? (
       setVal = (value - (value / 2).toString() + " Years" + " 6 months")) : (setVal = (value - ((value - 1) / 2)).toString() + " Years")
-      
+
     return setVal
   }
 }
@@ -42,5 +67,6 @@ export {
   requiredRange,
   expandMore,
   timeConverter,
-  nameValidator
+  nameValidator,
+  heightValidator
 }
