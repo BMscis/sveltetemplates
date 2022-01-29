@@ -15,7 +15,7 @@ function buildValidator (validators,isValidation) {
           //let timeComp = accum.find(v => v.component === "time")
           val.length > 0 ? isVal = true : message = "We need your height"
         } catch (error) {
-          if(accum.find(v => v.component === "text-height")){
+          if(accum.find(v => v.component === "atr-height")){
             message = "We need your height"
           }
           isVal = false

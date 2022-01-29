@@ -1,5 +1,9 @@
 <script>
-    import { emailValidator, nameValidator,heightValidator } from "./functions/validators.js";
+    import {
+        emailValidator,
+        nameValidator,
+        heightValidator,
+    } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
     import { accumulator } from "./functions/formAccumulator";
     import { validityCheck } from "./functions/validCheck";
@@ -15,23 +19,26 @@
     export let inputName = "";
     export let helpText = "";
     export let emoji = "";
+    export let sign = "";
     let validity;
     let validate;
-    const placeHolder = inputPlaceholder
-    const backSlash = "\'"
+    const placeHolder = inputPlaceholder;
+    const backSlash = "'";
 
     onMount(() => {
         let accum = get(accumulator);
         let thisAccum = accum.find((v) => v.component === inputName);
-        if( thisAccum !== undefined){
-            if(thisAccum.value != undefined && thisAccum.value != null){
-                if(thisAccum.value.length > 0)inputPlaceholder = thisAccum.value
+        if (thisAccum !== undefined) {
+            if (thisAccum.value != undefined && thisAccum.value != null) {
+                if (thisAccum.value.length > 0)
+                    inputPlaceholder = thisAccum.value;
             }
         }
-    })
+    });
     switch (textType) {
         case "email":
             [validity, validate] = createFieldValidator(
+                "",
                 inputName,
                 isRequired,
                 true,
@@ -40,6 +47,7 @@
             break;
         case "name":
             [validity, validate] = createFieldValidator(
+                "",
                 inputName,
                 isRequired,
                 true,
@@ -48,6 +56,7 @@
             break;
         case "height":
             [validity, validate] = createFieldValidator(
+                "",
                 inputName,
                 isRequired,
                 false,
@@ -56,6 +65,7 @@
             break;
         default:
             [validity, validate] = createFieldValidator(
+                "",
                 inputName,
                 isRequired,
                 true,
@@ -64,17 +74,25 @@
             break;
     }
 
-    $: $validity.valid ? accumulatorCheck(): accumulatorCheck()
-    const accumulatorCheck = (() => {
-        validityCheck(inputName, $validity.value,$validity.valid)
-        textType == "height" ? inputValue != undefined && inputValue != null ? 
-        inputValue = $validity.response : inputValue : inputValue
-        setPlaceHolder()
-    })
-    const setPlaceHolder = (() => {
-        let checkVal = $validity.value != null && $validity.value != undefined && $validity.value.length > 0
-        checkVal ? inputPlaceholder = $validity.value : inputPlaceholder = placeHolder
-    })
+    $: $validity.valid ? accumulatorCheck() : accumulatorCheck();
+    const accumulatorCheck = () => {
+        validityCheck(inputName, $validity.value, $validity.valid);
+        textType == "height"
+            ? inputValue != undefined && inputValue != null
+                ? (inputValue = $validity.response)
+                : inputValue
+            : inputValue;
+        setPlaceHolder();
+    };
+    const setPlaceHolder = () => {
+        let checkVal =
+            $validity.value != null &&
+            $validity.value != undefined &&
+            $validity.value.length > 0;
+        checkVal
+            ? (inputPlaceholder = $validity.value)
+            : (inputPlaceholder = placeHolder);
+    };
 </script>
 
 <InputContainer>
@@ -91,6 +109,13 @@
         pullupdialog={$validity.dirty && !$validity.valid}
         isinputok={$validity.valid}
     />
+    <span
+        isinputok={$validity.valid}
+        class="outline-symbol-slot"
+        disabled={!(sign.length > 0)}
+        slot="outline-symbol-slot"
+        >{@html sign}
+    </span>
     <PopDialog
         popupHeading={helpTextHeading}
         popupText={helpText}
@@ -104,9 +129,11 @@
     <span class="outline-text-slot" slot="outline-text-slot"
         >{inputPlaceholder}</span
     >
+    <slot slot="outline-help-slot" name="container-help-slot" />
     <span
         class="outline-emoji"
         isinputok={$validity.valid}
         slot="outline-emoji-slot">{emoji}</span
     >
+    <slot slot="extra-dialog-slot" name="extra-dialog" />
 </InputContainer>

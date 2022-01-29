@@ -9,7 +9,6 @@
     import PopDialog from "./PopDialog.svelte";
     export let isRequired = false;
     export let inputPlaceholder;
-    export let hasHelp = false;
     export let levelRange = 0;
     export let inputValue;
     export let emoji = "";
@@ -18,6 +17,7 @@
     let addVal = ""
     const placeHolder = inputPlaceholder;
     const [validity, validate] = createFieldValidator(
+        0,
         inputName,
         isRequired,
         true,
@@ -34,7 +34,7 @@
     $: $validity.valid? (inputPlaceholder = $validity.value): (inputPlaceholder = placeHolder);
     $: $validity.valid ? accumulatorCheck()  : accumulatorCheck()
     const accumulatorCheck = (() => {
-        validityCheck(inputName, $validity.value,$validity.valid)
+        validityCheck(inputName, $validity.value == null ? 0 : $validity.value,$validity.valid)
         validityRangeCheck(inputName, $validity.value,$validity.valid);
     })
 </script>

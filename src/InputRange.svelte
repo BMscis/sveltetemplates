@@ -22,22 +22,23 @@
     onMount(() => {
         let accum = get(accumulator);
         let thisAccum = accum.find((v) => v.component === inputName);
-        if (thisAccum !== undefined) {
-            if (thisAccum.value.length > 0) inputValue = thisAccum.value;
+        if (thisAccum !== null) {
+            if (thisAccum.value > 0) inputValue = thisAccum.value;
         }
     });
     switch (rangeType) {
         case "time":
             [validity, validate] = createFieldValidator(
+                "",
                 inputName,
                 isRequired,
                 false,
-                requiredRange(parseInt(inputMin)),
-                timeConverter(inputMax)
+                timeConverter(inputMin)
             );
             break;
         default:
             [validity, validate] = createFieldValidator(
+                0,
                 inputName,
                 isRequired,
                 true,
@@ -64,7 +65,7 @@
                 isinputok={rangeType == "time"
                     ? $validity.state
                     : $validity.valid}
-                pullupdialog={rangeType == "time"? $validity.state: !($validity.valid)}
+                pullupdialog={rangeType == "time"? !($validity.state): !($validity.valid)}
             />
             <PopDialog
                 popupText={$validity.message != undefined

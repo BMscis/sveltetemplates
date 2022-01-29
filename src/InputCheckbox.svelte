@@ -9,11 +9,13 @@
     export let extracheckboxfocus = false;
     export let extracheckboxtext = "";
     export let extracheckbox = false;
-    export let inputValue = false;
+    export let inputValue = undefined;
     export let isRequired = false;
     export let checkboxtext = "";
     export let inputName = "";
+    let checkable = false
     const [validity, validate] = createFieldValidator(
+        undefined,
         inputName,
         isRequired,
         true,
@@ -22,15 +24,15 @@
     onMount(() => {
         let accum = get(accumulator);
         let thisAccum = accum.find((v) => v.component === inputName);
-        if (thisAccum !== undefined) {
+        if (thisAccum !== undefined && thisAccum !== null) {
             if (thisAccum.value) inputValue = thisAccum.value;
         }
     });
     $: $validity.valid ? accumulatorCheck() : accumulatorCheck();
     const accumulatorCheck = () => {
-        validityCheck(inputName, $validity.value, $validity.valid);
-        validityRangeCheck(inputName, $validity.value, $validity.valid);
-        validityOr(inputName, $validity.value, $validity.valid);
+        validityCheck(inputName, $validity.value == null ? undefined : $validity.value, $validity.valid);
+        validityRangeCheck(inputName, $validity.value == null ? undefined : $validity.value, $validity.valid);
+        validityOr(inputName, $validity.value == null ? undefined : $validity.value, $validity.valid);
     };
 </script>
 
@@ -47,6 +49,7 @@
             bind:checked={inputValue}
             use:validate={inputValue}
             isinputok={$validity.valid}
+            disabled = {checkable}
         />
         <label for={inputName} class="checkbox-text">{checkboxtext}</label>
     </div>

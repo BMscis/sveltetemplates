@@ -18,7 +18,7 @@
                 helpTextHeading="Client Name."
                 isRequired="true"
                 helpText="Please enter your first name."
-                inputName="client-name"
+                inputName="user-name"
             />
             <br />
             <h3>Maritial Status</h3>
@@ -27,11 +27,13 @@
                 checkboxtext="Married"
                 isRequired="true"
                 inputName="married"
+                
             />
             <InputCheckbox
                 checkboxtext="Single"
                 isRequired="true"
                 inputName="not-married"
+                
             />
             <h3>Do you have children?</h3>
             <br>
@@ -39,11 +41,13 @@
                 checkboxtext="Yes"
                 isRequired="true"
                 inputName="children"
+                
             />
             <InputCheckbox
                 checkboxtext="No"
                 isRequired="true"
                 inputName="not-children"
+                
             />
         </div>
     </FormContainer>

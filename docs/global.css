@@ -305,11 +305,11 @@ input:focus-within ~ .outline-text-slot
 input[isinputok=true]{
   border:1px solid var(--square2);
 }
-span.outline-symbol-slot{
+.outline-symbol-slot{
   position: absolute;
   left: -10px;
   top:50%;
-  color: var(--coplementary2 );
+  color: var(--compound );
   display: flex;
   height: 22px;
   background-color: var(--background);
@@ -321,10 +321,15 @@ span.outline-symbol-slot{
   justify-content: center;
   font-size: 10px;
 }
-span.outline-symbol-slot[isinputok=true],
-span.outline-symbol-slot[isinputok=true] ~ span.outline-symbol-text{
+.outline-symbol-slot[isinputok=true],
+.outline-symbol-slot[isinputok=true] ~ span.outline-symbol-text{
   color:var(--square2);
-  
+}
+.outline-symbol-slot[disabled = true]{
+  display: none;
+}
+.outline-symbol-slot{
+  top:50%
 }
 .checkbox-text {
   position: relative;
@@ -564,9 +569,7 @@ h3 {
   input,progress{
     width: 90%;
   }
-  span.outline-symbol-slot{
-    top:50%
-  }
+
   .inner-form {
     grid-template-columns: 100%;
     grid-template-rows: unset;

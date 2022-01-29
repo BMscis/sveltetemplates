@@ -45,7 +45,7 @@ import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelt
 			<PageBasicInformation {isFormReady}></PageBasicInformation>
 		</Route>
 		<Route path="/anthro-measurements">
-			<PageAnthropometricMeasurments></PageAnthropometricMeasurments>
+			<PageAnthropometricMeasurments {isFormReady}></PageAnthropometricMeasurments>
 
 		</Route>
 	</main>

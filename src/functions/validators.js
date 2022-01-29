@@ -12,27 +12,30 @@ function nameValidator() {
 }
 function heightValidator() {
   return function name(value) {
-    const reg = /(\')/g
-    let setVal = null
-    let accum = get(accumulator)
-    let heightComp = accum.find(v => v.component === "text-height")
-    if (heightComp.value != null && heightComp.value != undefined) {
-      if (heightComp.value.length > 0) {
-        heightComp.value.match(reg) ? setVal = value : setVal
-      }
-      else{
-        value.match(reg) ? setVal = value : setVal = value + "\'"
-        
-      }
-    }
-    else {
-      if (value != null && value != undefined) {
-        value.match(reg) ? setVal = value : setVal = value + "\'"
-      }
+    if (value != null) {
+      const reg = /(\')/g
+      let setVal = null
+      let accum = get(accumulator)
+      let heightComp = accum.find(v => v.component === "atr-height")
+      if (heightComp.value != null && heightComp.value != undefined) {
+        if (heightComp.value.length > 0) {
+          heightComp.value.match(reg) ? setVal = value : setVal
+        }
+        else {
+          value.match(reg) ? setVal = value : setVal = value + "\'"
 
+        }
+      }
+      else {
+        if (value != null && value != undefined) {
+          value.match(reg) ? setVal = value : setVal = value + "\'"
+        }
+
+      }
+      setVal != null && setVal != undefined ? value = setVal : value
+      return setVal != null && setVal != undefined ? value = setVal : value
     }
-    setVal != null && setVal != undefined ? value = setVal : value
-    return setVal != null && setVal != undefined ? value = setVal : value
+    return
   }
 }
 function requiredValidator() {
@@ -50,15 +53,16 @@ function expandMore() {
     return (value == true) || "You need to check this box."
   }
 }
-function timeConverter() {
+function timeConverter(inputMin) {
   return function convertToTime(value) {
-    let setVal = 0.0
-    value == undefined ? value = setVal : value = value
-    let checkVal = value % 2 == 0
-    checkVal ? (
-      setVal = (value - (value / 2).toString() + " Years" + " 6 months")) : (setVal = (value - ((value - 1) / 2)).toString() + " Years")
-
-    return setVal
+    let setVal = "one year"
+    if (value > inputMin) {
+      value == undefined ? value = setVal : value = value
+      let checkVal = value % 2 == 0
+      checkVal ? (
+        setVal = (value - (value / 2).toString() + " Years" + " 6 months")) : (setVal = (value - ((value - 1) / 2)).toString() + " Years")
+    }
+    return setVal = ! null ? setVal : "Must be above 1 month"
   }
 }
 export {

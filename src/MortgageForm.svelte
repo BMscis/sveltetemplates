@@ -99,16 +99,16 @@
                 inputName="loanamount"
                 rangeType="number"
                 isRequired="true"
-                inputValue={undefined}
+                inputValue=1
                 inputMax="25"
-                inputMin="1"
+                inputMin="0"
                 slot="slot6"
                 sign={euro}
             />
             <br>
             <InputRange
                 slot="slot7"
-                inputValue= {undefined}
+                inputValue= 0
                 inputMin="1"
                 inputMax="40"
                 inputName="loanduration"
