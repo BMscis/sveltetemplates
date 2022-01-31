@@ -38,7 +38,7 @@
 
 <Router basepath="/diet" url="/diet">
     <FormContainer>
-        <h2 slot="heading">Dietary Plan</h2>
+        <h1 slot="heading">Dietary Plan</h1>
         <p slot="paragraph">Get your personalized diet plan.</p>
         <div class="inner-form" slot="forms">
             <Route path="/">

@@ -21,7 +21,6 @@
 	box-sizing: border-box;
 	border-radius: 5px;
 	border:none;
-	margin:min(1vw,.5vh) min(1.5vw,1.5vh);
 	outline: none;
 	line-height: 1.4286;
 	direction: ltr;
@@ -57,7 +56,6 @@ body {
 }
 .head {
   width: auto;
-  margin-bottom: 5vh;
 }
 p{
     color: var(--shades);
@@ -75,11 +73,13 @@ input,button,a{
   cursor: pointer;
   font:400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
   margin-top: 0;
+	margin:min(.5vw,.25vh) min(.5vw,.25vh);
+
 }
 .p-button {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   grid-column-start: 1;
@@ -408,6 +408,7 @@ span.outline-symbol-text {
   justify-content: start;
   align-items: center;
   justify-items: start;
+  grid-gap: 24px;
 }
 ::-webkit-input-placeholder { /* Edge */
 	text-align: center;
@@ -536,7 +537,6 @@ svg{
 }
 h2 {
   text-align: center;
-  text-transform: uppercase;
   color: var(--basic);
   font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
   font-size: 24px;
@@ -562,8 +562,8 @@ h3 {
   background-size: contain;
   display: flex;
   position: relative;
+  flex-direction: column;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: space-evenly;
 }
 .form-container::before{

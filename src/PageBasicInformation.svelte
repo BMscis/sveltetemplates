@@ -5,6 +5,18 @@
     import InputText from "./InputText.svelte";
     import {Datepicker} from "svelte-calendar"
     export let isFormReady;
+
+    const theme = {
+		calendar: {
+            width:"100%",
+            height:"100%",
+			colors: {
+				background: {
+					highlight: 'purple'
+				}
+			}
+		}
+	};
 </script>
 
 <Router basepath="/basic-information" url="/basic-information">
@@ -22,7 +34,7 @@
                 inputName="user-name"
             />
             <br />
-            <h3>Maritial Status</h3>
+            <h4>Maritial Status</h4>
             <br>
             <InputCheckbox
                 checkboxtext="Married"
@@ -36,7 +48,7 @@
                 inputName="not-married"
                 
             />
-            <h3>Do you have children?</h3>
+            <h4>Do you have children?</h4>
             <br>
             <InputCheckbox
                 checkboxtext="Yes"
@@ -50,7 +62,9 @@
                 inputName="not-children"
                 
             />
-            <Datepicker/>
+            <h4>Date of Birth</h4>
+            <br>
+            <Datepicker {theme}/>
         </div>
     </FormContainer>
 </Router>

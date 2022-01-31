@@ -28,10 +28,10 @@
 
 <Router basepath="/mortgages" url="/mortgages">
     <FormContainer>
-        <h2 slot="heading">Mortgage Accesibility</h2>
-        <p slot="paragraph">
+        <h1 slot="heading">Mortgage Accesibility</h1>
+        <h4 slot="paragraph">
             Get to know the type of mortgages that you can access.
-        </p>
+        </h4>
         <div class="inner-form" class:next={isFormReady} slot="forms">
             <InputText
                 inputName="user-name"

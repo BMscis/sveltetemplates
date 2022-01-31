@@ -45,7 +45,7 @@
 
 <Router url="health-history" basepath="health-history">
     <FormContainer>
-        <h2 slot="heading">Health History</h2>
+        <h1 slot="heading">Health History</h1>
         <div class="inner-form" slot="forms">
             <p>
                 Do you have or have currently experienced the following

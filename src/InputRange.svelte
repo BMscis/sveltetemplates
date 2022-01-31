@@ -90,7 +90,7 @@
     </InputContainer>
     <InputContainer>
         <div slot="input-slot" class="input-range-container">
-            <span class="checkbox-text">{rangeText}</span>
+            <h4 class="checkbox-text">{rangeText}</h4>
             {#if isTimeBound}
                 <span
                     isinputok={rangeType == "time"
