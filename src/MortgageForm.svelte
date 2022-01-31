@@ -20,7 +20,7 @@
     });
     afterUpdate(() => {
         if (isFormReady) {
-            console.log("THIS IS DONE: ", isFormReady);
+            //console.log("THIS IS DONE: ", isFormReady);
             navigate(`diet/`, { replace: false });
         }
     });

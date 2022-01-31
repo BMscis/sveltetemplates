@@ -6,13 +6,14 @@
 	import { accumulator } from "./functions/formAccumulator";
 	import { get } from "svelte/store";
 	import { onMount } from "svelte";
-import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelte";
+	import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelte";
+	import PageHealthHistory from "./PageHealthHistory.svelte";
 	let isFormReady = false;
 	let url = "/";
 
 	onMount(() => {
 		accumulator.subscribe((value) => {
-			console.log(get(accumulator));
+			//console.log(get(accumulator));
 			isFormReady =
 				!get(accumulator).find((v) => v.ready === false || undefined) &&
 				get(accumulator).length > 0
@@ -20,10 +21,11 @@ import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelt
 					: false;
 		});
 	});
-	$: isFormReady = !get(accumulator).find((v) => v.ready === false || undefined) &&
-				get(accumulator).length > 0
-					? true
-					: false;
+	$: isFormReady =
+		!get(accumulator).find((v) => v.ready === false || undefined) &&
+		get(accumulator).length > 0
+			? true
+			: false;
 </script>
 
 <Router basepath={url}>
@@ -31,8 +33,9 @@ import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelt
 		<Link to="/">Home</Link>
 		<Link to="mortgages">Mortgages</Link>
 		<Link to="diet">Diet Plan</Link>
-		<Link to="basic-information"> Basic Information</Link>
-		<Link to="anthro-measurements"> Anthro</Link>
+		<Link to="basic-information">Basic Information</Link>
+		<Link to="anthro-measurements">Anthro</Link>
+		<Link to="health-history">health-history</Link>
 	</nav>
 	<main>
 		<Route path="diet/*">
@@ -42,11 +45,13 @@ import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelt
 			<MortgageForm {isFormReady} />
 		</Route>
 		<Route path="/basic-information">
-			<PageBasicInformation {isFormReady}></PageBasicInformation>
+			<PageBasicInformation {isFormReady} />
 		</Route>
 		<Route path="/anthro-measurements">
-			<PageAnthropometricMeasurments {isFormReady}></PageAnthropometricMeasurments>
-
+			<PageAnthropometricMeasurments {isFormReady} />
+		</Route>
+		<Route path="/health-history">
+			<PageHealthHistory {isFormReady} />
 		</Route>
 	</main>
 </Router>

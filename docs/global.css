@@ -63,7 +63,8 @@ p{
     color: var(--shades);
     font-size: small;
     padding: auto;
-    margin: auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 h3 p{
   color:var(--compound)
@@ -74,6 +75,25 @@ input,button,a{
   cursor: pointer;
   font:400 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
   margin-top: 0;
+}
+.p-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+button.add-button {
+  width: 24px;
+  height: 24px;
+  box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+  border-radius: 50%;
+  background-image: url(./assets/plus.svg);
+  background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -557,6 +577,9 @@ h3 {
     padding: 24px 20px 18px;
     margin:auto
   }
+  h3{
+    font-size: unset;
+  }
   .range-pocket{
     grid-row-start: unset;
   }
@@ -565,6 +588,7 @@ h3 {
   }
   .input-container,.input-range-container,.empty-input{
     min-width: 100%;
+    grid-column-start: 1;
   }
   input,progress{
     width: 90%;

@@ -14,7 +14,7 @@
     let helpDialog2 = false;
 
     afterUpdate(() => {
-        console.log(isFormReady)
+        //console.log(isFormReady)
         getAccumulator();
         if (isFormReady) {
         } else {

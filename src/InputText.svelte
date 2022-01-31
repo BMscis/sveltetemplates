@@ -5,12 +5,11 @@
         heightValidator,
     } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    import { accumulator } from "./functions/formAccumulator";
     import { validityCheck } from "./functions/validCheck";
-    import InputContainer from "./InputContainer.svelte";
-    import { get, derived } from "svelte/store";
-    import PopDialog from "./PopDialog.svelte";
     import { onMount } from "svelte";
+    import InputContainer from "./InputContainer.svelte";
+    import PopDialog from "./PopDialog.svelte";
+    import { mountComponent,typeOfInput } from "./functions/mountComponent";
     export let inputPlaceholder = "";
     export let helpTextHeading = "";
     export let isRequired = false;
@@ -24,15 +23,10 @@
     let validate;
     const placeHolder = inputPlaceholder;
     const backSlash = "'";
-
     onMount(() => {
-        let accum = get(accumulator);
-        let thisAccum = accum.find((v) => v.component === inputName);
-        if (thisAccum !== undefined) {
-            if (thisAccum.value != undefined && thisAccum.value != null) {
-                if (thisAccum.value.length > 0)
-                    inputPlaceholder = thisAccum.value;
-            }
+        if(mountComponent(inputName)){
+            typeOfInput(inputValue,mountComponent(inputName)) ? 
+            inputValue = typeOfInput(inputValue,mountComponent(inputName)) : (() => {return})
         }
     });
     switch (textType) {
@@ -74,7 +68,10 @@
             break;
     }
 
-    $: $validity.valid ? accumulatorCheck() : accumulatorCheck();
+
+    $: try {
+        $validity.valid ? accumulatorCheck() : accumulatorCheck();
+    } catch (error) {}
     const accumulatorCheck = () => {
         validityCheck(inputName, $validity.value, $validity.valid);
         textType == "height"

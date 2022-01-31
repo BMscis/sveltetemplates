@@ -1,11 +1,13 @@
 <script>
-    import {requiredRange,requiredValidator,} from "./functions/validators.js";
-    import { createFieldValidator } from "./functions/validation.js";
-    import { accumulator } from "./functions/formAccumulator";
+    import {
+        requiredRange,
+        requiredValidator,
+    } from "./functions/validators.js";
     import { validityCheck, validityRangeCheck } from "./functions/validCheck";
+    import { createFieldValidator } from "./functions/validation.js";
+    import { mountComponent,typeOfInput } from "./functions/mountComponent";
+    import { onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
-    import { afterUpdate, onMount } from "svelte";
-    import { get, derived } from "svelte/store";
     import PopDialog from "./PopDialog.svelte";
     export let isRequired = false;
     export let inputPlaceholder;
@@ -14,8 +16,14 @@
     export let emoji = "";
     export let sign = "";
     export let inputName;
-    let addVal = ""
+    let addVal = "";
     const placeHolder = inputPlaceholder;
+    onMount(() => {
+        if(mountComponent(inputName)){
+            typeOfInput(0,mountComponent(inputName)) ? 
+            inputValue = typeOfInput(0,mountComponent(inputName)) : (() => {return})
+        }
+    });
     const [validity, validate] = createFieldValidator(
         0,
         inputName,
@@ -24,19 +32,24 @@
         requiredValidator(),
         requiredRange(levelRange)
     );
-    onMount(() => {
-        let accum = get(accumulator);
-        let thisAccum = accum.find((v) => v.component === inputName);
-        if (thisAccum !== undefined) {
-            if (thisAccum.value) inputPlaceholder = thisAccum.value;
-        }
-    });
-    $: $validity.valid? (inputPlaceholder = $validity.value): (inputPlaceholder = placeHolder);
-    $: $validity.valid ? accumulatorCheck()  : accumulatorCheck()
-    const accumulatorCheck = (() => {
-        validityCheck(inputName, $validity.value == null ? 0 : $validity.value,$validity.valid)
-        validityRangeCheck(inputName, $validity.value,$validity.valid);
-    })
+    try {
+    } catch (error) {}
+    $: try {
+        $validity.valid
+            ? (inputPlaceholder = $validity.value)
+            : (inputPlaceholder = placeHolder);
+    } catch (error) {}
+    $: try {
+        $validity.valid ? accumulatorCheck() : accumulatorCheck();
+    } catch (error) {}
+    const accumulatorCheck = () => {
+        validityCheck(
+            inputName,
+            $validity.value == null ? 0 : $validity.value,
+            $validity.valid
+        );
+        validityRangeCheck(inputName, $validity.value, $validity.valid);
+    };
 </script>
 
 <InputContainer>
@@ -56,8 +69,9 @@
     <span
         isinputok={$validity.valid}
         class="outline-symbol-slot"
-        slot="outline-symbol-slot">{@html sign} </span
-    >
+        slot="outline-symbol-slot"
+        >{@html sign}
+    </span>
     <PopDialog
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"

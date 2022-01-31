@@ -1,17 +1,16 @@
-import { get_current_component } from "svelte/internal";
-import { get } from "svelte/store"
-import { convertFeetToCM } from "./converter";
 import { accumulator } from "./formAccumulator"
+import { convertFeetToCM } from "./converter";
+import {getAccumulator} from "./getAccumulator"
+import { get } from "svelte/store"
 export const validityCheck = ((componentName, validValue, validValid) => {
-    let accum = get(accumulator)
-    let thisAccum = accum.find((v) => v.component === componentName);
-    if (validValue != undefined ) {
+    let [thisAccum, isValid, hasVal] = getAccumulator(componentName);
+    if (isValid ) {
         if (componentName == "married" || componentName == "not-married"
             || componentName == "children" || componentName == "not-children") {
             thisAccum.value = validValue ? "yes" : "no";
             thisAccum.ready = validValid
         }
-        else {
+        if(validValue) {
             thisAccum.value = validValue
             thisAccum.ready = validValid
         }
@@ -44,7 +43,7 @@ export const validityRangeCheck = ((componentName, validValue, validValid) => {
                 get(accumulator)[11].ready = validValid;
                 get(accumulator)[11].value = validValue;
                 accumulator.update((n) => (n = n))
-                console.log("age changed");
+                //console.log("age changed");
                 break;
             case "eighteen to twenty five":
                 get(accumulator)[8].ready = validValid;
@@ -54,7 +53,7 @@ export const validityRangeCheck = ((componentName, validValue, validValid) => {
                 get(accumulator)[11].ready = validValid;
                 get(accumulator)[11].value = validValue;
                 accumulator.update((n) => (n = n))
-                console.log("25 changed");
+                //console.log("25 changed");
                 break;
             case "twenty six to thirty five":
                 get(accumulator)[8].ready = validValid;
@@ -64,7 +63,7 @@ export const validityRangeCheck = ((componentName, validValue, validValid) => {
                 get(accumulator)[11].ready = validValid;
                 get(accumulator)[11].value = validValue;
                 accumulator.update((n) => (n = n))
-                console.log("35 changed");
+                //console.log("35 changed");
                 break;
             case "thirty six to forty five":
                 get(accumulator)[8].ready = validValid;
@@ -74,7 +73,7 @@ export const validityRangeCheck = ((componentName, validValue, validValid) => {
                 get(accumulator)[10].ready = validValid;
                 get(accumulator)[10].value = validValue;
                 accumulator.update((n) => (n = n))
-                console.log("45 changed");
+                //console.log("45 changed");
                 break;
         }
     } catch (error) {

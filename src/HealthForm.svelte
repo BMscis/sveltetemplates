@@ -25,9 +25,9 @@
     });
     afterUpdate(() => {
         if (isFormReady) {
-            console.log("THIS IS DONE: ", isFormReady);
+            //console.log("THIS IS DONE: ", isFormReady);
             if (get(accumulator).length < 10) {
-                navigate(`diet/step${page + 1}`, { replace: false });
+                navigate(`step${page + 1}`, { replace: false });
             } else {
                 [userName,age,email,totalIncome] = setProfile()
                 navigate("welcome-page", { replace: false });

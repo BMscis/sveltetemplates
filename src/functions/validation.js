@@ -10,7 +10,7 @@ export function createFieldValidator(values = false,componentName, isRequired,is
   if (isRequired || isRequired === "true") {
     if (accumCase === true) {
       let val = values
-      console.log("Created: ", componentName)
+      //console.log("Created: ", componentName)
       accumulator.update((n) =>n.concat([{ component: componentName, ready: false, value: val }]));
     }
   }

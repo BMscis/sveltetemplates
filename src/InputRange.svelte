@@ -1,11 +1,10 @@
 <script>
     import { timeConverter, requiredRange } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    import { accumulator } from "./functions/formAccumulator";
     import { validityCheck } from "./functions/validCheck";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
-    import { get } from "svelte/store";
+    import { mountComponent,typeOfInput } from "./functions/mountComponent";
     import { onMount } from "svelte";
     export let isTimeBound = false;
     export let isRequired = false;
@@ -20,10 +19,9 @@
     let validate;
     let validity;
     onMount(() => {
-        let accum = get(accumulator);
-        let thisAccum = accum.find((v) => v.component === inputName);
-        if (thisAccum !== null) {
-            if (thisAccum.value > 0) inputValue = thisAccum.value;
+        if(mountComponent(inputName)){
+            typeOfInput(parseInt(inputValue),mountComponent(inputName)) ? 
+            inputValue = typeOfInput(parseInt(inputValue),mountComponent(inputName)) : 1
         }
     });
     switch (rangeType) {
@@ -46,9 +44,20 @@
             );
             break;
     }
-    $: $validity.valid
-        ? validityCheck(inputName, $validity.value, rangeType == "time"? $validity.state: $validity.valid)
-        : validityCheck(inputName, $validity.value, rangeType == "time"? $validity.state: $validity.valid)
+
+    $: try {
+        $validity.valid
+            ? validityCheck(
+                  inputName,
+                  $validity.value,
+                  rangeType == "time" ? $validity.state : $validity.valid
+              )
+            : validityCheck(
+                  inputName,
+                  $validity.value,
+                  rangeType == "time" ? $validity.state : $validity.valid
+              );
+    } catch (error) {}
 </script>
 
 <div class="range-pocket">
@@ -65,7 +74,9 @@
                 isinputok={rangeType == "time"
                     ? $validity.state
                     : $validity.valid}
-                pullupdialog={rangeType == "time"? !($validity.state): !($validity.valid)}
+                pullupdialog={rangeType == "time"
+                    ? !$validity.state
+                    : !$validity.valid}
             />
             <PopDialog
                 popupText={$validity.message != undefined

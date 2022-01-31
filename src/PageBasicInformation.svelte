@@ -3,6 +3,7 @@
     import FormContainer from "./FormContainer.svelte";
     import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
+    import {Datepicker} from "svelte-calendar"
     export let isFormReady;
 </script>
 
@@ -49,6 +50,7 @@
                 inputName="not-children"
                 
             />
+            <Datepicker/>
         </div>
     </FormContainer>
 </Router>
