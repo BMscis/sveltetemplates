@@ -353,7 +353,7 @@ input[isinputok=true]{
 }
 .checkbox-text {
   position: relative;
-    margin: auto 0;
+    margin: auto;
     font: 400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
 .input-range-container {
@@ -401,14 +401,17 @@ span.outline-symbol-text {
   height: 0;
   min-height: unset;
 }
+h4 {
+  margin-bottom: 0;
+}
 .inner-form {
   display: grid;
-  grid-template-columns: 50% 50%;
   max-width: 100%;
   justify-content: start;
   align-items: center;
   justify-items: start;
-  grid-gap: 24px;
+  grid-gap: 12px;
+  position: relative;
 }
 ::-webkit-input-placeholder { /* Edge */
 	text-align: center;

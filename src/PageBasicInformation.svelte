@@ -5,7 +5,7 @@
     import InputText from "./InputText.svelte";
     import {Datepicker} from "svelte-calendar"
     export let isFormReady;
-
+    let format ='dddd, MMMM D, YYYY';
     const theme = {
 		calendar: {
             width:"100%",
@@ -33,9 +33,9 @@
                 helpText="Please enter your first name."
                 inputName="user-name"
             />
-            <br />
+            <h4>Date of Birth</h4>
+            <Datepicker {format} {theme}/>
             <h4>Maritial Status</h4>
-            <br>
             <InputCheckbox
                 checkboxtext="Married"
                 isRequired="true"
@@ -49,7 +49,6 @@
                 
             />
             <h4>Do you have children?</h4>
-            <br>
             <InputCheckbox
                 checkboxtext="Yes"
                 isRequired="true"
@@ -62,9 +61,7 @@
                 inputName="not-children"
                 
             />
-            <h4>Date of Birth</h4>
-            <br>
-            <Datepicker {theme}/>
+
         </div>
     </FormContainer>
 </Router>

@@ -1,7 +1,7 @@
 {
     "search.useIgnoreFiles":false,
     "search.exclude": {
-        "**/node_modules/svelte-calendar": true,
+        "**/node_modules": false,
         "**/bower_components": true,
         "**/*.code-search": true
     }

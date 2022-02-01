@@ -13,7 +13,7 @@
 
 	onMount(() => {
 		accumulator.subscribe((value) => {
-			//console.log(get(accumulator));
+			console.log(get(accumulator));
 			isFormReady =
 				!get(accumulator).find((v) => v.ready === false || undefined) &&
 				get(accumulator).length > 0

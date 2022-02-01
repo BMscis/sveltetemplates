@@ -42,14 +42,10 @@
         <p slot="paragraph">Get your personalized diet plan.</p>
         <div class="inner-form" slot="forms">
             <Route path="/">
-                <h3>
+                <h4>
                     Hello {userName},
                     <p>please enter your email</p>
-                </h3>
-                <div class="empty-input" />
-                <div class="empty-input" />
-                <div class="empty-input" />
-                <div class="empty-input" />
+                </h4>
                 <InputText
                     inputName="user-email"
                     inputPlaceholder="Enter Email"
@@ -60,11 +56,11 @@
                 <div class="empty-input" />
             </Route>
             <Route path="step3">
-                <h3>
+                <h4>
                     Yo {userName},
-                    <br />
+                    
                     <p>are you comfortable with giving us your age?</p>
-                    <br />
+                    
                     <InputNumber
                         inputPlaceholder="How old are you"
                         inputName="age"
@@ -73,9 +69,9 @@
                         emoji="👍"
                         hasHelp="true"
                     />
-                    <br />
+                    
                     <p>or are you more comfortable with a range?</p>
-                    <br />
+                    
                     <InputCheckbox
                         inputName="eighteen to twenty five"
                         checkboxtext="18 - 25"
@@ -91,7 +87,7 @@
                         checkboxtext="36 - 45"
                         isRequired="true;"
                     />
-                </h3>
+                </h4>
             </Route>
             <Route path="welcome-page">
                 <Profile {age} {userName} income={totalIncome} {email} />

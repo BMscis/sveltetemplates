@@ -61,7 +61,7 @@
                     class="outline-help-slot helper-button"
                 />
             </InputText>
-            <br />
+            
             <InputNumber
                 inputName="atr-weight"
                 inputPlaceholder="Weight"
@@ -84,7 +84,7 @@
                     class="outline-help-slot helper-button"
                 />
             </InputNumber>
-            <br />
+            
             <h3>Your Body Mass Index is : {bmi}</h3>
             <div class="nextQuest" disabled=true>
                 <InputNumber
