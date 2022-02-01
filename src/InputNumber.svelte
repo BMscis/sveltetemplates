@@ -32,8 +32,6 @@
         requiredValidator(),
         requiredRange(levelRange)
     );
-    try {
-    } catch (error) {}
     $: try {
         $validity.valid
             ? (inputPlaceholder = $validity.value)

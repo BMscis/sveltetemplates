@@ -4,19 +4,9 @@
     import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
     import {Datepicker} from "svelte-calendar"
+import DateComponent from "./DateComponent.svelte";
     export let isFormReady;
-    let format ='dddd, MMMM D, YYYY';
-    const theme = {
-		calendar: {
-            width:"100%",
-            height:"100%",
-			colors: {
-				background: {
-					highlight: 'purple'
-				}
-			}
-		}
-	};
+    
 </script>
 
 <Router basepath="/basic-information" url="/basic-information">
@@ -34,7 +24,7 @@
                 inputName="user-name"
             />
             <h4>Date of Birth</h4>
-            <Datepicker {format} {theme}/>
+            <DateComponent/>
             <h4>Maritial Status</h4>
             <InputCheckbox
                 checkboxtext="Married"
@@ -59,6 +49,19 @@
                 checkboxtext="No"
                 isRequired="true"
                 inputName="not-children"
+                
+            />
+            <h4>Employment Status</h4>
+            <InputCheckbox
+                checkboxtext="Employed"
+                isRequired="true"
+                inputName="employed"
+                
+            />
+            <InputCheckbox
+                checkboxtext="Self-Employed"
+                isRequired="true"
+                inputName="not-employed"
                 
             />
 

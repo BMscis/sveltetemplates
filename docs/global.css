@@ -376,7 +376,7 @@ span.outline-symbol-text {
   left: 0;
   right: 0;
   top:-5px;
-  width: fit-content;
+  width: 50%;
   margin: 0 auto;
   white-space: nowrap;
   background-color: white;
@@ -389,13 +389,16 @@ span.outline-symbol-text {
 }
 
 .input-container,.empty-input {
-  position: relative;
   min-height: 44px;
   min-width: 200px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
+}
+.input-container.pop{
+  position: unset;
 }
 .empty-input{
   height: 0;
@@ -438,7 +441,7 @@ h4 {
     right:0;
     text-transform: capitalize;
     }
-  :-moz-placeholder{ /* Internet Explorer 10-11 */
+  input::-moz-placeholder{ /* Internet Explorer 10-11 */
     text-align: center;
     transition:.3s cubic-bezier(0.4,0,0.2,1);
     font:400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
@@ -449,6 +452,7 @@ h4 {
     left: 0;
     right:0;
     text-transform: capitalize;
+    
     }
   ::placeholder { /* Internet Explorer 10-11 */
     text-align: center;
@@ -473,7 +477,10 @@ h4 {
   input:focus-within:-ms-input-placeholder{
 	  transform: translateY(-100%)  scale(0);
   }
-  input:focus-within:-moz-placeholder{
+  input:focus-within ::-moz-placeholder{
+	  transform: translateY(-100%)  scale(0);
+  }
+  input:focus-within :-moz-placeholder{
 	  transform: translateY(-100%)  scale(0);
   }
 progress{
@@ -506,7 +513,7 @@ progress::-moz-range-progress{
 progress::-moz-progress-bar {
 	/* style rules */
 	border-radius: 5px;
-	background-color: var(--background);
+	background-color: #0FD930
   }
 
 svg{

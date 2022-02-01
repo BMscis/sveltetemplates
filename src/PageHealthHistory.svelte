@@ -52,24 +52,24 @@
                 underlying conditions?
             </p>
             <InputCheckbox
-                inputName="asthma"
+                inputName="my-asthma"
                 checkboxtext="Asthma"
-                isRequired="true"
+                isRequired=false
             />
             <InputCheckbox
-                inputName="hypertension"
+                inputName="my-hypertension"
                 checkboxtext="Hypertension"
-                isRequired="true"
+                isRequired=false
             />
             <InputCheckbox
-                inputName="diabetes"
+                inputName="my-diabetes"
                 checkboxtext="Diabetes"
-                isRequired="true"
+                isRequired=false
             />
             <InputCheckbox
-                inputName="heartdisease"
+                inputName="my-heartdisease"
                 checkboxtext="Heart Disease"
-                isRequired="true"
+                isRequired=false
             />
             <p>
                 Do you have a family history of any of the following underlying
@@ -78,22 +78,22 @@
             <InputCheckbox
                 inputName="fam-asthma"
                 checkboxtext="Asthma"
-                isRequired="true"
+                isRequired=false
             />
             <InputCheckbox
                 inputName="fam-hypertension"
                 checkboxtext="Hypertension"
-                isRequired="true"
+                isRequired=false
             />
             <InputCheckbox
                 inputName="fam-diabetes"
                 checkboxtext="Diabetes"
-                isRequired="true"
+                isRequired=false
             />
             <InputCheckbox
                 inputName="fam-heartdisease"
                 checkboxtext="Heart Disease"
-                isRequired="true"
+                isRequired=false
             />
             <div class="p-button">
                 <p>Do you have any medical alergies?</p>

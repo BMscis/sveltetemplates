@@ -2,20 +2,29 @@ import { accumulator } from "./formAccumulator"
 import { convertFeetToCM } from "./converter";
 import {getAccumulator} from "./getAccumulator"
 import { get } from "svelte/store"
+
+const checkNot = /(not)+(-)+([a-z])+\w/g
+const married = /^married$/g
+const employed = /^employed$/g
+const children = /^children$/g
+const dualComponentList = [checkNot,children, married, employed]
+
 export const validityCheck = ((componentName, validValue, validValid) => {
     let [thisAccum, isValid, hasVal] = getAccumulator(componentName);
     if (isValid ) {
-        if (componentName == "married" || componentName == "not-married"
-            || componentName == "children" || componentName == "not-children") {
+        if (dualComponentList.find(v => componentName.match(v) != null)) {
             thisAccum.value = validValue ? "yes" : "no";
             thisAccum.ready = validValid
         }
-        if(validValue) {
-            thisAccum.value = validValue
-            thisAccum.ready = validValid
+        else {
+            if (validValue){
+                thisAccum.value = validValue
+                thisAccum.ready = validValid
+            }
         }
+        validValue ? accumulator.update((n) => (n = n)) : doNothing()
     }
-    validValue ? accumulator.update((n) => (n = n)) : doNothing()
+    return
 })
 const doNothing = (() => { return })
 const tryValLen = ((val) => {
@@ -84,9 +93,6 @@ export const validityOr = ((componentName, validValue, validValid) => {
     let validLen = tryValLen(validValue)
     let validBool = tryValBool(validValue)
     if ( validLen ||  validBool) {
-        const checkNot = /([a-z])+(-)+([a-z])+\w/g
-        const married = /^married$/g
-        const children = /^children$/g
         const addNot = (() => {
             try {
                 let accum = get(accumulator)
@@ -118,7 +124,7 @@ export const validityOr = ((componentName, validValue, validValid) => {
         const matchPositive = (() => {
             componentName.match(checkNot) ? removeNot() : addNot()
         })
-        componentName.match(checkNot) || componentName.match(married) || componentName.match(children) ? matchPositive() : doNothing()
+        dualComponentList.find(v => componentName.match(v) != null) ? matchPositive() : doNothing()
     }
     else {
         return

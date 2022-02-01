@@ -1,6 +1,7 @@
 <script>
+    export let popover = false
 </script>
-<div class="input-container">
+<div class="input-container" class:pop={popover}>
     <slot name="input-slot"></slot>
     <slot name="outline-symbol-slot"></slot>
     <slot name="outline-dialog-slot"></slot>

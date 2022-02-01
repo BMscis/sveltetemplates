@@ -31,9 +31,7 @@
         expandMore(inputName)
     );
 
-    $: try {
-        $validity.valid ? accumulatorCheck() : accumulatorCheck();
-    } catch (error) {}
+    $: $validity.valid ? accumulatorCheck() : accumulatorCheck();
     const accumulatorCheck = () => {
         validityCheck(
             inputName,

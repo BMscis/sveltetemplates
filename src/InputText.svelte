@@ -67,8 +67,6 @@
             );
             break;
     }
-
-
     $: try {
         $validity.valid ? accumulatorCheck() : accumulatorCheck();
     } catch (error) {}
