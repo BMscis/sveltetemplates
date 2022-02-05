@@ -5,47 +5,43 @@
 	import PageBasicInformation from "./PageBasicInformation.svelte";
 	import { accumulator } from "./functions/formAccumulator";
 	import { get } from "svelte/store";
-	import { onMount } from "svelte";
+	import { afterUpdate, onMount } from "svelte";
 	import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelte";
 	import PageHealthHistory from "./PageHealthHistory.svelte";
+	import PageWelcome from "./PageWelcome.svelte";
+	import Profile from "./Profile.svelte";
+	import PageAge from "./PageAge.svelte";
 	let isFormReady = false;
 	let url = "/";
-
+	const rdc = (x, y) => {
+		return x && y;
+	};
+	let readyComponents;
 	onMount(() => {
 		accumulator.subscribe((value) => {
-			//console.log(get(accumulator));
-			isFormReady =
-				!get(accumulator).find((v) => v.ready === false || undefined) &&
-				get(accumulator).length > 0
-					? true
-					: false;
+			let accum = get(accumulator);
+			readyComponents = accum.map((comp) => comp.ready);
+			console.log(get(accumulator));
+			try {
+				isFormReady = get(accumulator).map((comp) => comp.ready).reduce(rdc);
+			} catch (error) {
+				isFormReady = false
+			}
+			console.log("READY: ", isFormReady);
 		});
 	});
-	$: isFormReady =
-		!get(accumulator).find((v) => v.ready === false || undefined) &&
-		get(accumulator).length > 0
-			? true
-			: false;
 </script>
 
-<Router basepath={url}>
-	<nav>
-		<Link to="/">Home</Link>
-		<Link to="mortgages">Mortgages</Link>
-		<Link to="diet">Diet Plan</Link>
-		<Link to="basic-information">Basic Information</Link>
-		<Link to="anthro-measurements">Anthro</Link>
-		<Link to="health-history">health-history</Link>
-	</nav>
-	<main>
-		<Route path="diet/*">
-			<HealthForm {isFormReady} />
-		</Route>
-		<Route path="mortgages">
-			<MortgageForm {isFormReady} />
+<main>
+	<Router basepath={url}>
+		<Route path="/">
+			<PageWelcome {isFormReady} />
 		</Route>
 		<Route path="/basic-information">
 			<PageBasicInformation {isFormReady} />
+		</Route>
+		<Route path="/user-age">
+			<PageAge {isFormReady} />
 		</Route>
 		<Route path="/anthro-measurements">
 			<PageAnthropometricMeasurments {isFormReady} />
@@ -53,8 +49,17 @@
 		<Route path="/health-history">
 			<PageHealthHistory {isFormReady} />
 		</Route>
-	</main>
-</Router>
+		<Route path="/user-profile">
+			<Profile />
+		</Route>
+		<Route path="diet/*">
+			<HealthForm {isFormReady} />
+		</Route>
+		<Route path="mortgages">
+			<MortgageForm {isFormReady} />
+		</Route>
+	</Router>
+</main>
 
 <style>
 	main {

@@ -7,6 +7,7 @@ const checkNot = /(not)+(-)+([a-z])+\w/g
 const married = /^married$/g
 const employed = /^employed$/g
 const children = /^children$/g
+const ageRanges = ["age","eighteen to twenty five","twenty six to thirty five","thirty six to forty five"]
 const dualComponentList = [checkNot,children, married, employed]
 
 export const validityCheck = ((componentName, validValue, validValid) => {
@@ -18,8 +19,30 @@ export const validityCheck = ((componentName, validValue, validValid) => {
         }
         else {
             if (validValue){
-                thisAccum.value = validValue
-                thisAccum.ready = validValid
+                    if (ageRanges.find(v => componentName.match(v) != null)) {
+                        let ageVal = ageRanges.find(v => componentName.match(v) != null)
+                        switch (ageVal) {
+                            case "age":
+                                thisAccum.value = validValue
+                                thisAccum.ready = validValid
+                                break
+                            case "eighteen to twenty five":
+                                thisAccum.value = "18 - 25"
+                                thisAccum.ready = validValid
+                                break
+                            case "twenty six to thirty five":
+                                thisAccum.value = "26 - 35"
+                                thisAccum.ready = validValid
+                                break
+                            case "thirty six to forty five":
+                                thisAccum.value = "36 - 45"
+                                thisAccum.ready = validValid
+                                break
+                        }
+                    }else{
+                        thisAccum.value = validValue
+                        thisAccum.ready = validValid
+                    }
             }
         }
         validValue ? accumulator.update((n) => (n = n)) : doNothing()
@@ -42,52 +65,19 @@ const tryValBool = ((val) => {
     }
 })
 export const validityRangeCheck = ((componentName, validValue, validValid) => {
-    try {
-        switch (componentName) {
-            case "age":
-                get(accumulator)[9].ready = validValid;
-                get(accumulator)[9].value = validValue;
-                get(accumulator)[10].ready = validValid;
-                get(accumulator)[10].value = validValue;
-                get(accumulator)[11].ready = validValid;
-                get(accumulator)[11].value = validValue;
-                accumulator.update((n) => (n = n))
-                //console.log("age changed");
-                break;
-            case "eighteen to twenty five":
-                get(accumulator)[8].ready = validValid;
-                get(accumulator)[8].value = validValue;
-                get(accumulator)[10].ready = validValid;
-                get(accumulator)[10].value = validValue;
-                get(accumulator)[11].ready = validValid;
-                get(accumulator)[11].value = validValue;
-                accumulator.update((n) => (n = n))
-                //console.log("25 changed");
-                break;
-            case "twenty six to thirty five":
-                get(accumulator)[8].ready = validValid;
-                get(accumulator)[8].value = validValue;
-                get(accumulator)[9].ready = validValid;
-                get(accumulator)[9].value = validValue;
-                get(accumulator)[11].ready = validValid;
-                get(accumulator)[11].value = validValue;
-                accumulator.update((n) => (n = n))
-                //console.log("35 changed");
-                break;
-            case "thirty six to forty five":
-                get(accumulator)[8].ready = validValid;
-                get(accumulator)[8].value = validValue;
-                get(accumulator)[9].ready = validValid;
-                get(accumulator)[9].value = validValue;
-                get(accumulator)[10].ready = validValid;
-                get(accumulator)[10].value = validValue;
-                accumulator.update((n) => (n = n))
-                //console.log("45 changed");
-                break;
+    let accum = get(accumulator)
+    let [thisAccum, isValid, hasVal] = getAccumulator(componentName);
+    let ageVisible = ageRanges.map((rang) => accum.find((y) => y.component === rang) !=undefined);
+    const rdc = ((x, y) => { return x && y})
+    //console.log("RDC: ",ageVisible.reduce(rdc) )
+    if (ageRanges.find(v => componentName.match(v) != null)){
+        if(ageVisible.reduce(rdc)){
+            let ageList = ageRanges.map((rang) => accum.find((y) => y.component === rang));
+            ageList.map((val) => {val.ready = validValid; val.value = thisAccum.value})
+            accumulator.update((n) => (n = n))
         }
-    } catch (error) {
-        return false
     }
+    return
 })
 export const validityOr = ((componentName, validValue, validValid) => {
     let validLen = tryValLen(validValue)
@@ -138,4 +128,10 @@ export const bodyMassIndex = ((height, weight) => {
     thisAccum.value = !parseFloat(bmi) ? 1 : parseFloat(bmi)
     accumulator.update((n) => (n = n))
     return bmi == "NaN" ? 1 : bmi
+})
+export const accumulatorCheck = ((name, value, valid) => {
+    validityCheck(name, value, valid)
+    validityRangeCheck(name, value, valid)
+    validityOr(name, value, valid)
+    return
 })

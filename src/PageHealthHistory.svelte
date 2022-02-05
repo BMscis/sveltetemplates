@@ -1,15 +1,22 @@
 <script>
-    import { Router } from "svelte-routing";
+    import { Router, navigate } from "svelte-routing";
     import FormContainer from "./FormContainer.svelte";
     import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
     import { get } from "svelte/store";
     import { foodAlergies, medicalAlergies } from "./functions/formAccumulator";
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
     export let isFormReady = false;
     let foodCount = 0;
     let medCount = 0;
-
+    onMount(() => {
+        isFormReady = false;
+    });
+    afterUpdate(() => {
+        if (isFormReady) {
+            
+        }
+    });
     const addAlergie = (alergy) => {
         switch (alergy) {
             case "food":
@@ -19,7 +26,7 @@
                         {
                             inputName: "alergies-" + foodCount,
                             inputPlaceholder: "Any Food Alergies?",
-                            isRequired: "true",
+                            isRequired: "false",
                         },
                     ])
                 );
@@ -32,7 +39,7 @@
                         {
                             inputName: "med-alergies-" + medCount,
                             inputPlaceholder: "Any Medical Alergies?",
-                            isRequired: "true",
+                            isRequired: "false",
                         },
                     ])
                 );
@@ -40,7 +47,6 @@
                 break;
         }
     };
-
 </script>
 
 <Router url="health-history" basepath="health-history">
@@ -54,22 +60,22 @@
             <InputCheckbox
                 inputName="my-asthma"
                 checkboxtext="Asthma"
-                isRequired=false
+                isRequired="false"
             />
             <InputCheckbox
                 inputName="my-hypertension"
                 checkboxtext="Hypertension"
-                isRequired=false
+                isRequired="false"
             />
             <InputCheckbox
                 inputName="my-diabetes"
                 checkboxtext="Diabetes"
-                isRequired=false
+                isRequired="false"
             />
             <InputCheckbox
                 inputName="my-heartdisease"
                 checkboxtext="Heart Disease"
-                isRequired=false
+                isRequired="false"
             />
             <p>
                 Do you have a family history of any of the following underlying
@@ -78,22 +84,22 @@
             <InputCheckbox
                 inputName="fam-asthma"
                 checkboxtext="Asthma"
-                isRequired=false
+                isRequired="false"
             />
             <InputCheckbox
                 inputName="fam-hypertension"
                 checkboxtext="Hypertension"
-                isRequired=false
+                isRequired="false"
             />
             <InputCheckbox
                 inputName="fam-diabetes"
                 checkboxtext="Diabetes"
-                isRequired=false
+                isRequired="false"
             />
             <InputCheckbox
                 inputName="fam-heartdisease"
                 checkboxtext="Heart Disease"
-                isRequired=false
+                isRequired="false"
             />
             <div class="p-button">
                 <p>Do you have any medical alergies?</p>
@@ -105,13 +111,22 @@
             {/each}
             <div class="p-button">
                 <p>Do you have any alergies?</p>
-                <button class="add-button" on:click={() => addAlergie("food")} />
+                <button
+                    class="add-button"
+                    on:click={() => addAlergie("food")}
+                />
             </div>
 
             {#each $foodAlergies as item}
                 <svelte:component this={InputText} {...item} />
             {/each}
-            <br>
+            <button
+                on:click={() => {
+                    navigate("/user-profile", { replace: false });
+                }}
+                class="navbutton">Let's Continue.</button
+            >
+            <br />
         </div>
     </FormContainer>
 </Router>

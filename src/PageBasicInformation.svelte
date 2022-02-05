@@ -1,12 +1,14 @@
 <script>
-    import { Router, Route, Link } from "svelte-routing";
+    import { Router, navigate } from "svelte-routing";
     import FormContainer from "./FormContainer.svelte";
     import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
     import {Datepicker} from "svelte-calendar"
-import DateComponent from "./DateComponent.svelte";
+    import DateComponent from "./DateComponent.svelte";
     export let isFormReady;
-    
+    $: if(isFormReady){
+        navigate("/anthro-measurements", { replace: true });
+    }
 </script>
 
 <Router basepath="/basic-information" url="/basic-information">
@@ -22,6 +24,14 @@ import DateComponent from "./DateComponent.svelte";
                 isRequired="true"
                 helpText="Please enter your first name."
                 inputName="user-name"
+            />
+            <InputText
+            inputPlaceholder="what is your email? "
+                helpTextHeading="Client Email."
+                inputName="user-email"
+                isRequired="true"
+                emoji="👏"
+                textType="email"
             />
             <h4>Date of Birth</h4>
             <DateComponent/>

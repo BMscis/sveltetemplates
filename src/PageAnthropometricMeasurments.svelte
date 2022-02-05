@@ -5,18 +5,18 @@
     import InputNumber from "./InputNumber.svelte";
     import PopDialog from "./PopDialog.svelte";
     import InputText from "./InputText.svelte";
-    import { Router } from "svelte-routing";
+    import { Router , navigate} from "svelte-routing";
     import { get } from "svelte/store";
-    import { afterUpdate } from "svelte";
+    import { afterUpdate,beforeUpdate,onMount } from "svelte";
     export let isFormReady = false;
     let bmi = 0;
     let helpDialog1 = false;
     let helpDialog2 = false;
-
     afterUpdate(() => {
         //console.log(isFormReady)
         getAccumulator();
         if (isFormReady) {
+           navigate("/health-history", { replace: true });
         } else {
             return;
         }

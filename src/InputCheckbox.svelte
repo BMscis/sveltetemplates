@@ -1,14 +1,10 @@
 <script>
-    import {
-        validityCheck,
-        validityRangeCheck,
-        validityOr,
-    } from "./functions/validCheck";
-    import { createFieldValidator } from "./functions/validation.js";
+    import { accumulatorCheck } from "./functions/validCheck";
     import InputContainer from "./InputContainer.svelte";
+    import { createFieldValidator } from "./functions/validation.js";
     import { expandMore } from "./functions/validators";
-    import { mountComponent,typeOfInput } from "./functions/mountComponent";
-    import { onMount } from "svelte";
+    import { mountComponent, typeOfInput } from "./functions/mountComponent";
+    import { afterUpdate, onMount } from "svelte";
     export let extracheckboxfocus = false;
     export let extracheckboxtext = "";
     export let extracheckbox = false;
@@ -17,38 +13,29 @@
     export let checkboxtext = "";
     export let inputName = "";
     let checkable = false;
+    let validity;
+    let validate;
     onMount(() => {
         if(mountComponent(inputName)){
             typeOfInput(inputValue,mountComponent(inputName)) ? 
             inputValue = typeOfInput(inputValue,mountComponent(inputName)) : (() => {return})
         }
+        return;
     });
-    const [validity, validate] = createFieldValidator(
-        undefined,
-        inputName,
-        isRequired,
-        true,
-        expandMore(inputName)
-    );
-
-    $: $validity.valid ? accumulatorCheck() : accumulatorCheck();
-    const accumulatorCheck = () => {
-        validityCheck(
+    [validity, validate] = createFieldValidator(
+            undefined,
             inputName,
-            $validity.value == null ? undefined : $validity.value,
-            $validity.valid
+            isRequired,
+            true,
+            expandMore(inputName)
         );
-        validityRangeCheck(
+    afterUpdate(() => {
+        accumulatorCheck(
             inputName,
-            $validity.value == null ? undefined : $validity.value,
-            $validity.valid
+            $validity?.value == null ? undefined : $validity?.value,
+            $validity?.valid
         );
-        validityOr(
-            inputName,
-            $validity.value == null ? undefined : $validity.value,
-            $validity.valid
-        );
-    };
+    });
 </script>
 
 <InputContainer>
@@ -63,7 +50,7 @@
             id={inputName}
             bind:checked={inputValue}
             use:validate={inputValue}
-            isinputok={$validity.valid}
+            isinputok={$validity?.valid}
             disabled={checkable}
         />
         <label for={inputName} class="checkbox-text">{checkboxtext}</label>
@@ -73,7 +60,7 @@
         class="checkbox-container"
         id="morecheckbox"
         name="morecheckbox"
-        visible={$validity.valid && extracheckbox}
+        visible={$validity?.valid && extracheckbox}
     >
         <input
             type="checkbox"

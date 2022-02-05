@@ -27,10 +27,10 @@
         if (isFormReady) {
             //console.log("THIS IS DONE: ", isFormReady);
             if (get(accumulator).length < 10) {
-                navigate(`step${page + 1}`, { replace: false });
+                navigate(`diet/step${page + 1}`, { replace: false });
             } else {
                 [userName,age,email,totalIncome] = setProfile()
-                navigate("welcome-page", { replace: false });
+                navigate("/diet/welcome-page", { replace: false });
             }
         }
     });
@@ -55,7 +55,7 @@
                 />
                 <div class="empty-input" />
             </Route>
-            <Route path="step3">
+            <Route path="/diet/step3">
                 <h4>
                     Yo {userName},
                     
@@ -89,7 +89,7 @@
                     />
                 </h4>
             </Route>
-            <Route path="welcome-page">
+            <Route path="/diet/welcome-page">
                 <Profile {age} {userName} income={totalIncome} {email} />
             </Route>
         </div>

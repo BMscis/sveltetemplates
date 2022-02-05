@@ -1,4 +1,5 @@
 <script>
+    import dayjs from 'dayjs';
     import { Datepicker } from "svelte-calendar";
     import InputContainer from "./InputContainer.svelte";
     import { createFieldValidator } from "./functions/validation.js";
@@ -25,7 +26,7 @@
         true
     );
     $: try {
-        validityCheck(inputName, $store.selected, $store.hasChosen);
+        validityCheck(inputName, dayjs($store.selected).format("DD/MM/YYYY"), $store.hasChosen);
     } catch (error) {}
 </script>
 

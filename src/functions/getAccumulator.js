@@ -3,7 +3,7 @@ import { get } from "svelte/store";
 export const getAccumulator = ((componentName) => {
     let accum = get(accumulator);
     let thisAccum = accum.find((v) => v.component === componentName);
-    let val = ""
+    let val = false
     try {
         val = thisAccum.value
     } catch (error) {

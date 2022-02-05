@@ -1,11 +1,11 @@
 <script>
     import { timeConverter, requiredRange } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    import { validityCheck } from "./functions/validCheck";
+    import { accumulatorCheck } from "./functions/validCheck";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
-    import { mountComponent,typeOfInput } from "./functions/mountComponent";
-    import { onMount } from "svelte";
+    import { mountComponent, typeOfInput } from "./functions/mountComponent";
+    import { afterUpdate, onMount } from "svelte";
     export let isTimeBound = false;
     export let isRequired = false;
     export let rangeType = "";
@@ -19,45 +19,44 @@
     let validate;
     let validity;
     onMount(() => {
-        if(mountComponent(inputName)){
-            typeOfInput(parseInt(inputValue),mountComponent(inputName)) ? 
-            inputValue = typeOfInput(parseInt(inputValue),mountComponent(inputName)) : 1
+        if (mountComponent(inputName)) {
+            typeOfInput(parseInt(inputValue), mountComponent(inputName))
+                ? (inputValue = typeOfInput(
+                      parseInt(inputValue),
+                      mountComponent(inputName)
+                  ))
+                : 1;
         }
     });
     switch (rangeType) {
-        case "time":
-            [validity, validate] = createFieldValidator(
-                "",
-                inputName,
-                isRequired,
-                false,
-                timeConverter(inputMin)
-            );
-            break;
-        default:
-            [validity, validate] = createFieldValidator(
-                0,
-                inputName,
-                isRequired,
-                true,
-                requiredRange(parseInt(inputMin))
-            );
-            break;
-    }
+    case "time":
+        [validity, validate] = createFieldValidator(
+            "",
+            inputName,
+            isRequired,
+            false,
+            timeConverter(inputMin)
+        );
+        break;
+    default:
+        [validity, validate] = createFieldValidator(
+            0,
+            inputName,
+            isRequired,
+            true,
+            requiredRange(parseInt(inputMin))
+        );
+        break;
+}
 
-    $: try {
-        $validity.valid
-            ? validityCheck(
-                  inputName,
-                  $validity.value,
-                  rangeType == "time" ? $validity.state : $validity.valid
-              )
-            : validityCheck(
-                  inputName,
-                  $validity.value,
-                  rangeType == "time" ? $validity.state : $validity.valid
-              );
-    } catch (error) {}
+
+    afterUpdate(() => {
+        accumulatorCheck(
+            inputName,
+            $validity?.value,
+            rangeType == "time" ? $validity.state : $validity?.valid
+        );
+    });
 </script>
 
 <div class="range-pocket">
@@ -73,14 +72,14 @@
                 use:validate={inputValue}
                 isinputok={rangeType == "time"
                     ? $validity.state
-                    : $validity.valid}
+                    : $validity?.valid}
                 pullupdialog={rangeType == "time"
                     ? !$validity.state
-                    : !$validity.valid}
+                    : !$validity?.valid}
             />
             <PopDialog
-                popupText={$validity.message != undefined
-                    ? $validity.message
+                popupText={$validity?.message != undefined
+                    ? $validity?.message
                     : "cool"}
                 slot="outline-dialog-slot"
                 isExtra="false"
@@ -95,14 +94,14 @@
                 <span
                     isinputok={rangeType == "time"
                         ? $validity.state
-                        : $validity.valid}
-                    class="outline-symbol-text">{$validity.response}</span
+                        : $validity?.valid}
+                    class="outline-symbol-text">{$validity?.response}</span
                 >
             {:else}
                 <span
                     isinputok={rangeType == "time"
                         ? $validity.state
-                        : $validity.valid}
+                        : $validity?.valid}
                     class="outline-symbol-text"
                     >{@html sign} {inputValue * 1000}</span
                 >
