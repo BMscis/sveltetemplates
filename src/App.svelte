@@ -21,13 +21,13 @@
 		accumulator.subscribe((value) => {
 			let accum = get(accumulator);
 			readyComponents = accum.map((comp) => comp.ready);
-			console.log(get(accumulator));
+			//console.log(get(accumulator));
 			try {
 				isFormReady = get(accumulator).map((comp) => comp.ready).reduce(rdc);
 			} catch (error) {
 				isFormReady = false
 			}
-			console.log("READY: ", isFormReady);
+			//console.log("READY: ", isFormReady);
 		});
 	});
 </script>

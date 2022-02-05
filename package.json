@@ -19,6 +19,7 @@
     "svelte-calendar": "^3.1.6"
   },
   "dependencies": {
+    "express": "^4.17.2",
     "rollup-plugin-inline-svg": "^2.0.0",
     "sirv-cli": "^1.0.0",
     "svelte-routing": "^1.6.0"
