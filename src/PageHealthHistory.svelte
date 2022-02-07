@@ -48,7 +48,7 @@
         }
     };
 </script>
-
+<div class="container"></div>
 <Router url="health-history" basepath="health-history">
     <FormContainer>
         <h1 slot="heading">Health History</h1>

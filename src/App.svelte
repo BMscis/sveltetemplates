@@ -64,10 +64,17 @@
 <style>
 	main {
 		text-align: center;
-		padding: 1em;
-		margin: auto;
-		position: relative;
-		max-width: calc(100vw - 1em);
+    padding: 1em;
+    margin: auto;
+    position: relative;
+    max-width: calc(100vw - 1em);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	background: #0531DA;
+    color: white;
 	}
 
 	h1 {

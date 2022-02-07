@@ -11,70 +11,84 @@
     }
 </script>
 
-<Router basepath="/basic-information" url="/basic-information">
-    <FormContainer>
-        <h1 slot="heading">Basic Information</h1>
-        <p slot="paragraph">
-            We are going to collect basic Information to prepare a diet plan
-        </p>
-        <div class="inner-form" slot="forms">
-            <InputText
-                inputPlaceholder="what is your name? "
-                helpTextHeading="Client Name."
-                isRequired="true"
-                helpText="Please enter your first name."
-                inputName="user-name"
-            />
-            <InputText
-            inputPlaceholder="what is your email? "
-                helpTextHeading="Client Email."
-                inputName="user-email"
-                isRequired="true"
-                emoji="👏"
-                textType="email"
-            />
-            <h4>Date of Birth</h4>
-            <DateComponent/>
-            <h4>Maritial Status</h4>
-            <InputCheckbox
-                checkboxtext="Married"
-                isRequired="true"
-                inputName="married"
+<div class="container">
+    <Router basepath="/basic-information" url="/basic-information">
+        <FormContainer>
+            <h1 slot="heading">Basic Information</h1>
+            <p slot="paragraph">
+                We are going to collect basic Information to prepare a diet plan
+            </p>
+            <div class="inner-form" slot="forms">
+                <InputText
+                    inputPlaceholder="what is your name? "
+                    helpTextHeading="Client Name."
+                    isRequired="true"
+                    helpText="Please enter your first name."
+                    inputName="user-name"
+                />
+                <InputText
+                inputPlaceholder="what is your email? "
+                    helpTextHeading="Client Email."
+                    inputName="user-email"
+                    isRequired="true"
+                    emoji="👏"
+                    textType="email"
+                />
+                <h4>Date of Birth</h4>
+                <DateComponent/>
+                <h4>Maritial Status</h4>
+                <InputCheckbox
+                    checkboxtext="Married"
+                    isRequired="true"
+                    inputName="married"
+                    
+                />
+                <InputCheckbox
+                    checkboxtext="Single"
+                    isRequired="true"
+                    inputName="not-married"
+                    
+                />
+                <h4>Do you have children?</h4>
+                <InputCheckbox
+                    checkboxtext="Yes"
+                    isRequired="true"
+                    inputName="children"
+                    
+                />
+                <InputCheckbox
+                    checkboxtext="No"
+                    isRequired="true"
+                    inputName="not-children"
+                    
+                />
+                <h4>Employment Status</h4>
+                <InputCheckbox
+                    checkboxtext="Employed"
+                    isRequired="true"
+                    inputName="employed"
+                    
+                />
+                <InputCheckbox
+                    checkboxtext="Self-Employed"
+                    isRequired="true"
+                    inputName="not-employed"
+                    
+                />
+    
+            </div>
+            <div class="inner-shadow" slot="extra">
                 
-            />
-            <InputCheckbox
-                checkboxtext="Single"
-                isRequired="true"
-                inputName="not-married"
-                
-            />
-            <h4>Do you have children?</h4>
-            <InputCheckbox
-                checkboxtext="Yes"
-                isRequired="true"
-                inputName="children"
-                
-            />
-            <InputCheckbox
-                checkboxtext="No"
-                isRequired="true"
-                inputName="not-children"
-                
-            />
-            <h4>Employment Status</h4>
-            <InputCheckbox
-                checkboxtext="Employed"
-                isRequired="true"
-                inputName="employed"
-                
-            />
-            <InputCheckbox
-                checkboxtext="Self-Employed"
-                isRequired="true"
-                inputName="not-employed"
-                
-            />
+            </div>
+        </FormContainer>
+    </Router>
+</div>
 
-        </div>
-    </FormContainer>
-</Router>
+<style>
+    .container{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+</style>
