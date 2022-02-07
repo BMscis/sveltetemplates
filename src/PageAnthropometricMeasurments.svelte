@@ -34,7 +34,7 @@
 </script>
 
 <Router url="/anthro-measurements" basepath="/anthro-measurements">
-    <FormContainer>
+    <FormContainer bgColor="#a3f501">
         <h1 slot="heading">Anthroprometric Information</h1>
         <h2 slot="paragraph">Let's calculate your body mass index.</h2>
         <div class="inner-form" slot="forms">

@@ -4,7 +4,7 @@
 </script>
 
 <div class="container">
-    <Router basepath="/page-welcome" url="/page-welcome">
+    <Router basepath="/" url="/">
         <h4>Welcome to the diet plan setup.</h4>
         <h5>Click next to continue.</h5>
         <div class="rolling-ball">

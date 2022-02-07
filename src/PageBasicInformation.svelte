@@ -1,19 +1,17 @@
 <script>
     import { Router, navigate } from "svelte-routing";
     import FormContainer from "./FormContainer.svelte";
-    import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
-    import {Datepicker} from "svelte-calendar"
     import DateComponent from "./DateComponent.svelte";
     export let isFormReady;
     $: if(isFormReady){
-        navigate("/anthro-measurements", { replace: false });
+        navigate("/family-information", { replace: false });
     }
 </script>
 
 <div class="container">
     <Router basepath="/basic-information" url="/basic-information">
-        <FormContainer>
+        <FormContainer bgColor="#21aaf5">
             <h1 slot="heading">Basic Information</h1>
             <p slot="paragraph">
                 We are going to collect basic Information to prepare a diet plan
@@ -35,50 +33,7 @@
                     textType="email"
                 />
                 <h4>Date of Birth</h4>
-                <DateComponent/>
-                <h4>Maritial Status</h4>
-                <InputCheckbox
-                    checkboxtext="Married"
-                    isRequired="true"
-                    inputName="married"
-                    
-                />
-                <InputCheckbox
-                    checkboxtext="Single"
-                    isRequired="true"
-                    inputName="not-married"
-                    
-                />
-                <h4>Do you have children?</h4>
-                <InputCheckbox
-                    checkboxtext="Yes"
-                    isRequired="true"
-                    inputName="children"
-                    
-                />
-                <InputCheckbox
-                    checkboxtext="No"
-                    isRequired="true"
-                    inputName="not-children"
-                    
-                />
-                <h4>Employment Status</h4>
-                <InputCheckbox
-                    checkboxtext="Employed"
-                    isRequired="true"
-                    inputName="employed"
-                    
-                />
-                <InputCheckbox
-                    checkboxtext="Self-Employed"
-                    isRequired="true"
-                    inputName="not-employed"
-                    
-                />
-    
-            </div>
-            <div class="inner-shadow" slot="extra">
-                
+                <DateComponent/>   
             </div>
         </FormContainer>
     </Router>
@@ -90,5 +45,8 @@
         justify-content: flex-start;
         flex-direction: column;
         align-items: flex-start;
+    }
+    .form-container{
+        background: #c1cbb4;
     }
 </style>

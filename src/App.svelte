@@ -11,6 +11,7 @@
 	import PageWelcome from "./PageWelcome.svelte";
 	import Profile from "./Profile.svelte";
 	import PageAge from "./PageAge.svelte";
+import PageFamilyInfo from "./PageFamilyInfo.svelte";
 	let isFormReady = false;
 	let url = "/";
 	const rdc = (x, y) => {
@@ -21,13 +22,13 @@
 		accumulator.subscribe((value) => {
 			let accum = get(accumulator);
 			readyComponents = accum.map((comp) => comp.ready);
-			//console.log(get(accumulator));
+			console.log(get(accumulator));
 			try {
 				isFormReady = get(accumulator).map((comp) => comp.ready).reduce(rdc);
 			} catch (error) {
 				isFormReady = false
 			}
-			//console.log("READY: ", isFormReady);
+			console.log("READY: ", isFormReady);
 		});
 	});
 </script>
@@ -39,6 +40,9 @@
 		</Route>
 		<Route path="/basic-information">
 			<PageBasicInformation {isFormReady} />
+		</Route>
+		<Route path="/family-information">
+			<PageFamilyInfo {isFormReady} />
 		</Route>
 		<Route path="/user-age">
 			<PageAge {isFormReady} />
@@ -72,9 +76,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-	background: #0531DA;
+    justify-content: flex-start;
+	background: #fd8f02;
     color: white;
+	border-radius: 0;
 	}
 
 	h1 {

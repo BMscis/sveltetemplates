@@ -50,7 +50,7 @@
 </script>
 <div class="container"></div>
 <Router url="health-history" basepath="health-history">
-    <FormContainer>
+    <FormContainer bgColor="#1d6dea">
         <h1 slot="heading">Health History</h1>
         <div class="inner-form" slot="forms">
             <p>
@@ -124,9 +124,18 @@
                 on:click={() => {
                     navigate("/user-profile", { replace: false });
                 }}
-                class="navbutton">Let's Continue.</button
+                class="navbutton">Let's Continue</button
             >
             <br />
         </div>
     </FormContainer>
 </Router>
+<style>
+    button.navbutton:not(:disabled) {
+    text-align: center;
+    background-color: #fd8f02;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px #00000087;
+}
+</style>
