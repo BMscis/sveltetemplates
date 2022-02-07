@@ -33,14 +33,32 @@
 </script>
 
 <main>
+	<Router basepath={url}>
+		<Route path="/">
 			<PageWelcome {isFormReady} />
+		</Route>
+		<Route path="/basic-information">
 			<PageBasicInformation {isFormReady} />
+		</Route>
+		<Route path="/user-age">
 			<PageAge {isFormReady} />
+		</Route>
+		<Route path="/anthro-measurements">
 			<PageAnthropometricMeasurments {isFormReady} />
+		</Route>
+		<Route path="/health-history">
 			<PageHealthHistory {isFormReady} />
+		</Route>
+		<Route path="/user-profile">
 			<Profile />
+		</Route>
+		<Route path="diet/*">
 			<HealthForm {isFormReady} />
+		</Route>
+		<Route path="mortgages">
 			<MortgageForm {isFormReady} />
+		</Route>
+	</Router>
 </main>
 
 <style>
