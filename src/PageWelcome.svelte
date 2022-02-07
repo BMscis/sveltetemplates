@@ -7,7 +7,7 @@
 <h5>Click next to continue.</h5>
 <button
     on:click={() => {
-        navigate("/basic-information", { replace: true });
+        navigate("/basic-information", { replace: false });
     }}
     class="navbutton">next</button>
 </Router>

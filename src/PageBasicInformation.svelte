@@ -7,7 +7,7 @@
     import DateComponent from "./DateComponent.svelte";
     export let isFormReady;
     $: if(isFormReady){
-        navigate("/anthro-measurements", { replace: true });
+        navigate("/anthro-measurements", { replace: false });
     }
 </script>
 

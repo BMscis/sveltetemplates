@@ -11,7 +11,10 @@
     const theme = {
         calendar: {
             width: "100%",
+            maxWidth: "100%",
             height: "100%",
+            minWidth:"unset",
+            minHeight:"unset",
             colors: {
                 background: {
                     highlight: "purple",

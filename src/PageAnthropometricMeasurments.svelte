@@ -16,7 +16,7 @@
         //console.log(isFormReady)
         getAccumulator();
         if (isFormReady) {
-           navigate("/health-history", { replace: true });
+           navigate("/health-history", { replace: false });
         } else {
             return;
         }
