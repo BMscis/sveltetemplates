@@ -78,6 +78,12 @@ input,button,a{
   border:none;
 
 }
+a, i{
+  border-radius: 2px;
+}
+a{
+  height: 57%;
+}
 .p-button {
   width: 100%;
   display: flex;
