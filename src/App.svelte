@@ -12,7 +12,7 @@
 	import Profile from "./Profile.svelte";
 	import PageAge from "./PageAge.svelte";
 	let isFormReady = false;
-	let url = "/";
+	let url = "/*";
 	const rdc = (x, y) => {
 		return x && y;
 	};
@@ -33,32 +33,14 @@
 </script>
 
 <main>
-	<Router basepath={url}>
-		<Route path="/">
 			<PageWelcome {isFormReady} />
-		</Route>
-		<Route path="/basic-information">
 			<PageBasicInformation {isFormReady} />
-		</Route>
-		<Route path="/user-age">
 			<PageAge {isFormReady} />
-		</Route>
-		<Route path="/anthro-measurements">
 			<PageAnthropometricMeasurments {isFormReady} />
-		</Route>
-		<Route path="/health-history">
 			<PageHealthHistory {isFormReady} />
-		</Route>
-		<Route path="/user-profile">
 			<Profile />
-		</Route>
-		<Route path="diet/*">
 			<HealthForm {isFormReady} />
-		</Route>
-		<Route path="mortgages">
 			<MortgageForm {isFormReady} />
-		</Route>
-	</Router>
 </main>
 
 <style>
