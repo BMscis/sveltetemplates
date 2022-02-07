@@ -33,7 +33,7 @@
 </script>
 
 <main>
-	<Router basepath={url}>
+	<Router basepath={url} url={url}>
 		<Route path="/">
 			<PageWelcome {isFormReady} />
 		</Route>
