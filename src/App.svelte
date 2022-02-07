@@ -12,7 +12,7 @@
 	import Profile from "./Profile.svelte";
 	import PageAge from "./PageAge.svelte";
 	let isFormReady = false;
-	let url = "/*";
+	let url = "/";
 	const rdc = (x, y) => {
 		return x && y;
 	};
