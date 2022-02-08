@@ -34,7 +34,7 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 </script>
 
 <main>
-	<Router >
+	<Router url={url} basepath={url}>
 		<Route path="/">
 			<PageWelcome {isFormReady} />
 		</Route>
