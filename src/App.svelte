@@ -34,7 +34,7 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 </script>
 
 <main>
-	<Router basepath={url} url={url}>
+	<Router >
 		<Route path="/">
 			<PageWelcome {isFormReady} />
 		</Route>
@@ -66,21 +66,7 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 </main>
 
 <style>
-	main {
-		text-align: center;
-    padding: 1em;
-    margin: auto;
-    position: relative;
-    max-width: calc(100vw - 1em);
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-	background: #fd8f02;
-    color: white;
-	border-radius: 0;
-	}
+
 
 	h1 {
 		color: #ff3e00;

@@ -4,7 +4,7 @@
     import InputContainer from "./InputContainer.svelte";
     import { createFieldValidator } from "./functions/validation.js";
     import { validityCheck, validityRangeCheck } from "./functions/validCheck";
-    const format = "dddd, MMMM D, YYYY";
+    const format = "DD/MM/YYYY";
     let inputName = "dob";
     let isRequired = true;
     let store;

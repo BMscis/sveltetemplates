@@ -18,6 +18,7 @@
 </script>
 
 <Router basepath="/user-profile" url="/user-profile">
+    <div class="inner-shadow" slot="extra"></div>
     <div class="profile">
         <h2>Welcome {userName}</h2>
         {#if setAge()}
@@ -30,5 +31,9 @@
         <br />
         <caption>Email: {email}</caption>
         <br />
+    </div>
+    <div  class="steps">
+        <h1>GREAT</h1>
+        <span>👍</span>
     </div>
 </Router>

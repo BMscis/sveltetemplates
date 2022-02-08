@@ -19,6 +19,7 @@
     export let helpText = "";
     export let emoji = "";
     export let sign = "";
+    export let outlineColor = "";
     let validity;
     let validate;
     const placeHolder = inputPlaceholder;
@@ -121,7 +122,7 @@
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"
     />
-    <span class="outline-text-slot" slot="outline-text-slot"
+    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:{outlineColor};" 
         >{inputPlaceholder}</span
     >
     <slot slot="outline-help-slot" name="container-help-slot" />
@@ -132,3 +133,8 @@
     >
     <slot slot="extra-dialog-slot" name="extra-dialog" />
 </InputContainer>
+<style>
+        *:global(.outline-text-slot){
+        background-color:#4aaabb ;
+    }
+</style>

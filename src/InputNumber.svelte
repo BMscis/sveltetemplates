@@ -16,6 +16,7 @@
     export let emoji = "";
     export let sign = "";
     export let inputName;
+    export let outlineColor;
     let addVal = "";
     const placeHolder = inputPlaceholder;
     onMount(() => {
@@ -76,7 +77,7 @@
         isExtra="false"
         isSide="true"
     />
-    <span class="outline-text-slot" slot="outline-text-slot"
+    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:{outlineColor};"
         >{$validity.valid && inputValue > 0
             ? inputPlaceholder
             : placeHolder}</span

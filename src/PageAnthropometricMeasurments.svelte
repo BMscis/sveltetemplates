@@ -12,6 +12,7 @@
     let bmi = 0;
     let helpDialog1 = false;
     let helpDialog2 = false;
+    const bgColor = "#a3f501"
     afterUpdate(() => {
         //console.log(isFormReady)
         getAccumulator();
@@ -34,7 +35,8 @@
 </script>
 
 <Router url="/anthro-measurements" basepath="/anthro-measurements">
-    <FormContainer bgColor="#a3f501">
+    <FormContainer bgColor={bgColor}>
+        <div class="inner-shadow" slot="extra"></div>
         <h1 slot="heading">Anthroprometric Information</h1>
         <h2 slot="paragraph">Let's calculate your body mass index.</h2>
         <div class="inner-form" slot="forms">
@@ -45,6 +47,7 @@
                 isRequired="true"
                 textType="height"
                 sign="''"
+                outlineColor="#e6a702"
             >
                 <PopDialog
                     isExtra="true"
@@ -68,6 +71,7 @@
                 isRequired="true"
                 sign="kg"
                 levelRange = 50
+                outlineColor="#eba302"
             >
                 <PopDialog
                     isExtra="true"
@@ -99,4 +103,11 @@
             </div>
         </div>
     </FormContainer>
+    <div  class="steps">
+        <h1>STEP 0<span style="color: {bgColor};">3</span></h1>
+        <p>Lets do some calculations.</p>
+    </div>
 </Router>
+<style>
+    
+</style>

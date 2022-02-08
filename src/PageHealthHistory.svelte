@@ -9,6 +9,7 @@
     export let isFormReady = false;
     let foodCount = 0;
     let medCount = 0;
+    let bgColor = "#1d6dea"
     onMount(() => {
         isFormReady = false;
     });
@@ -50,13 +51,15 @@
 </script>
 <div class="container"></div>
 <Router url="health-history" basepath="health-history">
-    <FormContainer bgColor="#1d6dea">
+    <FormContainer bgColor={bgColor}>
+        <div class="inner-shadow" slot="extra"></div>
         <h1 slot="heading">Health History</h1>
         <div class="inner-form" slot="forms">
             <p>
                 Do you have or have currently experienced the following
                 underlying conditions?
             </p>
+            <br>
             <InputCheckbox
                 inputName="my-asthma"
                 checkboxtext="Asthma"
@@ -81,6 +84,7 @@
                 Do you have a family history of any of the following underlying
                 conditions?
             </p>
+            <br>
             <InputCheckbox
                 inputName="fam-asthma"
                 checkboxtext="Asthma"
@@ -129,6 +133,10 @@
             <br />
         </div>
     </FormContainer>
+    <div  class="steps">
+        <h1>STEP 0<span style="color: {bgColor};">4</span></h1>
+        <p>How about your health history?</p>
+    </div>
 </Router>
 <style>
     button.navbutton:not(:disabled) {
@@ -137,5 +145,9 @@
     color: white;
     border-radius: 4px;
     box-shadow: 1px 1px 5px #00000087;
+    grid-column-start: 1;
 }
+*:global(.outline-text-slot){
+        background-color:#bb974a ;
+    }
 </style>

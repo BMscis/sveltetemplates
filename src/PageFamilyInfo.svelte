@@ -4,6 +4,7 @@
     import InputCheckbox from "./InputCheckbox.svelte";
     import { afterUpdate, onMount } from "svelte";
     export let isFormReady = false;
+    const bgColor = "#a300f5"
     onMount(() => {
         isFormReady = false
     })
@@ -16,7 +17,8 @@
 
 <div class="container">
     <Router basepath="/family-information" url="/family-information">
-        <FormContainer bgColor="#a300f5">
+        <FormContainer bgColor={bgColor}>
+            <div class="inner-shadow" slot="extra"></div>
             <h1 slot="heading">Family Information</h1>
             <p slot="paragraph">
                 We are going to collect basic Information to prepare a diet plan
@@ -64,6 +66,10 @@
     
             </div>
         </FormContainer>
+        <div  class="steps">
+            <h1>STEP 0<span style="color: {bgColor};">2</span></h1>
+            <p>Tell us abit about your family.</p>
+        </div>
     </Router>
 </div>
 
@@ -74,4 +80,5 @@
         flex-direction: column;
         align-items: flex-start;
     }
+
 </style>

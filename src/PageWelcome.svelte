@@ -23,7 +23,7 @@
 <style>
     .container{
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         flex-direction: column;
         align-items: center;
     }
