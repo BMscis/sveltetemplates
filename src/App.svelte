@@ -7,7 +7,8 @@
 	import { get } from "svelte/store";
 	import { afterUpdate, onMount } from "svelte";
 	import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelte";
-	import PageHealthHistory from "./PageHealthHistory.svelte";
+	import PageFamilyHealthHistory from "./PageFamilyHealthHistory.svelte";
+	import PagePersonalHealthHistory from "./PagePersonalHealthHistory.svelte";
 	import PageWelcome from "./PageWelcome.svelte";
 	import Profile from "./Profile.svelte";
 	import PageAge from "./PageAge.svelte";
@@ -34,6 +35,8 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 </script>
 
 <main>
+	<div id="Scroll_Group_1_pd">
+	</div>
 	<Router url={url} basepath={url}>
 		<Route path="/">
 			<PageWelcome {isFormReady} />
@@ -50,8 +53,11 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 		<Route path="/anthro-measurements">
 			<PageAnthropometricMeasurments {isFormReady} />
 		</Route>
-		<Route path="/health-history">
-			<PageHealthHistory {isFormReady} />
+		<Route path="/personal-health-history">
+			<PagePersonalHealthHistory {isFormReady} />
+		</Route>
+		<Route path="/family-health-history">
+			<PageFamilyHealthHistory {isFormReady} />
 		</Route>
 		<Route path="/user-profile">
 			<Profile />

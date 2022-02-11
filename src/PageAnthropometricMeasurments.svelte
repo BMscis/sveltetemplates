@@ -8,16 +8,20 @@
     import { Router , navigate} from "svelte-routing";
     import { get } from "svelte/store";
     import { afterUpdate,beforeUpdate,onMount } from "svelte";
+import FormViewer from "./FormViewer.svelte";
     export let isFormReady = false;
     let bmi = 0;
     let helpDialog1 = false;
     let helpDialog2 = false;
     const bgColor = "#a3f501"
+    onMount(()=>{
+        document.body.scrollIntoView()
+    })
     afterUpdate(() => {
         //console.log(isFormReady)
         getAccumulator();
         if (isFormReady) {
-           navigate("/health-history", { replace: false });
+           navigate("/personal-health-history", { replace: false });
         } else {
             return;
         }
@@ -33,13 +37,10 @@
         }
     }
 </script>
-
+<div class="Mycontainer">
 <Router url="/anthro-measurements" basepath="/anthro-measurements">
-    <FormContainer bgColor={bgColor}>
-        <div class="inner-shadow" slot="extra"></div>
-        <h1 slot="heading">Anthroprometric Information</h1>
-        <h2 slot="paragraph">Let's calculate your body mass index.</h2>
-        <div class="inner-form" slot="forms">
+    <FormViewer header="Family Information" onboardingText="Here we are going to calculate your Body Mass Index using your height and weight.">
+        <div id="content"   slot="slot1">
             <InputText
                 inputName="atr-height"
                 helpText="Please enter your height in feet and inches"
@@ -89,7 +90,7 @@
                 />
             </InputNumber>
             
-            <h3>Your Body Mass Index is : {bmi}</h3>
+            <!-- <h3>Your Body Mass Index is : {bmi}</h3>
             <div class="nextQuest" disabled=true>
                 <InputNumber
                 inputName="bmi"
@@ -100,14 +101,20 @@
                 inputValue = {bmi}
             >
             </InputNumber>
-            </div>
+            </div> -->
         </div>
-    </FormContainer>
-    <div  class="steps">
-        <h1>STEP 0<span style="color: {bgColor};">3</span></h1>
-        <p>Lets do some calculations.</p>
-    </div>
+    </FormViewer>
 </Router>
+</div>
+<div  class="steps">
+    <h1>STEP 0<span style="color: {bgColor};">3</span></h1>
+    <p>Lets do some calculations.</p>
+</div>
 <style>
-    
+        .container{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 </style>

@@ -92,6 +92,10 @@
 </script>
 
 <InputContainer>
+    <!-- <svg slot="backdrop"class="Rectangle_1525">
+        <rect id="Rectangle_1525" rx="18" ry="18" x="0" y="0" width="315" height="60">
+        </rect>
+    </svg> -->
     <input
         slot="input-slot"
         type="text"
@@ -122,7 +126,7 @@
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"
     />
-    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:{outlineColor};" 
+    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:#404e5a;" 
         >{inputPlaceholder}</span
     >
     <slot slot="outline-help-slot" name="container-help-slot" />

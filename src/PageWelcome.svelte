@@ -3,7 +3,7 @@
     let isFormReady = false;
 </script>
 
-<div class="container">
+<div class="Mycontainer">
     <Router basepath="/" url="/">
         <h4>Welcome to the diet plan setup.</h4>
         <h5>Click next to continue.</h5>
@@ -21,10 +21,4 @@
     </Router>
 </div>
 <style>
-    .container{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
 </style>

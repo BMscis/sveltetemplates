@@ -77,7 +77,7 @@
         isExtra="false"
         isSide="true"
     />
-    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:{outlineColor};"
+    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:#404e5a;"
         >{$validity.valid && inputValue > 0
             ? inputPlaceholder
             : placeHolder}</span
