@@ -1,0 +1,5 @@
+fix ft input
+create profile
+make use of nav bar
+delete unused apis
+check for memory leaks

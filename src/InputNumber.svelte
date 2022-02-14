@@ -3,7 +3,6 @@
         requiredRange,
         requiredValidator,
     } from "./functions/validators.js";
-    import { validityCheck, validityRangeCheck } from "./functions/validCheck";
     import { createFieldValidator } from "./functions/validation.js";
     import { mountComponent,typeOfInput } from "./functions/mountComponent";
     import { onMount } from "svelte";
@@ -16,8 +15,6 @@
     export let emoji = "";
     export let sign = "";
     export let inputName;
-    export let outlineColor;
-    let addVal = "";
     const placeHolder = inputPlaceholder;
     onMount(() => {
         if(mountComponent(inputName)){
@@ -33,22 +30,6 @@
         requiredValidator(),
         requiredRange(levelRange)
     );
-    $: try {
-        $validity.valid
-            ? (inputPlaceholder = $validity.value)
-            : (inputPlaceholder = placeHolder);
-    } catch (error) {}
-    $: try {
-        $validity.valid ? accumulatorCheck() : accumulatorCheck();
-    } catch (error) {}
-    const accumulatorCheck = () => {
-        validityCheck(
-            inputName,
-            $validity.value == null ? 0 : $validity.value,
-            $validity.valid
-        );
-        validityRangeCheck(inputName, $validity.value, $validity.valid);
-    };
 </script>
 
 <InputContainer>

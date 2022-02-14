@@ -1,11 +1,10 @@
 <script>
     import { timeConverter, requiredRange } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    import { accumulatorCheck } from "./functions/validCheck";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
     import { mountComponent, typeOfInput } from "./functions/mountComponent";
-    import { afterUpdate, onMount } from "svelte";
+    import {onMount } from "svelte";
     export let isTimeBound = false;
     export let isRequired = false;
     export let rangeType = "";
@@ -48,15 +47,6 @@
         );
         break;
 }
-
-
-    afterUpdate(() => {
-        accumulatorCheck(
-            inputName,
-            $validity?.value,
-            rangeType == "time" ? $validity.state : $validity?.valid
-        );
-    });
 </script>
 
 <div class="range-pocket">

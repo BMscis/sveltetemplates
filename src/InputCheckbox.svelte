@@ -1,11 +1,9 @@
 <script>
-    import { accumulatorCheck } from "./functions/validCheck";
     import InputContainer from "./InputContainer.svelte";
     import { createFieldValidator } from "./functions/validation.js";
     import { expandMore } from "./functions/validators";
     import { mountComponent, typeOfInput } from "./functions/mountComponent";
-    import { afterUpdate, onMount } from "svelte";
-    export let extracheckboxfocus = false;
+    import { onMount } from "svelte";
     export let extracheckboxtext = "";
     export let extracheckbox = false;
     export let inputValue = undefined;
@@ -29,13 +27,6 @@
             true,
             expandMore(inputName)
         );
-    afterUpdate(() => {
-        accumulatorCheck(
-            inputName,
-            $validity?.value == null ? undefined : $validity?.value,
-            $validity?.valid
-        );
-    });
 </script>
 
 <InputContainer>

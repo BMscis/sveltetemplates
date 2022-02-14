@@ -1,34 +1,38 @@
 <script>
-    import { Router, navigate } from "svelte-routing";
-    import FormContainer from "./FormContainer.svelte";
-    import mail from "../docs/assets/icon-mail.svg"
-    import man from "../docs/assets/icon-account.svg"
+    import { Router } from "svelte-routing";
+    import mail from "../docs/assets/icon-mail.svg";
+    import man from "../docs/assets/icon-account.svg";
     import InputText from "./InputText.svelte";
     import DateComponent from "./DateComponent.svelte";
-import FormViewer from "./FormViewer.svelte";
-import { onMount } from "svelte";
+    import FormViewer from "./FormViewer.svelte";
+    import { onMount } from "svelte";
+    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { navigatorCount } from "./functions/formAccumulator";
     export let isFormReady;
-    const bgColor = "#21aaf5"
-    onMount(()=>{
-        document.body.scrollIntoView()
-    })
-    $: if(isFormReady){
-        navigate("/family-information", { replace: false });
+    const bgColor = "#21aaf5";
+    onMount(() => {
+        document.body.scrollIntoView();
+        navigatorCount.update((n) => n + 1);
+    });
+    $: if (isFormReady) {
+        setNavigateTo("/family-information");
     }
-    
 </script>
 
 <div class="Mycontainer">
     <Router basepath="/basic-information" url="/basic-information">
-        <FormViewer header="Basic Information" onboardingText="Lets create a profile for you.">
-            <div id="content"   slot="slot1">
+        <FormViewer
+            header="Basic Information"
+            onboardingText="Lets create a profile for you."
+        >
+            <div id="content" slot="slot1">
                 <InputText
                     inputPlaceholder="what is your name? "
                     helpTextHeading="Client Name."
                     isRequired="true"
                     helpText="Please enter your first name."
                     inputName="user-name"
-                    outlineColor = "#bb974a"
+                    outlineColor="#bb974a"
                     sign={man}
                 />
                 <InputText
@@ -38,20 +42,11 @@ import { onMount } from "svelte";
                     isRequired="true"
                     emoji="👏"
                     textType="email"
-                    outlineColor = "#ce9535"
+                    outlineColor="#ce9535"
                     sign={mail}
                 />
-                <DateComponent/>   
+                <DateComponent />
             </div>
         </FormViewer>
     </Router>
 </div>
-<div  class="steps">
-    <h1>STEP 0<span style="color: {bgColor};">1</span></h1>
-    <p>Lets collect basic info.</p>
-</div>
-<style>
-    .form-container{
-        background: #c1cbb4;
-    }
-</style>

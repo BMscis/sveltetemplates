@@ -5,7 +5,6 @@
         heightValidator,
     } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    import { validityCheck } from "./functions/validCheck";
     import { onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
@@ -19,7 +18,6 @@
     export let helpText = "";
     export let emoji = "";
     export let sign = "";
-    export let outlineColor = "";
     let validity;
     let validate;
     const placeHolder = inputPlaceholder;
@@ -68,27 +66,6 @@
             );
             break;
     }
-    $: try {
-        $validity.valid ? accumulatorCheck() : accumulatorCheck();
-    } catch (error) {}
-    const accumulatorCheck = () => {
-        validityCheck(inputName, $validity.value, $validity.valid);
-        textType == "height"
-            ? inputValue != undefined && inputValue != null
-                ? (inputValue = $validity.response)
-                : inputValue
-            : inputValue;
-        setPlaceHolder();
-    };
-    const setPlaceHolder = () => {
-        let checkVal =
-            $validity.value != null &&
-            $validity.value != undefined &&
-            $validity.value.length > 0;
-        checkVal
-            ? (inputPlaceholder = $validity.value)
-            : (inputPlaceholder = placeHolder);
-    };
 </script>
 
 <InputContainer>

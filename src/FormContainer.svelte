@@ -1,5 +1,4 @@
 <script>
-    import { get } from "svelte/store";
     export let bgColor = "#DEA33C";
 </script>
 

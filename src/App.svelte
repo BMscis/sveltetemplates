@@ -1,43 +1,49 @@
 <script>
-	import { Router, Route, Link } from "svelte-routing";
-	import MortgageForm from "./MortgageForm.svelte";
-	import HealthForm from "./HealthForm.svelte";
+	import { Router, Route } from "svelte-routing";
 	import PageBasicInformation from "./PageBasicInformation.svelte";
-	import { accumulator } from "./functions/formAccumulator";
-	import { get } from "svelte/store";
-	import { afterUpdate, onMount } from "svelte";
+	import { accumulator, navigatorCount } from "./functions/formAccumulator";
+	import { onMount } from "svelte";
 	import PageAnthropometricMeasurments from "./PageAnthropometricMeasurments.svelte";
 	import PageFamilyHealthHistory from "./PageFamilyHealthHistory.svelte";
 	import PagePersonalHealthHistory from "./PagePersonalHealthHistory.svelte";
 	import PageWelcome from "./PageWelcome.svelte";
 	import Profile from "./Profile.svelte";
-	import PageAge from "./PageAge.svelte";
-import PageFamilyInfo from "./PageFamilyInfo.svelte";
+	import PageFamilyInfo from "./PageFamilyInfo.svelte";
+	import LoadingPage from "./LoadingPage.svelte";
+	import NavigationBar from "./NavigationBar.svelte";
 	let isFormReady = false;
 	let url = "/";
+	let navCount = 0;
+	let navCollection = [0, 1, 2, 3, 4, 5, 6];
 	const rdc = (x, y) => {
 		return x && y;
 	};
 	let readyComponents;
 	onMount(() => {
 		accumulator.subscribe((value) => {
-			let accum = get(accumulator);
-			readyComponents = accum.map((comp) => comp.ready);
-			console.log(get(accumulator));
+			//console.log("ACC VAL:", value);
+			readyComponents = value.map((comp) => comp.ready);
+			//console.log(get(accumulator));
 			try {
-				isFormReady = get(accumulator).map((comp) => comp.ready).reduce(rdc);
+				isFormReady = value.map((comp) => comp.ready).reduce(rdc);
 			} catch (error) {
-				isFormReady = false
+				isFormReady = false;
 			}
-			console.log("READY: ", isFormReady);
+			//console.log("READY: ", isFormReady);
+		});
+		navigatorCount.subscribe((value) => {
+			//console.log("NAVCOUNT: ", value);
+			navCount = value;
 		});
 	});
 </script>
 
 <main>
-	<div id="Scroll_Group_1_pd">
-	</div>
-	<Router url={url} basepath={url}>
+	<NavigationBar {isFormReady} />
+	<Router {url} basepath={url}>
+		<Route path="/loading">
+			<LoadingPage />
+		</Route>
 		<Route path="/">
 			<PageWelcome {isFormReady} />
 		</Route>
@@ -46,9 +52,6 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 		</Route>
 		<Route path="/family-information">
 			<PageFamilyInfo {isFormReady} />
-		</Route>
-		<Route path="/user-age">
-			<PageAge {isFormReady} />
 		</Route>
 		<Route path="/anthro-measurements">
 			<PageAnthropometricMeasurments {isFormReady} />
@@ -62,25 +65,21 @@ import PageFamilyInfo from "./PageFamilyInfo.svelte";
 		<Route path="/user-profile">
 			<Profile />
 		</Route>
-		<Route path="diet/*">
-			<HealthForm {isFormReady} />
-		</Route>
-		<Route path="mortgages">
-			<MortgageForm {isFormReady} />
-		</Route>
 	</Router>
+	<div id="page_link">
+		{#each navCollection as nav}
+			<div id="nav-dot" class="nav_dot">
+				<svg class="nav-dot">
+					<ellipse
+						active={nav == navCount}
+						id="nav-dot"
+						rx="5"
+						ry="5"
+						cx="5"
+						cy="5"
+					/>
+				</svg>
+			</div>
+		{/each}
+	</div>
 </main>
-
-<style>
-
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-	}
-</style>

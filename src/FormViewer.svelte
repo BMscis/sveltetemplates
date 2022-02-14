@@ -21,38 +21,6 @@
         <span>{onboardingText}</span>
     </div>
     <slot name="slot2"></slot>
-    <div id="page_link">
-        <div id="nav-dot_n" class="nav_dot">
-            <svg class="Ellipse_442">
-                <ellipse id="Ellipse_442" rx="5" ry="5" cx="5" cy="5">
-                </ellipse>
-            </svg>
-        </div>
-        <div id="nav-dot_oa" class="nav_dot">
-            <svg class="Ellipse_442">
-                <ellipse id="Ellipse_442" rx="5" ry="5" cx="5" cy="5">
-                </ellipse>
-            </svg>
-        </div>
-        <div id="nav-dot_oc" class="nav_dot">
-            <svg class="Ellipse_442">
-                <ellipse id="Ellipse_442" rx="5" ry="5" cx="5" cy="5">
-                </ellipse>
-            </svg>
-        </div>
-        <div id="nav-dot_oe" class="nav_dot">
-            <svg class="Ellipse_442">
-                <ellipse id="Ellipse_442" rx="5" ry="5" cx="5" cy="5">
-                </ellipse>
-            </svg>
-        </div>
-        <div id="nav-dot_og" class="nav_dot">
-            <svg class="Ellipse_442">
-                <ellipse active id="Ellipse_442" rx="5" ry="5" cx="5" cy="5">
-                </ellipse>
-            </svg>
-        </div>
-    </div>
     <slot name="slot3"></slot>
 
 </div>

@@ -1,6 +1,11 @@
 import { accumulator } from "./formAccumulator"
+import dayjs from 'dayjs';
 import { get } from "svelte/store"
 const checkNot = /(not)+(-)+([a-z])+\w/g
+const thisYear = new Date().getFullYear();
+const reg = /(\')/g
+const checkDash = /(\-)/g
+
 function emailValidator() {
   return function email(value) {
     return (value && !!value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+(com)))$/)) || 'Please enter a valid email'
@@ -13,30 +18,20 @@ function nameValidator() {
 }
 function heightValidator() {
   return function name(value) {
-    if (value != null) {
-      const reg = /(\')/g
+    if (value) {
       let setVal = null
       let accum = get(accumulator)
       let heightComp = accum.find(v => v.component === "atr-height")
-      if (heightComp.value != null && heightComp.value != undefined) {
-        if (heightComp.value.length > 0) {
-          heightComp.value.match(reg) ? setVal = value : setVal
-        }
-        else {
-          value.match(reg) ? setVal = value : setVal = value + "\'"
-
-        }
-      }
-      else {
-        if (value != null && value != undefined) {
+      let hadValue = !!heightComp.value
+      let hasValue = !!value
+        if((hadValue || hasValue) && !(hadValue && hasValue)){
           value.match(reg) ? setVal = value : setVal = value + "\'"
         }
-
-      }
-      setVal != null && setVal != undefined ? value = setVal : value
-      return setVal != null && setVal != undefined ? value = setVal : value
+      return setVal != null && setVal != undefined ? setVal : value
+    }else{
+      
+      return ""
     }
-    return
   }
 }
 function requiredValidator() {
@@ -66,10 +61,16 @@ function timeConverter(inputMin) {
     return setVal = ! null ? setVal : "Must be above 1 month"
   }
 }
-function checkRNot(component){
-const checkDash = /(\-)/g
+function checkRNot(component) {
 
   return component.match(checkDash)
+}
+function chekiSaa() {
+  return function checkTime(value){
+    let dateTime = dayjs(value,"DD/MM/YYYY")
+    let birthYear = parseInt(dayjs(dateTime).format("YYYY"))
+    return ((thisYear - 17) > birthYear) || "Must be 18 and above"
+  }
 }
 export {
   emailValidator,
@@ -79,5 +80,6 @@ export {
   timeConverter,
   nameValidator,
   heightValidator,
-  checkRNot
+  checkRNot,
+  chekiSaa
 }
