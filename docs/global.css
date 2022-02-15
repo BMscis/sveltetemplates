@@ -285,12 +285,13 @@ button#move-to-next{
   width: 30px;
   height: 30px;
   background-image: url(./assets/arrow-circle.svg);
-  background-color: transparent;
+  background-color: #7bed8d;
+  border-radius: 50%;
   margin: auto;
   grid-column-start: 3;
 }
-button#move-to-next:hover::after,
-button#move-to-next:disabled:hover::after{
+button#move-to-next:focus::after,
+button#move-to-next:disabled:focus::after{
   content: "NEXT";
   background-image: url(./assets/tooltip.svg);
   width: 67px;
@@ -396,6 +397,7 @@ button.user-response-button {
 .nextQuest::after{
 }
 dialog{
+  z-index: 10;
 }
 hr{
   margin: 10px;
@@ -978,7 +980,6 @@ span{
     max-width: none;
   }
   .input-container,.input-range-container,.empty-input{
-    min-width: 100%;
     grid-column-start: 1;
   }
   input,progress{
