@@ -285,7 +285,6 @@ button#move-to-next{
   width: 30px;
   height: 30px;
   background-image: url(./assets/arrow-circle.svg);
-  background-color: #7bed8d;
   border-radius: 50%;
   margin: auto;
   grid-column-start: 3;
