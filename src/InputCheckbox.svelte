@@ -24,8 +24,7 @@
             undefined,
             inputName,
             isRequired,
-            true,
-            expandMore(inputName)
+            true
         );
 </script>
 
@@ -708,24 +707,21 @@
 		shape-rendering: auto;
 	}
 	.switch-body_md {
-		width: 37px;
-		height: 24px;
+		width: 100%;
+		height: 100%;
 		position: absolute;
 		
 		transform: translate(0px, 0px) matrix(1,0,0,1,0,0) rotate(180deg);
 		transform-origin: center;
 		appearance: none;
-        right: -20px;
 	}
 	#switch-circle_me {
 		fill: rgba(116,138,157,1);
 	}
 	.switch-circle_me {
 		position: absolute;
-		
 		width: 24px;
 		height: 24px;
-		left: 13px;
 		top: 0px;
         
 	}
