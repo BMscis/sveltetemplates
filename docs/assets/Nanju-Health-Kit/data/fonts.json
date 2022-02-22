@@ -1,0 +1,109 @@
+{
+  "dsp_spec_version": "0.0.1",
+  "last_updated_by": "",
+  "last_updated": "2022-02-19T15:21:03.900Z",
+  "entities": [
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "01b6e28d-4633-4fda-a6e0-d594c477d1ab",
+      "name": "font-body-text",
+      "tags": [],
+      "related_entity_ids": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/988efdc3-2250-4e4a-6e57-a8f0a8732245",
+        "id": "9e446651-3201-4cc2-b998-0bcfaedee35a",
+        "last_sync": "2022-02-19T15:21:03.899Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "974da5e4-b260-4771-98b0-a21537e5ce14",
+          "type": "custom",
+          "value": "Adobe Clean",
+          "key": "family"
+        },
+        {
+          "id": "974da5e4-b260-4771-98b0-a21537e5ce14",
+          "type": "custom",
+          "value": "SemiCondensed",
+          "key": "weight"
+        },
+        {
+          "id": "974da5e4-b260-4771-98b0-a21537e5ce14",
+          "type": "size",
+          "value": "16",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "615291e7-9581-4d04-abcb-06f90feaef6f",
+      "name": "font-card-heading",
+      "tags": [],
+      "related_entity_ids": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/988efdc3-2250-4e4a-6e57-a8f0a8732245",
+        "id": "c38815df-6f5c-400d-931a-28db1606a8dd",
+        "last_sync": "2022-02-19T15:21:03.899Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "244585bf-e200-43e5-8376-81a2f714d23a",
+          "type": "custom",
+          "value": "Adobe Clean",
+          "key": "family"
+        },
+        {
+          "id": "244585bf-e200-43e5-8376-81a2f714d23a",
+          "type": "custom",
+          "value": "Black",
+          "key": "weight"
+        },
+        {
+          "id": "244585bf-e200-43e5-8376-81a2f714d23a",
+          "type": "size",
+          "value": "32",
+          "key": "size"
+        }
+      ]
+    },
+    {
+      "class": "collection",
+      "type": "font",
+      "id": "d6914e30-135c-4f4b-9255-a8792684def7",
+      "name": "font-input-text",
+      "tags": [],
+      "related_entity_ids": [],
+      "ext-com_adobe-cclib": {
+        "source": "https://shared-assets.adobe.com/link/988efdc3-2250-4e4a-6e57-a8f0a8732245",
+        "id": "3f896a80-f49f-4eb0-bfe4-e92f0d8c0199",
+        "last_sync": "2022-02-19T15:21:03.899Z",
+        "sync": true
+      },
+      "tokens": [
+        {
+          "id": "8648c187-d760-457f-8ffc-3908c7c7b109",
+          "type": "custom",
+          "value": "Adobe Clean",
+          "key": "family"
+        },
+        {
+          "id": "8648c187-d760-457f-8ffc-3908c7c7b109",
+          "type": "custom",
+          "value": "Regular",
+          "key": "weight"
+        },
+        {
+          "id": "8648c187-d760-457f-8ffc-3908c7c7b109",
+          "type": "size",
+          "value": "14",
+          "key": "size"
+        }
+      ]
+    }
+  ]
+}

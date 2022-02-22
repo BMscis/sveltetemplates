@@ -51,7 +51,7 @@
                     inputPlaceholder="Enter your height"
                     isRequired="true"
                     textType="height"
-                    sign="''"
+                    sign="ft"
                     outlineColor="#e6a702"
                 >
                     <PopDialog

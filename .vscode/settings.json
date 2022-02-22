@@ -4,5 +4,7 @@
         "**/node_modules": false,
         "**/bower_components": true,
         "**/*.code-search": true
-    }
+    },
+    "xd.lastPackage": "/c:/Users/melvi/git/HealthTemplate/health_template/docs/assets/Nanju-Health-Kit",
+    "xd.globalEditor": true
 }

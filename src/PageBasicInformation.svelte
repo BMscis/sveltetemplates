@@ -34,6 +34,7 @@
                     inputName="user-name"
                     outlineColor="#bb974a"
                     sign={man}
+                    emoji="👏"
                 />
                 <InputText
                     inputPlaceholder="what is your email? "

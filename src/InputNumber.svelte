@@ -33,19 +33,38 @@
 </script>
 
 <InputContainer>
+    <div slot="input-slot" class="input-slot">
+        <svg
+            id="input-rect"
+            xmlns="http://www.w3.org/2000/svg"
+            width="216"
+            height="72"
+            viewBox="0 0 216 72"
+        >
+            <rect
+                isinputok={$validity.valid}
+                id="text-input-rect"
+                data-name="input-rect"
+                width="216"
+                height="72"
+                rx="30"
+                fill="#a6bcd0"
+            />
+        </svg>
     <input
-        slot="input-slot"
         type="number"
         name={inputName}
         id={inputName}
         bind:value={inputValue}
         placeholder={inputPlaceholder}
+        class="input-rect-input"
         class:activated={$validity.valid}
         onscreenvalue={inputValue}
         use:validate={inputValue}
         pullupdialog={$validity.dirty && !$validity.valid && inputValue > 0}
         isinputok={$validity.valid}
     />
+    </div>
     <span
         isinputok={$validity.valid}
         class="outline-symbol-slot"
@@ -56,7 +75,6 @@
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"
         isExtra="false"
-        isSide="true"
     />
     <span class="outline-text-slot" slot="outline-text-slot" style="background-color:#404e5a;"
         >{$validity.valid && inputValue > 0

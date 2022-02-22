@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="156" height="78" viewBox="0 0 156 78">
+  <defs>
+    <filter id="Rectangle" x="9" y="10" width="138" height="60" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle-2" x="0" y="0" width="156" height="78" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur-2"/>
+      <feFlood flood-opacity="0.122"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle-3" x="7.5" y="10.5" width="141" height="63" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur-3"/>
+      <feFlood flood-opacity="0.141"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Dark_FAB_2._Extended_4_States_" data-name="Dark 🌑 / FAB / 2. Extended (4 States)" transform="translate(15 14)">
+    <g id="Container">
+      <g id="Dark_Elevation_00dp_9_States_" data-name="Dark 🌑/Elevation/00dp (9 States)">
+        <g id="Shadow" style="mix-blend-mode: multiply;isolation: isolate">
+          <g transform="matrix(1, 0, 0, 1, -15, -14)" filter="url(#Rectangle)">
+            <rect id="Rectangle-4" data-name="Rectangle" width="126" height="48" rx="24" transform="translate(15 14)" fill="#fff"/>
+          </g>
+          <g transform="matrix(1, 0, 0, 1, -15, -14)" filter="url(#Rectangle-2)">
+            <rect id="Rectangle-5" data-name="Rectangle" width="126" height="48" rx="24" transform="translate(15 14)" fill="#fff"/>
+          </g>
+          <g transform="matrix(1, 0, 0, 1, -15, -14)" filter="url(#Rectangle-3)">
+            <rect id="Rectangle-6" data-name="Rectangle" width="126" height="48" rx="24" transform="translate(15 14)" fill="#fff"/>
+          </g>
+        </g>
+        <rect id="Rectangle-7" data-name="Rectangle" width="126" height="48" rx="24" fill="#121212"/>
+        <rect id="On_Surface" data-name="On Surface" width="126" height="48" rx="24" fill="rgba(255,255,255,0.09)"/>
+      </g>
+      <rect id="_FAB_Color" data-name="🎨 FAB Color" width="126" height="48" rx="24" fill="#03dac5"/>
+      <g id="States_Dark_Primary_containers_On_Primary_Content" data-name="States/Dark 🌑/Primary containers/On Primary Content">
+        <rect id="Primary" width="126" height="48" rx="24" fill="#bb86fc" opacity="0"/>
+        <rect id="States" width="126" height="48" rx="24" fill="rgba(18,18,18,0)"/>
+      </g>
+    </g>
+    <g id="icon_content_add_24px" data-name="icon/content/add_24px" transform="translate(12 12)">
+      <rect id="Boundary" width="24" height="24" fill="none"/>
+      <path id="_Color" data-name=" ↳Color" d="M14,8H8v6H6V8H0V6H6V0H8V6h6Z" transform="translate(5 5)" fill="rgba(0,0,0,0.87)"/>
+    </g>
+    <text id="_Label" data-name="↳ ✏️ Label" transform="translate(48 29)" fill="rgba(0,0,0,0.87)" font-size="14" font-family="Roboto-Medium, Roboto" font-weight="500" letter-spacing="0.089em"><tspan x="0" y="0">ALERGY</tspan></text>
+  </g>
+</svg>

@@ -763,53 +763,18 @@
 
             </div>
         </div> -->
-        <button
-            class="svg-button"
-            on:click={() => {
-                navigate("/basic-information", { replace: false });
-                navigatorCount.set(0);
-            }}
+        <button id="button-rect-container"
+        on:click={() => {
+            navigate("/basic-information", { replace: false });
+            navigatorCount.set(0);
+        }}
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="315"
-                height="60"
-                viewBox="0 0 315 60"
-            >
-                <rect width="315" height="60" rx="30" fill="#7bed8d" />
-                <g transform="translate(35)">
-                    <text
-                        transform="translate(109 35)"
-                        fill="#fff"
-                        font-size="14"
-                        font-family="AdobeClean-Bold, Adobe Clean"
-                        font-weight="700"
-                        letter-spacing="-0.01em"
-                    >
-                        <tspan x="0" y="0">CONTINUE</tspan>
-                    </text>
-                    <g transform="translate(89 26)">
-                        <path
-                            d="M1281.487,1163.709l4.157,4.157-4.157,4.157"
-                            transform="translate(-1275.794 -1163.709)"
-                            fill="none"
-                            stroke="#fff"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1"
-                        />
-                        <line
-                            x1="9.326"
-                            transform="translate(0 4.155)"
-                            fill="none"
-                            stroke="#fff"
-                            stroke-linecap="round"
-                            stroke-width="1"
-                        />
-                    </g>
-                </g>
-                <rect width="315" height="60" fill="rgba(255,255,255,0)" />
-            </svg>
+            <svg id="button-rect-active-continue" xmlns="http://www.w3.org/2000/svg" width="216" height="72" viewBox="0 0 216 72">
+          <g id="button-rect-active">
+            <rect id="active-button" width="216" height="72" rx="30" fill="#7bed8d"/>
+          </g>
+          <text id="Continue" transform="translate(83 42)" fill="#ffffff" font-size="14" font-family="AdobeClean-Regular, Adobe Clean"><tspan x="0" y="0">continue</tspan></text>
+        </svg>
         </button>
     </Router>
 </div>

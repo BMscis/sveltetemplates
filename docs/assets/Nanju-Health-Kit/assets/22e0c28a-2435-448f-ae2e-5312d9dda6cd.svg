@@ -1,0 +1,6 @@
+<svg id="button-rect-active-continue" xmlns="http://www.w3.org/2000/svg" width="216" height="72" viewBox="0 0 216 72">
+  <g id="button-rect-active">
+    <rect id="active-button" width="216" height="72" rx="30" fill="#7bed8d"/>
+  </g>
+  <text id="Continue" transform="translate(83 42)" fill="#748a9d" font-size="14" font-family="AdobeClean-Regular, Adobe Clean"><tspan x="0" y="0">continue</tspan></text>
+</svg>

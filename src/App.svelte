@@ -1,5 +1,6 @@
 <script>
-	import { Router, Route } from "svelte-routing";
+	import { Router, Route, Link } from "svelte-routing";
+	import logo from "../docs/assets/NanjuLogo.svg"
 	import {get} from "svelte/store"
 	import PageBasicInformation from "./PageBasicInformation.svelte";
 	import { accumulator, navigatorCount } from "./functions/formAccumulator";
@@ -12,6 +13,7 @@
 	import PageFamilyInfo from "./PageFamilyInfo.svelte";
 	import LoadingPage from "./LoadingPage.svelte";
 	import NavigationBar from "./NavigationBar.svelte";
+import PageIngredients from "./PageIngredients.svelte";
 	let isFormReady = false;
 	let url = "/";
 	let navCount = 0;
@@ -37,11 +39,16 @@
 			navCount = value;
 		});
 	});
-</script>
+	</script>
 
 <main>
+
 	<NavigationBar {isFormReady} />
+    <div id="nanjulogo">{@html logo}</div>
 	<Router {url} basepath={url}>
+		<nav>
+			<Link to="page-ingredients">Ingredients</Link>
+		</nav>
 		<Route path="/loading">
 			<LoadingPage />
 		</Route>
@@ -65,6 +72,9 @@
 		</Route>
 		<Route path="/user-profile">
 			<Profile />
+		</Route>
+		<Route path="/page-ingredients">
+			<PageIngredients></PageIngredients>
 		</Route>
 	</Router>
 	<div id="page_link">

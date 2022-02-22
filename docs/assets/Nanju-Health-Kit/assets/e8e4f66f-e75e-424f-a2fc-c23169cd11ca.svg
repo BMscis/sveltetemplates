@@ -1,0 +1,10 @@
+<svg id="button-round-next-inactive" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72">
+  <g id="button-round-inactive">
+    <circle id="inactive-button" cx="36" cy="36" r="36" fill="#748a9d"/>
+  </g>
+  <line id="arrow" x2="14" transform="translate(26 36)" fill="none" stroke="#a6bcd0" stroke-width="1"/>
+  <g id="direciction" transform="translate(47 29) rotate(90)" fill="rgba(255,255,255,0)">
+    <path d="M 13.19098472595215 13.5 L 0.8090149760246277 13.5 L 7 1.118029952049255 L 13.19098472595215 13.5 Z" stroke="none"/>
+    <path d="M 7 2.236069679260254 L 1.618035316467285 13 L 12.38196468353271 13 L 7 2.236069679260254 M 7 0 L 14 14 L 0 14 L 7 0 Z" stroke="none" fill="#a6bcd0"/>
+  </g>
+</svg>

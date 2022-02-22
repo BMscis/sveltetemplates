@@ -73,7 +73,6 @@
                     : "cool"}
                 slot="outline-dialog-slot"
                 isExtra="false"
-                isSide="true"
             />
         </div>
     </InputContainer>

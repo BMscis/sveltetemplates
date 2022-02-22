@@ -1,0 +1,41 @@
+{
+  "font": {
+    "font-body-text": {
+      "family": {
+        "value": "Adobe Clean"
+      },
+      "weight": {
+        "value": "SemiCondensed"
+      }
+    },
+    "font-card-heading": {
+      "family": {
+        "value": "Adobe Clean"
+      },
+      "weight": {
+        "value": "Black"
+      }
+    },
+    "font-input-text": {
+      "family": {
+        "value": "Adobe Clean"
+      },
+      "weight": {
+        "value": "Regular"
+      }
+    }
+  },
+  "size": {
+    "font": {
+      "font-body-text": {
+        "value": "16"
+      },
+      "font-card-heading": {
+        "value": "32"
+      },
+      "font-input-text": {
+        "value": "14"
+      }
+    }
+  }
+}

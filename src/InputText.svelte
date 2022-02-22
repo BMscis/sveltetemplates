@@ -8,7 +8,7 @@
     import { onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
-    import { mountComponent,typeOfInput } from "./functions/mountComponent";
+    import { mountComponent, typeOfInput } from "./functions/mountComponent";
     export let inputPlaceholder = "";
     export let helpTextHeading = "";
     export let isRequired = false;
@@ -23,9 +23,15 @@
     const placeHolder = inputPlaceholder;
     const backSlash = "'";
     onMount(() => {
-        if(mountComponent(inputName)){
-            typeOfInput(inputValue,mountComponent(inputName)) ? 
-            inputValue = typeOfInput(inputValue,mountComponent(inputName)) : (() => {return})
+        if (mountComponent(inputName)) {
+            typeOfInput(inputValue, mountComponent(inputName))
+                ? (inputValue = typeOfInput(
+                      inputValue,
+                      mountComponent(inputName)
+                  ))
+                : () => {
+                      return;
+                  };
         }
     });
     switch (textType) {
@@ -73,19 +79,36 @@
         <rect id="Rectangle_1525" rx="18" ry="18" x="0" y="0" width="315" height="60">
         </rect>
     </svg> -->
-    <input
-        slot="input-slot"
-        type="text"
-        name={inputName}
-        id={inputName}
-        bind:value={inputValue}
-        placeholder={inputPlaceholder}
-        class:activated={$validity.valid}
-        onscreenvalue={inputValue}
-        use:validate={inputValue}
-        pullupdialog={$validity.dirty && !$validity.valid}
-        isinputok={$validity.valid}
-    />
+    <div slot="input-slot" class="input-slot">
+        <svg
+            id="input-rect"
+            xmlns="http://www.w3.org/2000/svg"
+            width="216"
+            height="72"
+            viewBox="0 0 216 72"
+        >
+            <rect
+                isinputok={$validity.valid}
+                id="text-input-rect"
+                data-name="input-rect"
+                width="216"
+                height="72"
+                rx="30"
+                fill="#a6bcd0"
+            />
+        </svg>
+        <input
+            class="input-rect-input"
+            type="text"
+            name={inputName}
+            id={inputName}
+            bind:value={inputValue}
+            placeholder={inputPlaceholder}
+            class:activated={$validity.valid}
+            onscreenvalue={inputValue}
+            use:validate={inputValue}
+        />
+    </div>
     <span
         isinputok={$validity.valid}
         class="outline-symbol-slot"
@@ -99,12 +122,14 @@
         visibility={false}
     />
     <PopDialog
-        isSide="true"
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"
+        visibility={$validity.dirty && !$validity.valid}
     />
-    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:#404e5a;" 
-        >{inputPlaceholder}</span
+    <span
+        class="outline-text-slot"
+        slot="outline-text-slot"
+        style="background-color:#404e5a;">{inputPlaceholder}</span
     >
     <slot slot="outline-help-slot" name="container-help-slot" />
     <span
@@ -114,8 +139,9 @@
     >
     <slot slot="extra-dialog-slot" name="extra-dialog" />
 </InputContainer>
+
 <style>
-        *:global(.outline-text-slot){
-        background-color:#4aaabb ;
+    *:global(.outline-text-slot) {
+        background-color: #4aaabb;
     }
 </style>

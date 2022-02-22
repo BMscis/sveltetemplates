@@ -1,0 +1,5 @@
+<svg id="tooltip" xmlns="http://www.w3.org/2000/svg" width="67" height="39.5" viewBox="0 0 67 39.5">
+  <rect id="rectangle" width="67" height="34" rx="17" transform="translate(67 39.5) rotate(180)" fill="#7bed8d"/>
+  <path id="triangle" d="M7,0l7,7H0Z" transform="translate(27)" fill="#7bed8d"/>
+  <text id="Store" transform="translate(34 26.5)" fill="#fff" font-size="11" font-family="SegoeUI-Bold, Segoe UI" font-weight="700" letter-spacing="-0.01em"><tspan x="-16.57" y="0">STORE</tspan></text>
+</svg>

@@ -1,0 +1,10 @@
+<svg id="input-checked-inactive" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <g id="circle-checked-inactive" fill="#a6bcd0" stroke="#707070" stroke-width="1">
+    <circle cx="22.5" cy="22.5" r="22.5" stroke="none"/>
+    <circle cx="22.5" cy="22.5" r="22" fill="none"/>
+  </g>
+  <g id="cross" transform="translate(17.55 17.55)">
+    <path id="line" d="M0,0V14" transform="translate(9.9) rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="line-2" data-name="line" x1="14" transform="translate(0) rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>

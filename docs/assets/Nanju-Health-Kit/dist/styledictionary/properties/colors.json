@@ -1,0 +1,31 @@
+{
+  "color": {
+    "transparent": {
+      "value": "#FFFFFFff"
+    },
+    "white": {
+      "value": "#FFFFFFff"
+    },
+    "navigation-inactive-color": {
+      "value": "#A6BCD09c"
+    },
+    "navigation-bar-color": {
+      "value": "#4E5D6Aff"
+    },
+    "card-background-color": {
+      "value": "#404E5Aff"
+    },
+    "inactive-color": {
+      "value": "#A6BCD0ff"
+    },
+    "input-base-color": {
+      "value": "#748A9Dff"
+    },
+    "navigation-active-color": {
+      "value": "#707070ff"
+    },
+    "primary-color": {
+      "value": "#7BED8Dff"
+    }
+  }
+}
