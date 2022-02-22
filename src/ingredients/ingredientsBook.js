@@ -1,5 +1,5 @@
 export const butterChicken = {
-    pic: "url(./assets/butterChiken.jpg)",
+    pic: "",
     ingredientName:"Butter Chicken",
     ingredients:[
 "500g chicken, chopped into pieces",

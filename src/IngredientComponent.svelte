@@ -8,7 +8,12 @@
         <div id="ingredients">
             {#each ingredients as ing}
                 <div id="ingredient-list-container">
-                    <span id="ingredient-checked"></span>
+                    <span id="ingredient-checked">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <rect width="24" height="24" rx="12" fill="#7bed8d" />
+                            <path d="M1440.355,4365.126l2.325,2.325,4.89-4.89" transform="translate(-1432 -4352.519)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
+                        </svg>
+                    </span>
                     <span id = "ingredient-name"> {ing}</span>
                 </div>
             {/each}

@@ -147,7 +147,10 @@
     .input-slot{
         background:transparent;
     }
-
+	.Mycontainer{
+        top:203px;
+        height: calc(100% - 203px);
+    }
     button.navbutton:not(:disabled) {
         text-align: center;
         background-color: #fd8f02;

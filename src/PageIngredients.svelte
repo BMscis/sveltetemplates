@@ -1,4 +1,5 @@
 <script>
+    import butterChickenImage from "../docs/assets/butterChiken.jpg"
     import IngredientComponent from "./IngredientComponent.svelte";
     import IngredientsHeader from "./IngredientsHeader.svelte";
     import { butterChicken } from "./ingredients/ingredientsBook";
@@ -10,7 +11,7 @@
     <FormViewer isIngredients = true>
         <IngredientsHeader
             slot="slot1"
-            imgSource={butterChicken.pic}
+            imgSource={butterChickenImage}
             ingredientName={butterChicken.ingredientName}
         />
         <div slot = "ingredient-slot" id="ingredient-info">

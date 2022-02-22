@@ -6,7 +6,7 @@
     <div id="food-ingredient-name">
         <span id="ingredient-text">{ingredientName}</span>
     </div>
-    <div id="photo" style="background-image:{imgSource};" alt="pic"/>
+    <img id="photo" src={imgSource} alt="pic"/>
 </div>
 <style>
 

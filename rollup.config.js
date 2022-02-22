@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import inlineSvg from 'rollup-plugin-inline-svg';
+import image from '@rollup/plugin-image';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -85,6 +86,7 @@ export default {
 			// default: []
 			warnTagAttrs: []
 		  }),
+		image(),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),

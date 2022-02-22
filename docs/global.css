@@ -518,10 +518,6 @@ button#move-to-next:disabled{
     width: 24px;
     height: 24px;
     background-color: transparent;
-    background-image: url(./assets/checkbox-selected.svg);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
     margin: 6px 40px 6px 0;
 }
 #nanjulogo::after{
