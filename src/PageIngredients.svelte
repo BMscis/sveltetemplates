@@ -5,16 +5,16 @@
     import { Router } from "svelte-routing";
     import FormViewer from "./FormViewer.svelte";
 </script>
-
+<div class="Mycontainer">
 <Router basepath="/page-ingredients" url="page-ingredients">
-    <FormViewer header={butterChicken.ingredientName}>
+    <FormViewer isIngredients = true>
         <IngredientsHeader
             slot="slot1"
             imgSource={butterChicken.pic}
             ingredientName={butterChicken.ingredientName}
         />
         <div slot = "ingredient-slot" id="ingredient-info">
-            <span id="ingredient-text">Prep</span>
+            <span >Prep</span>
             <div id="ingredient-difficulty">
                 <span>{butterChicken.estimation[0]}</span>
             </div>
@@ -32,3 +32,10 @@
         />
     </FormViewer>
 </Router>
+</div>
+<style>
+    .Mycontainer{
+        top:81px;
+        height: calc(100% - 81px);
+    }
+</style>

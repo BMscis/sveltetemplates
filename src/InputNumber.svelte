@@ -8,6 +8,7 @@
     import { onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
+    import {setDimensions} from "./dimensions/svgSettings"
     export let isRequired = false;
     export let inputPlaceholder;
     export let levelRange = 0;
@@ -15,12 +16,17 @@
     export let emoji = "";
     export let sign = "";
     export let inputName;
+    let svgWidth
+    let svgHeight
+    let svgRx
+    let svgTranslate
     const placeHolder = inputPlaceholder;
     onMount(() => {
         if(mountComponent(inputName)){
             typeOfInput(0,mountComponent(inputName)) ? 
             inputValue = typeOfInput(0,mountComponent(inputName)) : (() => {return})
         }
+        [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions()
     });
     const [validity, validate] = createFieldValidator(
         0,
@@ -38,16 +44,16 @@
             id="input-rect"
             xmlns="http://www.w3.org/2000/svg"
             width="216"
-            height="72"
-            viewBox="0 0 216 72"
+            height={svgHeight}
+            viewBox="0 0 216 {svgHeight}"
         >
             <rect
                 isinputok={$validity.valid}
                 id="text-input-rect"
                 data-name="input-rect"
                 width="216"
-                height="72"
-                rx="30"
+                height={svgHeight}
+                rx={svgRx}
                 fill="#a6bcd0"
             />
         </svg>

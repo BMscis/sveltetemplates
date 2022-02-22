@@ -14,11 +14,7 @@
 --background: #fff;
 --basic:black;
 }
-#button-rect-active-continue{
-  background-color: transparent;
-  height:72px;
-  width:216px;
-}
+
 #button-rect-container {
   background: transparent;
   margin: 20px 0;
@@ -32,6 +28,7 @@
   margin: auto 20px;
   grid-column-start: 3;
   z-index: 1;
+  padding: 0;
 }
 #button-round-next:disabled circle{
   fill:#748A9D;
@@ -64,7 +61,6 @@
   left: 0;
   right:0;
   margin:auto;
-  height: 72px;
 }
 #input-rect svg{
   position: absolute;
@@ -72,7 +68,7 @@
 .input-slot{
   height: 72px;
   width: 300px;
-  background-image: linear-gradient(90deg, #748a9d,42%, transparent);
+  /* background-image: linear-gradient(90deg, #748a9d,42%, transparent); */
   display: flex;
   align-items: center;
 }
@@ -93,6 +89,9 @@
   width: 90px;
   position: absolute;
   right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 #switch-active {
   position: absolute;
@@ -128,17 +127,22 @@ footer{
   font-size: 16px;
   color: rgba(116,138,157,1);
   letter-spacing: -0.1px;
-  margin-left: 40px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: flex-end;
-  float: left;
+  float: right;
+  background: #404e5a8a;
+  padding: 2px 5px 5px 17px;
   }
   #ingredient-slot {
-    width: 317px;
+    width: 120px;
     position: fixed;
     top: 120px;
+    right: 0;
+    margin-right: 20px;
+    padding-right: 20px;
+    z-index: 2;
 }
 #ingredient-text {
   white-space: nowrap;
@@ -150,6 +154,8 @@ footer{
   color: rgba(123,237,141,1);
   letter-spacing: -0.1px;
   display: block;
+  border-radius: 0;
+    height: 45px;
 }
 .sam{
   background: #f52187;
@@ -224,18 +230,21 @@ main{
   align-items: center;
   justify-items: center;
   justify-content: center;
-  top:203px;
   left: 0;
   right: 0;
   margin:auto;
-  height: calc(100vh - 203px);
   width: 100%;
   overflow: auto;
 }
-#main-content {
+.main-content {
   width: 375px;
-  height: 100%;
   margin: auto;
+}
+.main-content[ingredients=true]{
+    position: fixed;
+    height: calc(100% - 81px);
+    overflow: auto;
+    pointer-events: all;
 }
 #bg-shadow {
   position: absolute;
@@ -262,6 +271,7 @@ main{
 #onboarding-text{
   position: fixed;
   top: 125px;
+  left: 0;
   margin: 20px auto 20px 20px;
   width: 291px;
   height: 58px;
@@ -322,7 +332,7 @@ main{
   top: 81px;
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 20px auto;
   white-space: nowrap;
   text-align: center;
   font-family: Adobe Clean;
@@ -478,6 +488,13 @@ button#move-to-next:disabled{
   background-position: center;
   background-size: contain;
 }
+#ingredient-text{
+  position: sticky;
+  top:292px;
+  background: #404e5a;
+  height: 45px;
+  z-index: -1;
+}
 #ingredient-difficulty,#ingredient-prep,#ingredient-cook{
   background-size: 10%;
   background-position: left;
@@ -485,6 +502,8 @@ button#move-to-next:disabled{
   width: 127px;
   margin: auto auto 16px auto;
   text-align: end;
+  padding: 0 10px;
+  color: cornsilk;
 }
 #ingredient-difficulty{
   background-image: url(./assets/icon-difficulty.svg);
@@ -613,8 +632,6 @@ hr{
   margin: 10px;
 }
 input{
-  width: 315px;
-  height: 60px;
   padding: 0 0 0 50px ;
   border:1px solid var(--secondary);
   background-color: transparent;
@@ -744,8 +761,6 @@ input[type="checkbox"]:active{
 }
 input[type=text], input[type=number],textarea{
   color: #404e5a;
-  width: 216px;
-  height: 72px;
   outline: none;
   border:none;
   background-color: transparent;
@@ -814,19 +829,13 @@ input[isinputok=true]{
 }
 .outline-symbol-slot{
   position: absolute;
-  left: 20px;
   color: rgb(116, 138, 157);
-  display: flex;
-  height: 22px;
   background-color: transparent;
-  margin: 0;
-  flex-direction: column;
-  align-items: flex-end;
-  align-content: flex-end;
+  width: 30px;
+  height: 30px;
+  display: flex;
   justify-content: center;
-  font-size: 16px;
-  width: 24px;
-  height: 24px;
+  align-items: center;
 }
 .outline-symbol-slot[isinputok=true],
 .outline-symbol-slot[isinputok=true] ~ span.outline-symbol-text{
@@ -872,7 +881,7 @@ span.outline-symbol-text {
 }
 
 .input-container,.empty-input {
-  min-width: 200px;
+  min-width: 216px;
   height: 72px;
   display: flex;
   justify-content: center;
@@ -976,7 +985,7 @@ label{
     100% {transform:rotate(360deg);}
 }
 ::-webkit-input-placeholder { /* Edge */
-	text-align: center;
+	text-align: left;
 	transition:.3s cubic-bezier(0.4,0,0.2,1);
 	font:400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
   color: rgba(166,188,208,1);
@@ -990,7 +999,7 @@ label{
   }
   
   :-ms-input-placeholder{ /* Internet Explorer 10-11 */
-    text-align: center;
+    text-align: left;
     transition:.3s cubic-bezier(0.4,0,0.2,1);
     font:400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     color: rgba(166,188,208,1);
@@ -1003,7 +1012,7 @@ label{
     background-color: transparent;
     }
   input::-moz-placeholder{ /* Internet Explorer 10-11 */
-    text-align: center;
+    text-align: left;
     transition:.3s cubic-bezier(0.4,0,0.2,1);
     font:400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     color: rgba(166,188,208,1);
@@ -1017,7 +1026,7 @@ label{
     
     }
   ::placeholder { /* Internet Explorer 10-11 */
-    text-align: center;
+    text-align: left;
     transition:.3s cubic-bezier(0.4,0,0.2,1);
     font:400 12px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     color: rgb(24, 27, 29);
@@ -1100,7 +1109,11 @@ button svg{
   height: 24px;
   background-image: url(./assets/help.svg);
 }
-
+#photo{
+  width: 315px;
+  height: 212px;
+  margin: 35px auto;
+  }
 .range-pocket {
   position: relative;
   min-height: 44px;
@@ -1147,6 +1160,19 @@ span{
     padding: 24px 20px 18px;
     margin:auto
   }
+  #photo{
+    margin: 0px auto
+  }
+  #ingredient-header{
+    top:81px
+  }
+  #ingredient-slot{
+    top:175px;
+    width: 50%;
+  }
+  #ingredient-text{
+    top: 257px;
+  }
   h3{
     font-size: unset;
   }
@@ -1159,7 +1185,7 @@ span{
   .input-container,.input-range-container,.empty-input{
     grid-column-start: 1;
   }
-  input,progress{
+  progress{
     width: 90%;
   }
 
@@ -1178,16 +1204,25 @@ span{
     left: 0;
     top:0;
   }
-}
-@media only screen and (max-width: 380px){
-  #main-content,#bg-shadow,#content{
-    width: 100%;
+  .input-container{
+    height: 45px;
   }
-  input{
-    width: 80%;
+}
+@media only screen and (max-width: 500px){
+  .main-content,#bg-shadow,#content{
+    width: 100%;
   }
   #form-header{
     font-size: 16px;
+  }
+
+}
+@media only screen and (max-width: 800px){
+  input,.input-slot,#input-rect,#switch-body{
+    height: 45px;
+  }
+  input:checked ~ svg #input-checked  #circle-checked{
+    transform: translateX(22.5px);
   }
 }
 @media only screen and (min-width: 800px) {

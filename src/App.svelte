@@ -94,3 +94,9 @@ import PageIngredients from "./PageIngredients.svelte";
 		{/each}
 	</div>
 </main>
+<style>
+	    .Mycontainer{
+        top:203px;
+        height: calc(100% - 203px);
+    }
+</style>

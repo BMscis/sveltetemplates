@@ -18,19 +18,19 @@
       },
       "tokens": [
         {
-          "id": "974da5e4-b260-4771-98b0-a21537e5ce14",
+          "id": "ff392edd-66a4-43c2-bb8d-cdd3202ca4eb",
           "type": "custom",
           "value": "Adobe Clean",
           "key": "family"
         },
         {
-          "id": "974da5e4-b260-4771-98b0-a21537e5ce14",
+          "id": "ff392edd-66a4-43c2-bb8d-cdd3202ca4eb",
           "type": "custom",
           "value": "SemiCondensed",
           "key": "weight"
         },
         {
-          "id": "974da5e4-b260-4771-98b0-a21537e5ce14",
+          "id": "ff392edd-66a4-43c2-bb8d-cdd3202ca4eb",
           "type": "size",
           "value": "16",
           "key": "size"
@@ -52,19 +52,19 @@
       },
       "tokens": [
         {
-          "id": "244585bf-e200-43e5-8376-81a2f714d23a",
+          "id": "ce201a69-d825-4a44-9823-282ed0db1430",
           "type": "custom",
           "value": "Adobe Clean",
           "key": "family"
         },
         {
-          "id": "244585bf-e200-43e5-8376-81a2f714d23a",
+          "id": "ce201a69-d825-4a44-9823-282ed0db1430",
           "type": "custom",
           "value": "Black",
           "key": "weight"
         },
         {
-          "id": "244585bf-e200-43e5-8376-81a2f714d23a",
+          "id": "ce201a69-d825-4a44-9823-282ed0db1430",
           "type": "size",
           "value": "32",
           "key": "size"
@@ -86,19 +86,19 @@
       },
       "tokens": [
         {
-          "id": "8648c187-d760-457f-8ffc-3908c7c7b109",
+          "id": "81c8a834-eba7-41f6-8db7-509cd690c3f2",
           "type": "custom",
           "value": "Adobe Clean",
           "key": "family"
         },
         {
-          "id": "8648c187-d760-457f-8ffc-3908c7c7b109",
+          "id": "81c8a834-eba7-41f6-8db7-509cd690c3f2",
           "type": "custom",
           "value": "Regular",
           "key": "weight"
         },
         {
-          "id": "8648c187-d760-457f-8ffc-3908c7c7b109",
+          "id": "81c8a834-eba7-41f6-8db7-509cd690c3f2",
           "type": "size",
           "value": "14",
           "key": "size"

@@ -1,7 +1,5 @@
 <script>
     import { Router } from "svelte-routing";
-    import mail from "../docs/assets/icon-mail.svg";
-    import man from "../docs/assets/icon-account.svg";
     import InputText from "./InputText.svelte";
     import DateComponent from "./DateComponent.svelte";
     import FormViewer from "./FormViewer.svelte";
@@ -33,7 +31,7 @@
                     helpText="Please enter your first name."
                     inputName="user-name"
                     outlineColor="#bb974a"
-                    sign={man}
+                    sign= "👤"
                     emoji="👏"
                 />
                 <InputText
@@ -44,10 +42,13 @@
                     emoji="👏"
                     textType="email"
                     outlineColor="#ce9535"
-                    sign={mail}
+                    sign="📧"
                 />
                 <DateComponent />
             </div>
         </FormViewer>
     </Router>
 </div>
+<style>
+
+</style>

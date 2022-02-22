@@ -9,6 +9,7 @@
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
     import { mountComponent, typeOfInput } from "./functions/mountComponent";
+    import {setDimensions} from "./dimensions/svgSettings"
     export let inputPlaceholder = "";
     export let helpTextHeading = "";
     export let isRequired = false;
@@ -18,6 +19,10 @@
     export let helpText = "";
     export let emoji = "";
     export let sign = "";
+    let svgWidth
+    let svgHeight
+    let svgRx
+    let svgTranslate
     let validity;
     let validate;
     const placeHolder = inputPlaceholder;
@@ -33,6 +38,7 @@
                       return;
                   };
         }
+    [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions()
     });
     switch (textType) {
         case "email":
@@ -84,16 +90,16 @@
             id="input-rect"
             xmlns="http://www.w3.org/2000/svg"
             width="216"
-            height="72"
-            viewBox="0 0 216 72"
+            height={svgHeight}
+            viewBox="0 0 216 {svgHeight}"
         >
             <rect
                 isinputok={$validity.valid}
                 id="text-input-rect"
                 data-name="input-rect"
                 width="216"
-                height="72"
-                rx="30"
+                height={svgHeight}
+                rx={svgRx}
                 fill="#a6bcd0"
             />
         </svg>

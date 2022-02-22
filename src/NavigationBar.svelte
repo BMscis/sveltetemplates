@@ -20,7 +20,6 @@
         }}
         disabled={!isFormReady}
     >
-        <button id="button-round-next">
         <svg id="button-round-next-active" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
           <g id="button-round-active">
             <circle id="button-round-active-2" data-name="button-round-active" cx="22.5" cy="22.5" r="22.5" fill="#7bed8d"/>
@@ -33,6 +32,5 @@
             </g>
           </g>
         </svg>
-        </button>
     </button>
 </div>

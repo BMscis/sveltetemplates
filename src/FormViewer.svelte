@@ -1,6 +1,7 @@
 <script>
     export let onboardingText='';
     export let header='';
+    export let isIngredients = false
 </script>
 <div id="form-header">
     <span>{header}</span>
@@ -11,7 +12,7 @@
 <div id="ingredient-slot">
     <slot name="ingredient-slot"></slot>
 </div>
-<div id="main-content">
+<div class="main-content" ingredients={isIngredients}>
     <div id="bg-shadow">
     </div>
     <slot name="slot1"></slot>

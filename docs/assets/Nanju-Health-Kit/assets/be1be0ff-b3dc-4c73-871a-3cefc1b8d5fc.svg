@@ -1,0 +1,9 @@
+<svg id="button-circle-add-small" xmlns="http://www.w3.org/2000/svg" width="22.5" height="22.5" viewBox="0 0 22.5 22.5">
+  <g id="button-round-active">
+    <circle id="button-round-active-2" data-name="button-round-active" cx="11.25" cy="11.25" r="11.25" fill="#7bed8d"/>
+  </g>
+  <g id="add" transform="translate(-348.25 -640.25)">
+    <line id="p2" y2="14" transform="translate(359.5 644.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="p1" y2="14" transform="translate(366.5 651.5) rotate(90)" fill="none" stroke="#fff" stroke-width="1"/>
+  </g>
+</svg>

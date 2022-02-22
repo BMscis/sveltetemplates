@@ -1,0 +1,16 @@
+<svg id="switch-inactive-small" xmlns="http://www.w3.org/2000/svg" width="45" height="22.5" viewBox="0 0 45 22.5">
+  <g id="input-checked-container" fill="#748a9d" stroke="#707070" stroke-width="1">
+    <rect width="45" height="22.5" rx="11.25" stroke="none"/>
+    <rect x="0.5" y="0.5" width="44" height="21.5" rx="10.75" fill="none"/>
+  </g>
+  <g id="input-checked-inactive">
+    <g id="circle-checked-inactive" fill="#a6bcd0" stroke="#707070" stroke-width="1">
+      <circle cx="11.25" cy="11.25" r="11.25" stroke="none"/>
+      <circle cx="11.25" cy="11.25" r="10.75" fill="none"/>
+    </g>
+    <g id="cross" transform="translate(6.3 6.3)">
+      <path id="line" d="M0,0V14" transform="translate(9.9) rotate(45)" fill="#a6bcd0" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+      <line id="line-2" data-name="line" x1="14" transform="rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

@@ -3,10 +3,9 @@
     export let preparation = []
     export let info = ["Easy", "Prep 20m", "Cook 5m"]
 </script>
-<div class="Mycontainer">
     <div id=recipe-information>
+        <span id="ingredient-text">Ingredients</span>
         <div id="ingredients">
-            <span id="ingredient-text">Ingredients</span>
             {#each ingredients as ing}
                 <div id="ingredient-list-container">
                     <span id="ingredient-checked"></span>
@@ -15,19 +14,26 @@
             {/each}
         </div>
     </div>
-    <div id="instructions" >
+    <div id=recipe-information>
         <span id="ingredient-text">Preparation</span>
-        <ol>
-            {#each preparation as ins}
-                <li id="preparation" >{ins}</li>
-            {/each}
-        </ol>
+        <div id="instructions" >
+            <ol>
+                {#each preparation as ins}
+                    <li id="preparation" >{ins}</li>
+                {/each}
+            </ol>
+        </div>
     </div>
-</div>
 
 <style>
+    li#preparation {
+    max-width: 100%;
+    margin-bottom: 20px;
+    line-height: 24px;
+}
     #instructions{
         margin-top: 27px;
+        z-index: -2;
     }
     #preparation{
         
@@ -40,18 +46,6 @@
     color: rgba(116,138,157,1);
     letter-spacing: -0.1px;
     }
-    #ingredient-text{
-    white-space: nowrap;
-    text-align: left;
-    font-family: Adobe Clean;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    color: rgba(123,237,141,1);
-    letter-spacing: -0.1px;
-    display: block;
-    }
-
     #ingredient-info{
     white-space: nowrap;
     line-height: 30px;
@@ -72,12 +66,13 @@
     #recipe-information {
         width: 317px;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         margin: auto;
 }
 #ingredients {
     display: flex;
     flex-direction: column;
+    z-index: -2;
 }
 #ingredient-name{
     width: 92px;

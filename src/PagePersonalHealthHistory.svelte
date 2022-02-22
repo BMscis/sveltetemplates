@@ -8,17 +8,28 @@
         myMedicalAlergies,
         navigatorCount,
     } from "./functions/formAccumulator";
+    import {setDimensions} from "./dimensions/svgSettings"
     import { afterUpdate, onMount } from "svelte";
     import FormViewer from "./FormViewer.svelte";
     export let isFormReady = false;
     let foodCount = 0;
     let medCount = 0;
     let bgColor = "#1d6dea";
+    let svgWidth1
+    let svgHeight1
+    let svgRx1
+    let svgWidth2
+    let svgHeight2
+    let svgRx2
+    let svgTranslate1
+    let svgTranslate2
+    let svgTranslate3
 
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = false;
         navigatorCount.update((n) => n + 1);
+        [svgWidth1,svgHeight1,svgRx1,svgWidth2,svgHeight2,svgRx2,svgTranslate1,svgTranslate2,svgTranslate3] = setDimensions(true)
         return setNavigateTo("/family-health-history", true);
     });
     afterUpdate(() => {
@@ -91,11 +102,11 @@
                             class="add-button"
                             on:click={() => addAlergie("med")}
                         >
-                        <svg id="button-circle-add" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+                        <svg id="button-circle-add" xmlns="http://www.w3.org/2000/svg" width={svgHeight1} height={svgHeight1} viewBox="0 0 {svgHeight1} {svgHeight1}">
                             <g id="button-round-active">
-                              <circle id="button-round-active-2" data-name="button-round-active" cx="22.5" cy="22.5" r="22.5" fill="#7bed8d"/>
+                              <circle id="button-round-active-2" data-name="button-round-active" cx={svgRx1} cy={svgRx1} r={svgRx1} fill="#7bed8d"/>
                             </g>
-                            <g id="add" transform="translate(-337 -629)">
+                            <g id="add" transform={svgTranslate3}>
                               <line id="p2" y2="14" transform="translate(359.5 644.5)" fill="none" stroke="#fff" stroke-width="1"/>
                               <line id="p1" y2="14" transform="translate(366.5 651.5) rotate(90)" fill="none" stroke="#fff" stroke-width="1"/>
                             </g>
@@ -113,11 +124,11 @@
                             class="add-button"
                             on:click={() => addAlergie("food")}
                         >
-                        <svg id="button-circle-add" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+                        <svg id="button-circle-add" xmlns="http://www.w3.org/2000/svg" width={svgHeight1} height={svgHeight1} viewBox="0 0 {svgHeight1} {svgHeight1}">
                             <g id="button-round-active">
-                              <circle id="button-round-active-2" data-name="button-round-active" cx="22.5" cy="22.5" r="22.5" fill="#7bed8d"/>
+                              <circle id="button-round-active-2" data-name="button-round-active" cx={svgRx1} cy={svgRx1} r={svgRx1} fill="#7bed8d"/>
                             </g>
-                            <g id="add" transform="translate(-337 -629)">
+                            <g id="add" transform={svgTranslate3}>
                               <line id="p2" y2="14" transform="translate(359.5 644.5)" fill="none" stroke="#fff" stroke-width="1"/>
                               <line id="p1" y2="14" transform="translate(366.5 651.5) rotate(90)" fill="none" stroke="#fff" stroke-width="1"/>
                             </g>
@@ -136,6 +147,7 @@
     .input-slot{
         background:transparent;
     }
+
     button.navbutton:not(:disabled) {
         text-align: center;
         background-color: #fd8f02;
