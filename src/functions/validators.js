@@ -1,8 +1,9 @@
 import { accumulator } from "./formAccumulator"
 import dayjs from 'dayjs';
 import { get } from "svelte/store"
+import { bodyMassIndex } from "./converter";
 const checkNot = /(not)+(-)+([a-z])+\w/g
-const thisYear = new Date().getFullYear();
+const thisYear = (new Date().getFullYear()) - 17;
 const reg = /(\')/g
 const checkDash = /(\-)/g
 
@@ -29,7 +30,6 @@ function heightValidator() {
         }
       return setVal != null && setVal != undefined ? setVal : value
     }else{
-      
       return ""
     }
   }
@@ -67,9 +67,23 @@ function checkRNot(component) {
 }
 function chekiSaa() {
   return function checkTime(value){
-    let dateTime = dayjs(value,"DD/MM/YYYY")
+    let dateTime = dayjs(value,"mm/dd/yyyy")
     let birthYear = parseInt(dayjs(dateTime).format("YYYY"))
-    return ((thisYear - 17) > birthYear) || "Must be 18 and above"
+    return (thisYear > birthYear &&  birthYear > 1920) || "Must be 18 and above"
+  }
+}
+function calculateBMI(){
+  return function checkiBMI(value){
+    if(value){
+      if(value > 50){
+        let accum = get(accumulator) 
+        let heightComp = accum.find(v => v.component === "atr-height")
+        let bmi = bodyMassIndex(heightComp.value, value);
+        let thisAccum = accum.find((v) => v.component === "bmi");
+        thisAccum.value = !parseFloat(bmi) ? 1 : parseFloat(bmi)
+      }
+    }
+      return (value > 50) || "Weight must be greater than 50kg"
   }
 }
 export {
@@ -81,5 +95,6 @@ export {
   nameValidator,
   heightValidator,
   checkRNot,
-  chekiSaa
+  chekiSaa,
+  calculateBMI
 }

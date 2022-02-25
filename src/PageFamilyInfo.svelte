@@ -16,11 +16,12 @@
     });
 </script>
 
-<div class="Mycontainer">
+<div class="MainContainer">
     <Router basepath="/family-information" url="/family-information">
         <FormViewer
             header="Family Information"
-            onboardingText="We also need to get some basic information about your family."
+            onboardingText="Tell us abit about your family."
+            avatar="nucleus"
         >
             <div id="content" slot="slot1">
                 <InputCheckbox
@@ -43,9 +44,4 @@
         </FormViewer>
     </Router>
 </div>
-<style>
-	.Mycontainer{
-        top:203px;
-        height: calc(100% - 203px);
-    }
-</style>
+

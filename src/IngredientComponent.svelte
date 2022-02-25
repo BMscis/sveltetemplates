@@ -1,24 +1,6 @@
 <script>
-    export let ingredients = []
     export let preparation = []
-    export let info = ["Easy", "Prep 20m", "Cook 5m"]
 </script>
-    <div id=recipe-information>
-        <span id="ingredient-text">Ingredients</span>
-        <div id="ingredients">
-            {#each ingredients as ing}
-                <div id="ingredient-list-container">
-                    <span id="ingredient-checked">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <rect width="24" height="24" rx="12" fill="#7bed8d" />
-                            <path d="M1440.355,4365.126l2.325,2.325,4.89-4.89" transform="translate(-1432 -4352.519)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
-                        </svg>
-                    </span>
-                    <span id = "ingredient-name"> {ing}</span>
-                </div>
-            {/each}
-        </div>
-    </div>
     <div id=recipe-information>
         <span id="ingredient-text">Preparation</span>
         <div id="instructions" >
@@ -31,6 +13,23 @@
     </div>
 
 <style>
+    ol {
+    padding: 0;
+}
+    #ingredient-text {
+  white-space: nowrap;
+  text-align: left;
+  font-family: Adobe Clean;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: rgba(123,237,141,1);
+  letter-spacing: -0.1px;
+  display: block;
+  border-radius: 0;
+    height: 45px;
+    margin-left: 20px;
+}
     li#preparation {
     max-width: 100%;
     margin-bottom: 20px;

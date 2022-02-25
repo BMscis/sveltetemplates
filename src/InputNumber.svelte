@@ -2,6 +2,7 @@
     import {
         requiredRange,
         requiredValidator,
+        calculateBMI
     } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
     import { mountComponent,typeOfInput } from "./functions/mountComponent";
@@ -16,6 +17,10 @@
     export let emoji = "";
     export let sign = "";
     export let inputName;
+    export let numberType;
+    export let disabled
+    let validity
+    let validate
     let svgWidth
     let svgHeight
     let svgRx
@@ -28,7 +33,19 @@
         }
         [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions()
     });
-    const [validity, validate] = createFieldValidator(
+    switch (numberType) {
+        case "weight":
+        [validity, validate] = createFieldValidator(
+        0,
+        inputName,
+        isRequired,
+        true,
+        calculateBMI(levelRange)
+    );
+            break;
+    
+        default:
+        [validity, validate] = createFieldValidator(
         0,
         inputName,
         isRequired,
@@ -36,27 +53,13 @@
         requiredValidator(),
         requiredRange(levelRange)
     );
+            break;
+    }
+
 </script>
 
-<InputContainer>
-    <div slot="input-slot" class="input-slot">
-        <svg
-            id="input-rect"
-            xmlns="http://www.w3.org/2000/svg"
-            width="216"
-            height={svgHeight}
-            viewBox="0 0 216 {svgHeight}"
-        >
-            <rect
-                isinputok={$validity.valid}
-                id="text-input-rect"
-                data-name="input-rect"
-                width="216"
-                height={svgHeight}
-                rx={svgRx}
-                fill="#a6bcd0"
-            />
-        </svg>
+<InputContainer disabled={disabled}>
+    <div slot="input-slot" class="input-slot" >
     <input
         type="number"
         name={inputName}
@@ -71,18 +74,18 @@
         isinputok={$validity.valid}
     />
     </div>
-    <span
+    <label for={inputName}
         isinputok={$validity.valid}
         class="outline-symbol-slot"
         slot="outline-symbol-slot"
         >{@html sign}
-    </span>
+    </label>
     <PopDialog
         popupText={$validity.message != undefined ? $validity.message : "cool"}
         slot="outline-dialog-slot"
         isExtra="false"
     />
-    <span class="outline-text-slot" slot="outline-text-slot" style="background-color:#404e5a;"
+    <span class="top-label-slot" slot="top-label-slot" style="background-color:#404e5a;"
         >{$validity.valid && inputValue > 0
             ? inputPlaceholder
             : placeHolder}</span

@@ -7,6 +7,7 @@ function buildValidator (validators,isValidation) {
       }
       
       const failing = validators.find(v => v(value) !== true)
+      
       const checkFallingLength = ((val) => {
         let isVal = false
         let message = ""

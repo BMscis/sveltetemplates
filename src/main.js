@@ -1,5 +1,4 @@
 import App from './App.svelte';
-import btrChkn from "../docs/assets/butterChiken.jpg"
 const app = new App({
 	target: document.body,
 	// props: {

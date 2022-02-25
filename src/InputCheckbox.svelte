@@ -40,58 +40,35 @@
 
 <InputContainer>
     <div slot="input-slot" class="input-slot">
-        <div id="checkbox-label">
-            <span>{checkboxtext}</span>
-        </div>
-        <div id="switch-body" >
+        <span id="checkbox-label">
+            <label for={inputName}>{checkboxtext}</label>
+        </span>
+        <span id="checkbox-container" >
 			<input 
-            class="switch-body"
             type="checkbox"
             name={inputName}
             id={inputName}
             bind:checked={inputValue}
             use:validate={inputValue}
-            isinputok={$validity?.valid}
             disabled={checkable}
             >
-			<svg id="switch-active" xmlns="http://www.w3.org/2000/svg" width={svgWidth1} height={svgHeight1} viewBox="0 0 {svgWidth1} {svgHeight1}">
-				<g id="input-checked-container" fill="#748a9d" stroke="#707070" stroke-width="1">
-                    <rect width={svgWidth1} height={svgHeight1} rx={svgRx1} stroke="none"/>
-                    <rect x="0.5" y="0.5" width={svgWidth2} height={svgHeight2} rx={svgRx2} fill="none"/>
-				</g>
-				<g id="input-checked">
-					<g id="circle-checked" >
-					  <circle id ="circle-clr"cx={svgRx1} cy={svgRx1} r={svgRx2} fill="#a6bcd0"/>
-					  <g id="cross" transform={svgTranslate1}>
-						<path id="line" d="M0,0V14" transform="translate(9.9) rotate(45)" fill="#a6bcd0" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
-						<line id="line-2" data-name="line" x1="14" transform="translate(0) rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-					  </g>
-					  <path id="tick" d="M1440.356,4367.538l4.512,4.512,9.488-9.487" transform={svgTranslate2} fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-					</g>
-				  </g>
-			  </svg>
-        </div>
-    </div>
-    <div
-        slot="extra-input-slot"
-        class="checkbox-container"
-        id="morecheckbox"
-        name="morecheckbox"
-        visible={$validity?.valid && extracheckbox}
-    >
-        <input
-            type="checkbox"
-            name={inputName}
-            id={inputName}
-            on:input
-            bind:value={inputValue}
-        />
-        <div class="checkbox-text">{extracheckboxtext}</div>
+            <svg id="checkbox-switch" xmlns="http://www.w3.org/2000/svg" width="40" height="26" viewBox="0 0 40 26">
+                <rect id="checkbox-track" width="34" height="14" rx="7" transform="translate(3 6)" fill="rgba(166,188,208,0.48)"/>
+                <g id="checkbox-button" transform="translate(-11)">
+                  <circle id="checkbox-thumb-hover" cx="13" cy="13" r="13" transform="translate(11)" fill="rgba(123,237,141,0)"/>
+                  <rect id="s4" width="20.5" height="20.5" rx="10" transform="translate(13.5 2.5)" fill="#727272" opacity="0.26"/>
+                  <rect id="s3" width="20.5" height="20.5" rx="10" transform="translate(14.25 3)" fill="#727272" opacity="0.23"/>
+                  <circle id="checkbox-thumb" cx="10" cy="10" r="10" transform="translate(14 3)" fill="#a6bcd0"/>
+                </g>
+              </svg>
+            </span>
     </div>
 </InputContainer>
 <style>
+
 	.input-slot{
 		background: transparent;
 	}
 
 </style>
+  

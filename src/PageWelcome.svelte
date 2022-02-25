@@ -1,26 +1,26 @@
 <script>
-import { onMount } from "svelte";
+    import { onMount } from "svelte";
 
     import { navigate, Router } from "svelte-routing";
     import { navigatorCount } from "./functions/formAccumulator";
-    import {setDimensions} from "./dimensions/svgSettings"
+    import { setDimensions } from "./dimensions/svgSettings";
     let isFormReady = false;
-    let svgWidth
-    let svgHeight
-    let svgRx
-    let svgTranslate
-    onMount(()=>{
-         [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions()
-    })
+    let svgWidth;
+    let svgHeight;
+    let svgRx;
+    let svgTranslate;
+    onMount(() => {
+        [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions();
+    });
 </script>
 
-<div class="Mycontainer">
+<div class="MainContainer">
     <Router basepath="/" url="/">
         <svg
             id="workout-svg"
             xmlns="http://www.w3.org/2000/svg"
-            width="662.214"
-            height="491.835"
+            width="80%"
+            height="80%"
             viewBox="0 0 662.214 491.835"
         >
             <g transform="translate(-274.978 -910.119)">
@@ -761,36 +761,38 @@ import { onMount } from "svelte";
                 />
             </g>
         </svg>
-        <!-- <div class="rolling-ball">
-            <div class="outer-ring center" />
-            <div class="inner-ring center">
-                <button
-                    on:click={() => {
-                        navigate("/basic-information", { replace: false });
-                    }}
-                    class="navbutton">next</button
-                >
-
-            </div>
-        </div> -->
-        <button id="button-rect-container"
-        on:click={() => {
-            navigate("/basic-information", { replace: false });
-            navigatorCount.set(0);
-        }}
+        <button
+            id="navigation-button-continue"
+            on:click={() => {
+                navigate("/basic-information", { replace: false });
+                navigatorCount.set(0);
+            }}
         >
-            <svg id="button-rect-active-continue" xmlns="http://www.w3.org/2000/svg" width={svgWidth} height={svgHeight} viewBox="0 0 {svgWidth} {svgHeight}">
-          <g id="button-rect-active">
-            <rect id="active-button" width={svgWidth} height={svgHeight} rx={svgRx} fill="#7bed8d"/>
-          </g>
-          <text id="Continue" transform={svgTranslate} fill="#ffffff" font-size="14" font-family="AdobeClean-Regular, Adobe Clean"><tspan x="0" y="0">continue</tspan></text>
-        </svg>
+            <svg
+                id="navigation-button-continue-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                width={svgWidth}
+                height={svgHeight}
+                viewBox="0 0 {svgWidth} {svgHeight}"
+            >
+                <g id="navigation-button-continue-svg-g">
+                    <rect
+                        id="navigation-button-continue-svg-g-rect"
+                        width={svgWidth}
+                        height={svgHeight}
+                        rx={svgRx}
+                        fill="#DCB6A9"
+                    />
+                </g>
+                <text
+                    id="navigation-button-continue-svg-text"
+                    transform={svgTranslate}
+                    fill="#ffffff"
+                    font-size="14"
+                    font-family="AdobeClean-Regular, Adobe Clean"
+                    ><tspan x="0" y="0">continue</tspan></text
+                >
+            </svg>
         </button>
     </Router>
 </div>
-<style>
-	.Mycontainer{
-        top:203px;
-        height: calc(100% - 203px);
-    }
-</style>

@@ -1,7 +1,6 @@
 <script>
     import { Router } from "svelte-routing";
     import InputText from "./InputText.svelte";
-    import DateComponent from "./DateComponent.svelte";
     import FormViewer from "./FormViewer.svelte";
     import { onMount } from "svelte";
     import { setNavigateTo } from "./functions/setNavigateTo";
@@ -17,25 +16,26 @@
     }
 </script>
 
-<div class="Mycontainer">
+<div class="MainContainer">
     <Router basepath="/basic-information" url="/basic-information">
         <FormViewer
             header="Basic Information"
             onboardingText="Lets create a profile for you."
+            avatar="basic"
         >
             <div id="content" slot="slot1">
                 <InputText
-                    inputPlaceholder="what is your name? "
+                    inputPlaceholder="Name"
                     helpTextHeading="Client Name."
                     isRequired="true"
                     helpText="Please enter your first name."
                     inputName="user-name"
                     outlineColor="#bb974a"
-                    sign= "👤"
+                    sign="👤"
                     emoji="👏"
                 />
                 <InputText
-                    inputPlaceholder="what is your email? "
+                    inputPlaceholder="Email"
                     helpTextHeading="Client Email."
                     inputName="user-email"
                     isRequired="true"
@@ -44,14 +44,22 @@
                     outlineColor="#ce9535"
                     sign="📧"
                 />
-                <DateComponent />
+                <InputText
+                    inputPlaceholder="Birthday"
+                    helpTextHeading="Birthday."
+                    inputName="dob"
+                    inputType="date"
+                    isRequired="true"
+                    emoji="👏"
+                    textType="date"
+                    outlineColor="#ce9535"
+                    sign="📅"
+                    pattern="dd-mm-yyyy"
+                />
             </div>
         </FormViewer>
     </Router>
 </div>
+
 <style>
-	.Mycontainer{
-        top:203px;
-        height: calc(100% - 203px);
-    }
 </style>

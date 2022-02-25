@@ -14,10 +14,12 @@
 	import LoadingPage from "./LoadingPage.svelte";
 	import NavigationBar from "./NavigationBar.svelte";
 import PageIngredients from "./PageIngredients.svelte";
+import PersonalAllergies from "./personalAllergies.svelte";
+import FamilyAllergies from "./FamilyAllergies.svelte";
 	let isFormReady = false;
 	let url = "/";
 	let navCount = 0;
-	let navCollection = [0, 1, 2, 3, 4, 5, 6];
+	let navCollection = [0, 1, 2, 3, 4, 5, 6,7,8];
 	const rdc = (x, y) => {
 		return x && y;
 	};
@@ -26,7 +28,7 @@ import PageIngredients from "./PageIngredients.svelte";
 		accumulator.subscribe((value) => {
 			//console.log("ACC VAL:", value);
 			readyComponents = value.map((comp) => comp.ready);
-			//console.log(get(accumulator));
+			console.log(get(accumulator));
 			try {
 				isFormReady = value.map((comp) => comp.ready).reduce(rdc);
 			} catch (error) {
@@ -41,14 +43,10 @@ import PageIngredients from "./PageIngredients.svelte";
 	});
 	</script>
 
+<NavigationBar {isFormReady} />
 <main>
-
-	<NavigationBar {isFormReady} />
-    <div id="nanjulogo">{@html logo}</div>
+    <!-- <div id="nanjulogo">{@html logo}</div> -->
 	<Router {url} basepath={url}>
-		<nav>
-			<Link to="page-ingredients">Ingredients</Link>
-		</nav>
 		<Route path="/loading">
 			<LoadingPage />
 		</Route>
@@ -67,8 +65,14 @@ import PageIngredients from "./PageIngredients.svelte";
 		<Route path="/personal-health-history">
 			<PagePersonalHealthHistory {isFormReady} />
 		</Route>
+		<Route path="/personal-allergies">
+			<PersonalAllergies {isFormReady} />
+		</Route>
 		<Route path="/family-health-history">
 			<PageFamilyHealthHistory {isFormReady} />
+		</Route>
+		<Route path="/family-allergies">
+			<FamilyAllergies {isFormReady} />
 		</Route>
 		<Route path="/user-profile">
 			<Profile />
@@ -77,26 +81,23 @@ import PageIngredients from "./PageIngredients.svelte";
 			<PageIngredients></PageIngredients>
 		</Route>
 	</Router>
-	<div id="page_link">
-		{#each navCollection as nav}
-			<div id="nav-dot" class="nav_dot">
-				<svg class="nav-dot">
-					<ellipse
-						active={nav == navCount}
-						id="nav-dot"
-						rx="5"
-						ry="5"
-						cx="5"
-						cy="5"
-					/>
-				</svg>
-			</div>
-		{/each}
-	</div>
 </main>
+<div id="page_link">
+	{#each navCollection as nav}
+		<span id="nav-dot" class="nav_dot">
+			<svg class="nav-dot" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+				<ellipse
+					active={nav == navCount}
+					id="nav-dot"
+					rx="5"
+					ry="5"
+					cx="5"
+					cy="5"
+				/>
+			</svg>
+		</span>
+	{/each}
+</div>
 <style>
-	.Mycontainer{
-        top:203px;
-        height: calc(100% - 203px);
-    }
+
 </style>

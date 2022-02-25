@@ -2,7 +2,7 @@ export const butterChicken = {
     pic: "",
     ingredientName:"Butter Chicken",
     ingredients:[
-"500g chicken, chopped into pieces",
+"500g chicken",
 "½ cup natural yoghurt",
 "1 tbsp ginger, crushed",
 "¼ tsp cayenne pepper",

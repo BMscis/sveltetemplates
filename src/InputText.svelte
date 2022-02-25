@@ -3,9 +3,10 @@
         emailValidator,
         nameValidator,
         heightValidator,
+        chekiSaa
     } from "./functions/validators.js";
     import { createFieldValidator } from "./functions/validation.js";
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
     import { mountComponent, typeOfInput } from "./functions/mountComponent";
@@ -14,6 +15,7 @@
     export let helpTextHeading = "";
     export let isRequired = false;
     export let textType = "name";
+    export let inputType = "text";
     export let inputValue = "";
     export let inputName = "";
     export let helpText = "";
@@ -40,6 +42,10 @@
         }
     [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions()
     });
+    afterUpdate(()=> {
+        $validity.value ? inputValue = $validity.value : inputValue
+
+    })
     switch (textType) {
         case "email":
             [validity, validate] = createFieldValidator(
@@ -68,6 +74,15 @@
                 heightValidator()
             );
             break;
+        case "date":
+        [validity, validate] = createFieldValidator(
+        "",
+        inputName,
+        isRequired,
+        true,
+        chekiSaa()
+    );
+    break
         default:
             [validity, validate] = createFieldValidator(
                 "",
@@ -81,47 +96,45 @@
 </script>
 
 <InputContainer>
-    <!-- <svg slot="backdrop"class="Rectangle_1525">
-        <rect id="Rectangle_1525" rx="18" ry="18" x="0" y="0" width="315" height="60">
-        </rect>
-    </svg> -->
-    <div slot="input-slot" class="input-slot">
-        <svg
-            id="input-rect"
-            xmlns="http://www.w3.org/2000/svg"
-            width="216"
-            height={svgHeight}
-            viewBox="0 0 216 {svgHeight}"
-        >
-            <rect
-                isinputok={$validity.valid}
-                id="text-input-rect"
-                data-name="input-rect"
-                width="216"
-                height={svgHeight}
-                rx={svgRx}
-                fill="#a6bcd0"
-            />
-        </svg>
+    <span slot="input-slot" class="input-slot">
+        {#if inputType === "text"}
         <input
-            class="input-rect-input"
-            type="text"
-            name={inputName}
-            id={inputName}
-            bind:value={inputValue}
-            placeholder={inputPlaceholder}
-            class:activated={$validity.valid}
-            onscreenvalue={inputValue}
-            use:validate={inputValue}
-        />
-    </div>
-    <span
+        class="input-rect-input"
+        name={inputName}
+        id={inputName}
+        bind:value={inputValue}
+        placeholder={inputPlaceholder}
+        isinputok={$validity.valid}
+        onscreenvalue={inputValue}
+        use:validate={inputValue}
+        type="text"
+    />
+        {:else}
+        <input
+        class="input-rect-input"
+        name={inputName}
+        id={inputName}
+        bind:value={inputValue}
+        placeholder={inputPlaceholder}
+        isinputok={$validity.valid}
+        onscreenvalue={inputValue}
+        use:validate={inputValue}
+        type="date"
+    />
+        {/if}
+        <sub
+        isinputok={$validity.valid}
+        class="top-label-slot"
+        >{inputPlaceholder}</sub
+    >
+    </span>
+    <label for={inputName}
         isinputok={$validity.valid}
         class="outline-symbol-slot"
         disabled={!(sign.length > 0)}
         slot="outline-symbol-slot"
         >{@html sign}
-    </span>
+    </label>
     <PopDialog
         popupHeading={helpTextHeading}
         popupText={helpText}
@@ -132,11 +145,6 @@
         slot="outline-dialog-slot"
         visibility={$validity.dirty && !$validity.valid}
     />
-    <span
-        class="outline-text-slot"
-        slot="outline-text-slot"
-        style="background-color:#404e5a;">{inputPlaceholder}</span
-    >
     <slot slot="outline-help-slot" name="container-help-slot" />
     <span
         class="outline-emoji"
@@ -147,7 +155,5 @@
 </InputContainer>
 
 <style>
-    *:global(.outline-text-slot) {
-        background-color: #4aaabb;
-    }
+
 </style>

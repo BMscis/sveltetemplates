@@ -375,7 +375,7 @@
         "trigger": "",
         "languages": {}
       },
-      "name": "switch-active",
+      "name": "switch",
       "ext-com_adobe-cclib": {
         "source": "https://shared-assets.adobe.com/link/988efdc3-2250-4e4a-6e57-a8f0a8732245",
         "id": "c79ade80-c146-46b8-b923-a3a445bbefbe",
