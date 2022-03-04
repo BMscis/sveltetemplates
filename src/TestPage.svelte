@@ -572,7 +572,6 @@
                     <g id="instruction-list" transform="translate(0 0)">
                         {#each butterChickenIngredient.preparation as prep, i}
                         {(instructionSlotPosition += 40)}
-                        {(instructiontCount += i * 40)}
                         {(instructiontCount += 40)}
                         {instructionSize.set(instructiontCount)}
                         <foreignObject  transform="translate(26 {instructionSlotPosition})" width="{isLarge? 300:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
@@ -623,7 +622,6 @@
                     />
                     {#each butterChickenIngredient.ingredients as ing, i}
                         {(ingredientSlotPosition += 27)}
-                        {(ingredientCount += i * 27)}
                         {(ingredientCount += 24)}
                         {ingredientSize.set(ingredientCount)}
                         <foreignObject  transform="translate(26 {ingredientSlotPosition})" width="{isLarge? 400:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
