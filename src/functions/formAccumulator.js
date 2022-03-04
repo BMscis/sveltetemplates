@@ -8,7 +8,7 @@ export const windowSize = (() =>{
     const {subscribe,set} = instructionParameter
     function action(node, binding) {
         function validate(value, dirty) {
-            set({width:value[0],height:value[1],isLarge:value[0] > 600})
+            set({width:value[0],height:value[1],isLarge:value[0] > 732})
           return
         }
     

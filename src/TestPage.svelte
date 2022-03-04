@@ -6,16 +6,15 @@
     import titleCardImage from "../docs/assets/title-rect.png";
     import {
         instructionParameter,
-        ingredientSize,
         instructionSize,
     } from "./functions/formAccumulator";
     export let windowWidth = window.innerWidth;
     export let windowHeight = window.outerHeight;
-    let ingredientHeight = 0;
-    let ingredientSlotPosition = 162;
-    let ingredientCount = 0;
-    let instructionSlotPosition = 162;
     let instructiontCount = 0;
+    let ingredientMap = butterChickenIngredient.ingredients.map((x,i) => (i * 27)+ 189)
+    let ingredientMapSize = butterChickenIngredient.ingredients.length * 27
+    let iinstructionMap = butterChickenIngredient.preparation.map((x,i) => (i * 27)+ 189)
+    let instructionMapSize = butterChickenIngredient.ingredients.length * 40
     let buttonActive = true;
     let isLarge = windowWidth > 600;
     let hoverLine = {
@@ -38,34 +37,20 @@
     let svgHeight = 0;
     let gsvgHeight = 0;
     let isvgHeight = 0;
-    let cardHeight;
     const recipeContainerTop = () => {
         return Math.floor(window.outerHeight / 4 / 27) * 27;
     };
     onMount(() => {
         svgHeight = window.outerHeight - recipeContainerTop();
-        cardHeight = window.outerHeight - recipeContainerTop() - 189;
-        return [
-            instructionParameter.subscribe((value) => {
+        gsvgHeight = ingredientMapSize + 189 + 40
+        isvgHeight = instructionMapSize + 189 + 40
+        gsvgHeight > isvgHeight? svgHeight = gsvgHeight : svgHeight = isvgHeight
+        
+        return instructionParameter.subscribe((value) => {
                 isLarge = value.isLarge;
                 windowWidth = value.width;
                 windowHeight = value.height;
-                console.log("WIW: ", windowWidth);
-                console.log("INS:", value);
-            }),
-            ingredientSize.subscribe((value) => {
-                ingredientHeight = value;
-                gsvgHeight = value + 189 + 40;
-                gsvgHeight > isvgHeight? svgHeight = gsvgHeight : svgHeight = isvgHeight
-                console.log("GS: ",svgHeight)
-            }),
-            instructionSize.subscribe((value) => {
-                ingredientHeight = value;
-                isvgHeight = value + 189 + 40;
-                gsvgHeight > isvgHeight? svgHeight = gsvgHeight : svgHeight = isvgHeight
-                console.log("IS: ",value)
-            }),
-        ];
+            })
     });
 </script>
 
@@ -571,10 +556,7 @@
                     />
                     <g id="instruction-list" transform="translate(0 0)">
                         {#each butterChickenIngredient.preparation as prep, i}
-                        {(instructionSlotPosition += 40)}
-                        {(instructiontCount += 40)}
-                        {instructionSize.set(instructiontCount)}
-                        <foreignObject  transform="translate(26 {instructionSlotPosition})" width="{isLarge? 300:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <foreignObject  transform="translate(26 {iinstructionMap[i]})" width="{isLarge? 300:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
                             <div id=text-container style="height: 40px;display: flex;align-items: center;justify-content: center;">
                                 <span style="height:24px; width:24px; margin:0 10px 0 0;">
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -621,10 +603,7 @@
                         opacity={isLarge ? 1 : 0}
                     />
                     {#each butterChickenIngredient.ingredients as ing, i}
-                        {(ingredientSlotPosition += 27)}
-                        {(ingredientCount += 24)}
-                        {ingredientSize.set(ingredientCount)}
-                        <foreignObject  transform="translate(26 {ingredientSlotPosition})" width="{isLarge? 400:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        <foreignObject  transform="translate(26 {ingredientMap[i]})" width="{isLarge? 400:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
                             <div id=text-container style="height: 40px;display: flex;align-items: center;justify-content: center;">
                                 <span style="height:24px; width:24px; margin:0 10px 0 0;">
                                     <svg xmlns="http://www.w3.org/2000/svg"
