@@ -571,7 +571,6 @@
                     />
                     <g id="instruction-list" transform="translate(0 0)">
                         {#each butterChickenIngredient.preparation as prep, i}
-                        {(instructionSlotPosition += i * 40)}
                         {(instructionSlotPosition += 40)}
                         {(instructiontCount += i * 40)}
                         {(instructiontCount += 40)}
@@ -623,7 +622,6 @@
                         opacity={isLarge ? 1 : 0}
                     />
                     {#each butterChickenIngredient.ingredients as ing, i}
-                        {(ingredientSlotPosition += i * 27)}
                         {(ingredientSlotPosition += 27)}
                         {(ingredientCount += i * 27)}
                         {(ingredientCount += 24)}
@@ -723,7 +721,7 @@
                             <text
                                 id="tab-text"
                                 transform="translate(24 19)"
-                                fill={buttonActive ? "#e1886a" : "#a6bcd0"}
+                                fill={isLarge?"#e1886a":buttonActive ? "#e1886a" : "#a6bcd0"}
                                 font-size="16"
                                 font-family="Roboto-Regular, Roboto"
                                 letter-spacing="0.009em"
@@ -739,9 +737,7 @@
                                     x2="110"
                                     transform="translate(9.5 27)"
                                     fill="none"
-                                    stroke={buttonActive
-                                        ? "#e1886a"
-                                        : "#a6bcd0"}
+                                    stroke={isLarge?"#e1886a":buttonActive ? "#e1886a" : "#a6bcd0"}
                                     stroke-linecap="round"
                                     stroke-width="1"
                                 />
@@ -786,7 +782,7 @@
                             <text
                                 id="tab-text"
                                 transform="translate(17 17.5)"
-                                fill={!buttonActive ? "#e1886a" : "#a6bcd0"}
+                                fill={isLarge?"#e1886a":!buttonActive ? "#e1886a" : "#a6bcd0"}
                                 font-size="16"
                                 font-family="Roboto-Regular, Roboto"
                                 letter-spacing="0.009em"
@@ -802,9 +798,7 @@
                                     x2="110"
                                     transform="translate(9.5 27)"
                                     fill="none"
-                                    stroke={!buttonActive
-                                        ? "#e1886a"
-                                        : "#a6bcd0"}
+                                    stroke={isLarge?"#e1886a" :!buttonActive ?"#e1886a" : "#a6bcd0"}
                                     stroke-linecap="round"
                                     stroke-width="1"
                                 />
