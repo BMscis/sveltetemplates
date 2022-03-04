@@ -69,7 +69,7 @@ function chekiSaa() {
   return function checkTime(value){
     let dateTime = dayjs(value,"mm/dd/yyyy")
     let birthYear = parseInt(dayjs(dateTime).format("YYYY"))
-    return (thisYear > birthYear &&  birthYear > 1920) || "Must be 18 and above"
+    return (thisYear > birthYear &&  birthYear > 1945) || "Must be 18 and above"
   }
 }
 function calculateBMI(){

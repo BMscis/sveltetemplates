@@ -1,6 +1,6 @@
 <script>
     import { accumulator, navigatorCount } from "./functions/formAccumulator";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import InputNumber from "./InputNumber.svelte";
     import PopDialog from "./PopDialog.svelte";
     import InputText from "./InputText.svelte";
@@ -15,7 +15,7 @@
     const bgColor = "#a3f501";
     onMount(() => {
         document.body.scrollIntoView();
-        navigatorCount.update((n) => n + 1);
+        setPageName("BMI")
     });
     afterUpdate(() => {
         //console.log(isFormReady)

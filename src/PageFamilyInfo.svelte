@@ -1,6 +1,6 @@
 <script>
     import { Router } from "svelte-routing";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import InputCheckbox from "./InputCheckbox.svelte";
     import { onMount } from "svelte";
     import FormViewer from "./FormViewer.svelte";
@@ -11,7 +11,7 @@
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = false;
-        navigatorCount.update((n) => n + 1);
+        setPageName("Nucleus Family")
         return setNavigateTo("/anthro-measurements", true);
     });
 </script>

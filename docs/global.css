@@ -19,9 +19,11 @@
   --font-body:14px Roboto-Regular,'Roboto';
   --font-top-label:smaller Roboto-Regular,'Roboto';
   --font-placeholder:16px Roboto-Regular,'Roboto';
+  --font-ingredient-font: 12px Roboto-Regular,'Roboto';
 
   --transition-navigation:.3s cubic-bezier(0.4,0,0.2,1);
   --animation-navigation: highlights ease-in-out .5s normal forwards;
+  --animation-dropdown: dropdown ease-in-out .5s normal forwards;
 
   --border-inactive-input:2px solid #00000038;
   --border-active-input:2px solid var(--primary-color-mono-2);
@@ -30,15 +32,21 @@
 
   --label-padding: 0 10px;
 }
-::-webkit-scrollbar{
-  width: 0.5px;
-}
+
 @keyframes highlights {
   from{
     fill:transparent
   }
   to{
     fill:var(--indicator-color-positive-light)
+  }
+}
+@keyframes dropdown {
+  from{
+    top:-1000px
+  }
+  to{
+    top:0
   }
 }
 input::-webkit-input-placeholder{
@@ -70,19 +78,25 @@ body,html{
   align-content: space-between;
 }
 main{
-  max-height:calc(100vh - var(--navbar-top) - var(--footer-bottom)) ;
-  overflow: auto;
+  /* max-height:calc(100vh - var(--navbar-top) - var(--footer-bottom) - 48px) ; */
+  /* max-height:calc(100vh - 108px); */
+  max-height:100vh;
+  overflow: hidden;
   -ms-overflow-style: none;
   /* for Internet Explorer, Edge */
   scrollbar-width: none;
+  position: relative;
   /* for Firefox */
+  width: 100%;
 }
 main::-webkit-scrollbar{
   display: none;
 }
+.Maincontainer{
+  height:calc(100vh - var(--navbar-top) - var(--footer-bottom) - 48px) ;
+}
 #navigation-bar{
   display: block;
-  height: 56px;
   background: var(--primary-color-mono-3);
   position: sticky;
   position: -webkit-sticky;
@@ -90,9 +104,22 @@ main::-webkit-scrollbar{
   z-index: 99;
   width: 100%;
 }
+#nav-bar{
+  height: 56px;
+}
+#side-bar{
+  top: -1000px;
+  z-index: -4;
+  animation: var(--animation-dropdown-reverse);
+}
+#side-bar[dropdown=true]{
+  animation: var(--animation-dropdown);
+}
+
 input,button{
   cursor: pointer;
   transition: var(--transition-navigation);
+  -webkit-tap-highlight-color: transparent;
 }
 button {
   background: transparent;
@@ -110,14 +137,16 @@ button {
 {
   fill: var(--indicator-color-positive);
 }
-#navigation-button-next-right:disabled #next-right,
-#navigation-button-next-right:disabled text
-{
+#↳Color{
+  fill:var(--indicator-color-positive)
+}
+#frBtn[disabled = true] ~ g #↳Color{
   fill: var(--indicator-color-disabled);
 }
-#navigation-button-next-right svg text{
-  font:var(--font-button)
+#frBtn[disabled = true] ~ text{
+  fill: var(--indicator-color-disabled);
 }
+
 .MainContainer {
   top: 56px;
   display: flex;
@@ -125,6 +154,7 @@ button {
   width: 100%;
   height: 100%;
   align-content: center;
+  padding-bottom: 30px;
 }
 #workout-svg{
   margin:40px auto;
@@ -133,15 +163,17 @@ button {
   margin-top:40px;
 }
 #page_link{
-  bottom: 0;
-  position: relative;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  position: fixed;
   width: fit-content;
   width: -moz-fit-content;
-  margin-top: 25px;
 }
 #nav-dot {
   width: 10px;
   height: 10px;
+  fill: var(--indicator-color-disabled-light);
 }
 #nav-dot[active=true]{
   fill:var(--primary-color)
@@ -153,7 +185,9 @@ button {
   top: 0;
   z-index: 12;
   background: white;
-  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 0.5px solid #0000001c;
+  float: left;
 }
 #form-header-text{
   font:var(--font-heading)
@@ -167,6 +201,7 @@ button {
   position: -webkit-sticky;
   top: 56px;
   height: 100%;
+  width: 100%;
 }
 #content{}
 .input-container {
@@ -281,7 +316,8 @@ button {
 label{
   font:var(--font-top-label)
 }
-input[type="checkbox"]{
+input[type="checkbox"],
+input[type="radio"]{
   width: 37px;
   height: 26px;
   position: absolute;

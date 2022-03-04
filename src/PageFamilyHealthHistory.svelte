@@ -1,6 +1,6 @@
 <script>
     import { Router } from "svelte-routing";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
     import {
@@ -16,7 +16,7 @@
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = true;
-        navigatorCount.update((n) => n + 1);
+        setPageName("Family Health")
         return setNavigateTo("/family-allergies", true);
     });
 </script>

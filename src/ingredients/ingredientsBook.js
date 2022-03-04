@@ -1,4 +1,4 @@
-export const butterChicken = {
+export const butterChickenIngredient = {
     pic: "",
     ingredientName:"Butter Chicken",
     ingredients:[
@@ -24,10 +24,18 @@ export const butterChicken = {
 "1 tsp salt"
     ],
     preparation:[
-        "Mix the marinade ingredients in a large bowl. Place the chicken in the bowl with the marinade piece by piece while coating each one with the mixture. Marinate in the refrigerator for 2 hours.",
-        "Heat the oil and butter in a pan n medium flame. Stir in the onions until translucent then add the c curry powder and paprika.  Toast for 2 minutes.",
-        "Increase the heat to medium heat, stir in the tomatoes, tomato paste, sugar and dijon mustard to combine with the onion-spice mix. Cover the pan to steam the tomatoes until soft and pulpy. ",
-        "Mix in the chicken pieces gently for 5 minutes to get the pieces well coated in the paste. Add in the cooking cream, cover the pan and allow to simmer on low heat for 20 minutes.",
+        "Mix the marinade ingredients in a large bowl.",
+        "Place the chicken in the bowl with the marinade.",
+        "Marinate in the refrigerator for 2 hours.",
+        "Heat the oil and butter in a pan n medium flame." ,
+        "Stir in the onions until translucent then add the curry powder and paprika.",
+        "Toast for 2 minutes.",
+        "Increase the heat to medium heat.",
+        "Stir in the tomatoes, tomato paste, sugar and dijon mustard.",
+        "Combine with the onion-spice mix.",
+        "Cover the pan to steam the tomatoes until soft and pulpy. ",
+        "Mix in the chicken pieces gently for 5 minutes.",
+         "Add in the cooking cream, cover the pan and allow to simmer on low heat for 20 minutes.",
         "Add in the salt and continue to simmer the chicken while covered for an additional 5 minutes.",
         "Serve hot with ugali or rice and your favourite veggies!"
     ],

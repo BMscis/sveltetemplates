@@ -8,13 +8,13 @@
         return navigateTo.subscribe((value) => {
             let nav = get(navigateTo);
             lokation = nav.location;
-            //console.log("LOADING: ", nav.location);
+            console.log("LOADING: ", nav.location);
         });
     });
     afterUpdate(() => {
         setTimeout(() => {
             navigate(lokation, { replace: false });
-        }, 1300);
+        }, 300);
     });
 </script>
 

@@ -5,7 +5,7 @@
     export let avatar
 </script>
 <div id="form-header">
-    <svg id="Dark_Card_ΩElements_2._Text_tiles_7_States_" data-name="Dark 🌑 / Card /ΩElements/2. Text tiles (7 States)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" height="70" viewBox="0 0 350 70">
+    <svg id="Dark_Card_ΩElements_2._Text_tiles_7_States_" data-name="Dark 🌑 / Card /ΩElements/2. Text tiles (7 States)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="70" viewBox="0 0 200 70">
         <defs>
           <clipPath id="clip-path-allergy">
             <path id="allergy-svg" d="M208.342,98.554a4.1,4.1,0,0,0-.235-1.687,2.2,2.2,0,0,0-3.972-.128,2.744,2.744,0,0,0-.192,1.687c-.021,4.954,0,9.887-.021,14.842a10.078,10.078,0,0,1-.064,1.388c-.064.619-.427.9-1.068.961-1.879.149-2.221-.128-2.221-1.986-.021-3.417,0-6.834-.021-10.251,0-.961.021-1.922-.064-2.883a1.948,1.948,0,0,0-1.9-1.794c-1.538-.107-2.434.769-2.434,2.52-.043,3.032-.021,6.044-.021,9.076h0v8.862c0,.555.085,1.217-.641,1.409s-.961-.342-1.26-.769c-1.11-1.58-2.178-3.161-3.31-4.719a2.073,2.073,0,0,0-2.99-.6,2.158,2.158,0,0,0-.619,3.1c3.63,5.531,7.3,11.041,10.955,16.55a3.011,3.011,0,0,0,2.605,1.409h17.3a2.881,2.881,0,0,0,2.99-2.392c.747-3.63,1.495-7.239,2.136-10.891.812-4.549.384-9.161.427-13.731a2,2,0,0,0-2.2-2.093,2.034,2.034,0,0,0-2.136,2.157c-.043,1.794,0,3.566-.021,5.339s-.256,1.708-1.772,1.708-1.538-.214-1.538-1.687c-.021-3.972,0-7.965-.021-11.938a8.692,8.692,0,0,0-.043-1.495,2.01,2.01,0,0,0-2.349-1.794,1.877,1.877,0,0,0-1.965,1.986c-.021.406-.021.854-.021,1.281V113.93c0,.577.064,1.26-.534,1.538a2.926,2.926,0,0,1-2.285,0c-.641-.278-.491-.961-.491-1.516Zm-7.688,30.965a1.6,1.6,0,1,1,1.644-1.559A1.6,1.6,0,0,1,200.654,129.519Zm.043-7.731a1.623,1.623,0,0,1-1.623-1.6,1.687,1.687,0,0,1,1.623-1.644,1.623,1.623,0,0,1,1.6,1.623,1.6,1.6,0,0,1-1.6,1.623Zm18.579-3.246a1.708,1.708,0,0,1,1.58,1.687,1.644,1.644,0,0,1-1.687,1.559,1.666,1.666,0,0,1-1.58-1.666,1.687,1.687,0,0,1,1.687-1.58Zm-3.139,10.848a1.623,1.623,0,0,1,1.623,1.6,1.644,1.644,0,0,1-1.6,1.644,1.623,1.623,0,1,1-.021-3.246Zm-3.1-6.214a1.644,1.644,0,0,1,.021,3.289,1.644,1.644,0,1,1-.021-3.289Zm-6.214,9.46a1.623,1.623,0,1,1,1.666-1.58,1.644,1.644,0,0,1-1.666,1.58Zm1.666-10.891a1.6,1.6,0,1,1-.461-1.146,1.6,1.6,0,0,1,.461,1.146Z" transform="translate(-185.348 -95.542)" fill="#bbe2fb"/>
@@ -23,7 +23,7 @@
             <circle id="image" cx="20" cy="20" r="20" fill="#bbe2fb"/>
           </clipPath>
         </defs>
-        <rect id="Surface" width="350" height="70" fill="#121212" opacity="0"/>
+        <rect id="Surface" width="200" height="70" fill="#121212" opacity="0"/>
         {#if avatar == "allergy"}
         <g id="_Avatar" data-name="👤 Avatar" transform="translate(16 15)">
           <g id="Dark_ΩElements_Avatar" data-name="Dark 🌑/ ΩElements/Avatar" transform="translate(1.556 0)">
@@ -94,10 +94,15 @@
         {/if}
         <text id="_Body_2" data-name="✏️ Body 2" transform="translate(72 53)" fill="rgba(0,0,0,0.6)" font-size="14" font-family="Roboto-Regular, Roboto" letter-spacing="0.018em"><tspan x="0" y="0">{onboardingText}</tspan></text>
         <text id="_Headline_6" data-name="✏️ Headline 6" transform="translate(72 32)" fill="rgba(0,0,0,0.87)" font-size="20" font-family="Roboto-Medium, Roboto" font-weight="500" letter-spacing="0.008em"><tspan x="0" y="0">{header}</tspan></text>
-        <g id="icon_social_share_24px_" data-name="icon/social/share_24px " transform="translate(296 23)">
-          <rect id="Boundary" width="24" height="24" fill="none"/>
-          <path id="_Color" data-name=" ↳Color" d="M15,14.137a2.906,2.906,0,0,0-1.96.773L5.91,10.743a3.3,3.3,0,0,0,.09-.7,3.3,3.3,0,0,0-.09-.7l7.05-4.127A2.99,2.99,0,0,0,18,3.012a3,3,0,1,0-6,0,3.3,3.3,0,0,0,.09.7L5.04,7.841a3.012,3.012,0,1,0,0,4.4l7.12,4.177a2.843,2.843,0,0,0-.08.653A2.92,2.92,0,1,0,15,14.137Z" transform="translate(3 2)" fill="rgba(255,255,255,0.87)"/>
-        </g>
+        <foreignObject width="24" height="24" color="transparent" id="share_object" transform="translate(296 23)">
+          <button id="share-button" style="width:24px; height:24px;" on:click={()=>{console.log("SHARE")}}></button>
+          <svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24">
+            <g id="icon_social_share_24px_" data-name="icon/social/share_24px " >
+              <rect id="Boundary" width="24" height="24" fill="none"/>
+              <path id="share_button" data-name=" ↳Color" d="M15,14.137a2.906,2.906,0,0,0-1.96.773L5.91,10.743a3.3,3.3,0,0,0,.09-.7,3.3,3.3,0,0,0-.09-.7l7.05-4.127A2.99,2.99,0,0,0,18,3.012a3,3,0,1,0-6,0,3.3,3.3,0,0,0,.09.7L5.04,7.841a3.012,3.012,0,1,0,0,4.4l7.12,4.177a2.843,2.843,0,0,0-.08.653A2.92,2.92,0,1,0,15,14.137Z" transform="translate(3 2)" fill="#A6BCD0"/>
+            </g>
+          </svg>
+        </foreignObject>
       </svg>
     <!-- <span id="form-header-text">{header}</span>
     <p id = #onboarding-text>{onboardingText}</p> -->
@@ -112,6 +117,16 @@
 
 </div>
 <style>
+  #share_button{
+    cursor: pointer;
+  }
+  #share-button{
+    position: absolute;
+  }
+  #share-button:hover  ~ svg g #share_button,
+  #share-button:active ~ svg g #share_button{
+    fill:#E1886A;
+  }
     text{
         fill: black;
     }

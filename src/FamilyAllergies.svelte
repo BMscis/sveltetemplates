@@ -1,10 +1,10 @@
 <script>
     import { Router } from "svelte-routing";
     import InputText from "./InputText.svelte";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import {
-        myFoodAlergies,
-        myMedicalAlergies,
+        famFoodAlergies,
+        famMedicalAlergies,
         navigatorCount,
     } from "./functions/formAccumulator";
     import { setDimensions } from "./dimensions/svgSettings";
@@ -18,14 +18,14 @@
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = true;
-        navigatorCount.update((n) => n + 1);
+        setPageName("Family Allergies")
         return setNavigateTo("/page-ingredients", true);
     });
     const addAlergie = (alergy) => {
         switch (alergy) {
             case "food":
                 foodCount += 1;
-                myFoodAlergies.update((n) =>
+                famFoodAlergies.update((n) =>
                     n.concat([
                         {
                             inputName: "fam-food-alergies-" + foodCount,
@@ -38,7 +38,7 @@
                 break;
             case "med":
                 medCount += 1;
-                myMedicalAlergies.update((n) =>
+                famMedicalAlergies.update((n) =>
                     n.concat([
                         {
                             inputName: "fam-med-alergies-" + medCount,
@@ -216,7 +216,7 @@
                                         data-name="Dark 🌑/ Devider"
                                         width="300"
                                         height="1"
-                                        fill="rgba(255,255,255,0.12)"
+                                        fill="rgb(0 0 0 / 12%)"
                                     />
                                 </g>
                                 <g
@@ -301,10 +301,10 @@
                         </div>
                     </div>
                 </div>
-                {#each $myMedicalAlergies as item}
+                {#each $famMedicalAlergies as item}
                 <svelte:component this={InputText} {...item} />
                 {/each}
-                {#each $myFoodAlergies as item}
+                {#each $famFoodAlergies as item}
                     <svelte:component this={InputText} {...item} />
                 {/each}
             </div>

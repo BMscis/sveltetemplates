@@ -2,7 +2,7 @@
     import { Router } from "svelte-routing";
     import InputCheckbox from "./InputCheckbox.svelte";
     import InputText from "./InputText.svelte";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import {
         myFoodAlergies,
         myMedicalAlergies,
@@ -16,7 +16,7 @@
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = true;
-        navigatorCount.update((n) => n + 1);
+        setPageName("Personal Health")
         return setNavigateTo("/personal-allergies", true);
     });
 </script>

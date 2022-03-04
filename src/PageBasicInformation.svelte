@@ -3,13 +3,13 @@
     import InputText from "./InputText.svelte";
     import FormViewer from "./FormViewer.svelte";
     import { onMount } from "svelte";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo, setPageName } from "./functions/setNavigateTo";
     import { navigatorCount } from "./functions/formAccumulator";
     export let isFormReady;
     const bgColor = "#21aaf5";
     onMount(() => {
         document.body.scrollIntoView();
-        navigatorCount.update((n) => n + 1);
+        setPageName("Personal Information")
     });
     $: if (isFormReady) {
         setNavigateTo("/family-information");

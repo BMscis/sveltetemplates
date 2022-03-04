@@ -3,14 +3,16 @@
 
     import { navigate, Router } from "svelte-routing";
     import { navigatorCount } from "./functions/formAccumulator";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import { setDimensions } from "./dimensions/svgSettings";
     let isFormReady = false;
-    let svgWidth;
-    let svgHeight;
-    let svgRx;
+    let svgWidth = 216/2;
+    let svgHeight = 72/2;
+    let svgRx = 30/2;
     let svgTranslate;
     onMount(() => {
-        [svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions();
+        setPageName("Welcome")
+        //[svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions();
     });
 </script>
 
@@ -764,8 +766,7 @@
         <button
             id="navigation-button-continue"
             on:click={() => {
-                navigate("/basic-information", { replace: false });
-                navigatorCount.set(0);
+                setNavigateTo("/basic-information");
             }}
         >
             <svg
@@ -786,7 +787,7 @@
                 </g>
                 <text
                     id="navigation-button-continue-svg-text"
-                    transform={svgTranslate}
+                    transform="translate(29 23.673)"
                     fill="#ffffff"
                     font-size="14"
                     font-family="AdobeClean-Regular, Adobe Clean"

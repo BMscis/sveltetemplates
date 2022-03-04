@@ -1,7 +1,7 @@
 <script>
     import { Router } from "svelte-routing";
     import InputText from "./InputText.svelte";
-    import { setNavigateTo } from "./functions/setNavigateTo";
+    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import {
         myFoodAlergies,
         myMedicalAlergies,
@@ -18,7 +18,7 @@
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = true;
-        navigatorCount.update((n) => n + 1);
+        setPageName("Any Allergies")
         return setNavigateTo("/family-health-history", true);
     });
     const addAlergie = (alergy) => {
@@ -216,7 +216,7 @@
                                         data-name="Dark 🌑/ Devider"
                                         width="300"
                                         height="1"
-                                        fill="rgba(255,255,255,0.12)"
+                                        fill="rgb(0 0 0 / 12%)"
                                     />
                                 </g>
                                 <g
