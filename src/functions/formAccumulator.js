@@ -24,7 +24,7 @@ export const windowSize = (() =>{
 })
 export const navigateTo = writable({location:""})
 export const navigatorCount = writable(0)
-export const navigatorPage = writable([{page:""}])
+export const navigatorPage = writable({page:"Welcome",subHeading:"Nourish with Nanju.",avatar:""})
 export const myFoodAlergies = writable([])
 export const myMedicalAlergies = writable([])
 export const famFoodAlergies = writable([])

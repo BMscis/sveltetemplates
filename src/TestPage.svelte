@@ -1,8 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { get } from "svelte/store";
-    import butterChickenImage from "../docs/assets/butterChiken.jpg";
-    import { butterChickenIngredient } from "./ingredients/ingredientsBook";
+    import { tropicalBellPepperSalad } from "./ingredients/ingredientsBook";
     import titleCardImage from "../docs/assets/title-rect.png";
     import {
         instructionParameter,
@@ -10,13 +9,12 @@
     } from "./functions/formAccumulator";
     export let windowWidth = window.innerWidth;
     export let windowHeight = window.outerHeight;
-    let instructiontCount = 0;
-    let ingredientMap = butterChickenIngredient.ingredients.map((x,i) => (i * 27)+ 189)
-    let ingredientMapSize = butterChickenIngredient.ingredients.length * 27
-    let iinstructionMap = butterChickenIngredient.preparation.map((x,i) => (i * 27)+ 189)
-    let instructionMapSize = butterChickenIngredient.ingredients.length * 40
-    let buttonActive = true;
-    let isLarge = windowWidth > 600;
+    let ingredientMap = tropicalBellPepperSalad.ingredients.map((x,i) => (i * 27)+ 189) //height of ingredients on the page used for translate
+    let ingredientMapSize = (tropicalBellPepperSalad.ingredients.length * 27) + 189 // height of ingredients used for svgheight
+    let instructionMap = tropicalBellPepperSalad.preparation.map((x,i) => (i * 40)+ 189)
+    let instructionMapSize = (tropicalBellPepperSalad.preparation.length * 40) + 189
+    let buttonActive = true;//toggle between ingredient and instructions
+    let isLarge = windowWidth > 732; //is window width > 600
     let hoverLine = {
         large: { x: 0, y: 20.5 },
         small: { x: 0, y: 20.5 },
@@ -34,16 +32,17 @@
         large: 400 - 30,
         small: windowWidth / 2 > 300 ? windowWidth / 2 - 30 : windowWidth - 30,
     };
-    let svgHeight = 0;
+    let svgHeight = 0;//height for svg
     let gsvgHeight = 0;
     let isvgHeight = 0;
     const recipeContainerTop = () => {
-        return Math.floor(window.outerHeight / 4 / 27) * 27;
+        // return Math.floor(window.outerHeight / 4 / 27) * 27;//caclulate navbar height
+        return 104
     };
     onMount(() => {
         svgHeight = window.outerHeight - recipeContainerTop();
-        gsvgHeight = ingredientMapSize + 189 + 40
-        isvgHeight = instructionMapSize + 189 + 40
+        gsvgHeight = ingredientMapSize
+        isvgHeight = instructionMapSize
         gsvgHeight > isvgHeight? svgHeight = gsvgHeight : svgHeight = isvgHeight
         
         return instructionParameter.subscribe((value) => {
@@ -54,7 +53,7 @@
     });
 </script>
 
-<div id="div1" style="height:{recipeContainerTop()}px;">
+<!-- <div id="div1" style="height:{recipeContainerTop()}px;">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -68,12 +67,12 @@
                 preserveAspectRatio="xMidYMid slice"
                 width="100%"
                 height="100%"
-                viewBox="0 0 1600 1066"
+                viewBox="0 0 512 1066"
             >
                 <image
-                    width="1600"
+                    width="512"
                     height="1066"
-                    href={butterChickenImage}
+                    href={tropicalBellPepperSalad.pic}
                 />
             </pattern>
             <pattern
@@ -86,7 +85,7 @@
                     preserveAspectRatio="xMidYMid slice"
                     width="71.186"
                     height="40"
-                    href={butterChickenImage}
+                    href={tropicalBellPepperSalad.pic}
                 />
             </pattern>
             <filter
@@ -178,7 +177,7 @@
                     font-size="24"
                     font-family="Roboto-Regular, Roboto"
                     letter-spacing="0.007em"
-                    ><tspan x="0" y="0">Mixed Berries</tspan></text
+                    ><tspan x="0" y="0">{tropicalBellPepperSalad.ingredientName}</tspan></text
                 >
                 <text
                     id="_Body_2"
@@ -188,7 +187,7 @@
                     font-size="14"
                     font-family="Roboto-Regular, Roboto"
                     letter-spacing="0.018em"
-                    ><tspan x="0" y="0">Main Course</tspan></text
+                    ><tspan x="0" y="0">{tropicalBellPepperSalad.subHeading}</tspan></text
                 >
             </g>
         </g>
@@ -493,7 +492,7 @@
                 </g>
             </g>
     </svg>
-</div>
+</div> -->
 <div id="container" style="height:{window.innerHeight - recipeContainerTop() - 50}px">
     <div id="div2" style="height:{svgHeight}px;">
         <svg
@@ -517,28 +516,19 @@
                         ? 108
                         : 81})"
                 >
-                    <text
+                <foreignObject width="250" height="150" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div
                         id="food-text"
                         data-name="food-text"
-                        transform="translate(0)"
-                        fill="rgba(0,0,0,0.6)"
-                        font-size="12"
-                        font-family="Roboto-Regular, Roboto"
+                        style="width:230px;height:100px;color:var(--indicator-color-disabled);padding:10px;border-radius:10px;"
                     >
-                        <tspan x="0" y="13" xml:space="preserve"
-                            >Broccoli is a green vegetable that vaguely
-                        </tspan>
-                        <tspan x="0" y="29"
-                            >nutritional Powerhouse of vitamin,fiber and
-                        </tspan>
-                        <tspan x="0" y="45" xml:space="preserve"
-                            >antioxidents.Broccoli contains lutein and
-                        </tspan>
-                        <tspan x="0" y="61"
-                            >which mayPrevent from stress and cellular
-                        </tspan>
-                        <tspan x="0" y="77">damage in yourEyes.</tspan>
-                    </text>
+                    <h2 style="font:var(--font-heading);">Tip</h2>
+                        <p>
+                            {tropicalBellPepperSalad.tip}
+                        </p>
+                    </div>
+                </foreignObject>
+
                 </g>
                 <g
                     id="instruction"
@@ -555,8 +545,8 @@
                         opacity={isLarge ? 1 : 0}
                     />
                     <g id="instruction-list" transform="translate(0 0)">
-                        {#each butterChickenIngredient.preparation as prep, i}
-                        <foreignObject  transform="translate(26 {iinstructionMap[i]})" width="{isLarge? 300:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                        {#each tropicalBellPepperSalad.preparation as prep, i}
+                        <foreignObject  transform="translate(26 {instructionMap[i]})" width="{isLarge? 300:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
                             <div id=text-container style="height: 40px;display: flex;align-items: center;justify-content: center;">
                                 <span style="height:24px; width:24px; margin:0 10px 0 0;">
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -602,7 +592,7 @@
                         fill="#e2e2e2"
                         opacity={isLarge ? 1 : 0}
                     />
-                    {#each butterChickenIngredient.ingredients as ing, i}
+                    {#each tropicalBellPepperSalad.ingredients as ing, i}
                         <foreignObject  transform="translate(26 {ingredientMap[i]})" width="{isLarge? 400:windowWidth - 30}"  height="40" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
                             <div id=text-container style="height: 40px;display: flex;align-items: center;justify-content: center;">
                                 <span style="height:24px; width:24px; margin:0 10px 0 0;">

@@ -14,6 +14,6 @@ export const setNavigateTo = ((lok,dirty = false) => {
             return
     }
 })
-export const setPageName = ((name) => {
-    navigatorPage.update((n) => n.concat([{ page: name }]));
+export const setPageName = ((name, subHeading, avatar) => {
+    navigatorPage.set({ page: name, subHeading:subHeading, avatar:avatar });
 })

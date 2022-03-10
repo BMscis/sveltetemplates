@@ -5,25 +5,26 @@
     import { navigatorCount } from "./functions/formAccumulator";
     import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
     import { setDimensions } from "./dimensions/svgSettings";
+    export let windowHeight
     let isFormReady = false;
     let svgWidth = 216/2;
     let svgHeight = 72/2;
     let svgRx = 30/2;
     let svgTranslate;
     onMount(() => {
-        setPageName("Welcome")
+        return 
         //[svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions();
     });
 </script>
 
-<div class="MainContainer">
+<div class="MainContainer" style="height: {windowHeight};">
     <Router basepath="/" url="/">
         <svg
             id="workout-svg"
             xmlns="http://www.w3.org/2000/svg"
-            width="80%"
-            height="80%"
-            viewBox="0 0 662.214 491.835"
+            width="{window.innerHeight/2}"
+            height="{window.innerWidth/2}"
+            viewBox="0 0 {window.innerHeight/2} {window.innerWidth/2}"
         >
             <g transform="translate(-274.978 -910.119)">
                 <path
@@ -766,7 +767,7 @@
         <button
             id="navigation-button-continue"
             on:click={() => {
-                setNavigateTo("/basic-information");
+                navigate("/page-recipes",false);
             }}
         >
             <svg

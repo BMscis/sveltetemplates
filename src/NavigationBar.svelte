@@ -1,9 +1,11 @@
 <script>
   import { navigate } from "svelte-routing";
   export let isFormReady;
-  export let page;
+  let page = "Welcome";
+  let newPage
   let dropdown = false
   let inputValue = false
+
 </script>
 
 <nav id="navigation-bar">

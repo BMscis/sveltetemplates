@@ -12,7 +12,7 @@
 	import PageFamilyInfo from "./PageFamilyInfo.svelte";
 	import LoadingPage from "./LoadingPage.svelte";
 	import NavigationBar from "./NavigationBar.svelte";
-	import {setNavigateTo, setPageName} from "./functions/setNavigateTo"
+	import {setNavigateTo} from "./functions/setNavigateTo"
 	import PageIngredients from "./PageIngredients.svelte";
 	import PersonalAllergies from "./personalAllergies.svelte";
 	import FamilyAllergies from "./FamilyAllergies.svelte";
@@ -30,11 +30,9 @@
 		return x && y;
 	};
 	let readyComponents;
-	let newPage
-	let page = "Welcome";
 	let navCollection = [1,2,3,4,5,6,7,8,9,10];
-	let windowWidth = window.outerWidth
-	let windowHeight = window.outerHeight
+	let windowWidth = window.innerWidth
+	let windowHeight = window.innerHeight
 	const [windowSizeSub, windowValidate] = windowSize()
 	onMount(() => {
 		accumulator.subscribe((value) => {
@@ -50,22 +48,55 @@
 		navigatorCount.subscribe((value) => {
 			navCount = value;
 		});
-		navigatorPage.subscribe((value) => {
-			newPage = value[Object.keys(value)[Object.keys(value).length - 1]].page;
-			newPage.length > 0 ? page = newPage : page
-		});
+
 		windowValidate()
 		return setNavigateTo("/");
 	});
 	window.addEventListener("resize", e=>{
-		windowHeight = window.outerHeight
-		console.log("VALIDATE PLEASE")
+		windowHeight = window.innerHeight
+		//console.log("VALIDATE PLEASE")
 		windowValidate()})
 	</script>
-<!-- <NanjuNavbar {isFormReady} page={"RECIPES"}/> -->
-<main style="height:{windowHeight}px" >
-	<TestPage ></TestPage>
-	<!-- <NanjuOpenRecipe></NanjuOpenRecipe> -->
+	<NanjuNavbar {isFormReady} />
+<main style="height:{windowHeight - 104}px" >
+	<Router {url} basepath={url}>
+		<Route path="/loading">
+			<LoadingPage />
+		</Route>
+		<Route path="/">
+			<PageWelcome {isFormReady} height={windowHeight}/>
+		</Route>
+		<Route path="/basic-information">
+			<PageBasicInformation {isFormReady} />
+		</Route>
+		<Route path="/family-information">
+			<PageFamilyInfo {isFormReady} />
+		</Route>
+		<Route path="/anthro-measurements">
+			<PageAnthropometricMeasurments {isFormReady} />
+		</Route>
+		<Route path="/personal-health-history">
+			<PagePersonalHealthHistory {isFormReady} />
+		</Route>
+		<Route path="/personal-allergies">
+			<PersonalAllergies {isFormReady} />
+		</Route>
+		<Route path="/family-health-history">
+			<PageFamilyHealthHistory {isFormReady} />
+		</Route>
+		<Route path="/family-allergies">
+			<FamilyAllergies {isFormReady} />
+		</Route>
+		<Route path="/user-profile">
+			<Profile />
+		</Route>
+		<Route path="/page-ingredients">
+			<PageIngredients></PageIngredients>
+		</Route>
+		<Route path="/page-recipes">
+			<PageRecipe height={windowHeight}></PageRecipe>
+		</Route>
+	</Router>
 </main>
 <!-- <div id="page_link">
 	{#each navCollection as nav}

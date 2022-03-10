@@ -80,8 +80,6 @@ body,html{
 main{
   /* max-height:calc(100vh - var(--navbar-top) - var(--footer-bottom) - 48px) ; */
   /* max-height:calc(100vh - 108px); */
-  max-height:100vh;
-  overflow: hidden;
   -ms-overflow-style: none;
   /* for Internet Explorer, Edge */
   scrollbar-width: none;
@@ -92,9 +90,7 @@ main{
 main::-webkit-scrollbar{
   display: none;
 }
-.Maincontainer{
-  height:calc(100vh - var(--navbar-top) - var(--footer-bottom) - 48px) ;
-}
+
 #navigation-bar{
   display: block;
   background: var(--primary-color-mono-3);
@@ -148,7 +144,6 @@ button {
 }
 
 .MainContainer {
-  top: 56px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -157,10 +152,8 @@ button {
   padding-bottom: 30px;
 }
 #workout-svg{
-  margin:40px auto;
 }
 #navigation-button-continue{
-  margin-top:40px;
 }
 #page_link{
   bottom: 20px;
@@ -197,9 +190,6 @@ button {
 }
 #ingredient-slot{}
 .main-content{
-  position: sticky;
-  position: -webkit-sticky;
-  top: 56px;
   height: 100%;
   width: 100%;
 }
