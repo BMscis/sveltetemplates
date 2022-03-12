@@ -1,15 +1,15 @@
 <script>
     import { Router } from "svelte-routing";
-    import InputText from "./InputText.svelte";
-    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
+    import InputText from "../Inputs/InputText.svelte";
+    import { setNavigateTo,setPageName } from "../../functions/setNavigateTo";
     import {
-        myFoodAlergies,
-        myMedicalAlergies,
+        famFoodAlergies,
+        famMedicalAlergies,
         navigatorCount,
-    } from "./functions/formAccumulator";
-    import { setDimensions } from "./dimensions/svgSettings";
+    } from "../../functions/formAccumulator";
+    import { setDimensions } from "../../dimensions/svgSettings";
     import { afterUpdate, onMount } from "svelte";
-    import FormViewer from "./FormViewer.svelte";
+    import FormViewer from "../../Utilities/FormViewer.svelte";
     export let isFormReady = false;
     let foodCount = 0;
     let medCount = 0;
@@ -18,17 +18,17 @@
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = true;
-        setPageName("Any Allergies")
-        return setNavigateTo("/family-health-history", true);
+        setPageName(["Family Alergies","Form"],"List down any family allergies.","allergy")
+        return setNavigateTo("/page-recipes", true);
     });
     const addAlergie = (alergy) => {
         switch (alergy) {
             case "food":
                 foodCount += 1;
-                myFoodAlergies.update((n) =>
+                famFoodAlergies.update((n) =>
                     n.concat([
                         {
-                            inputName: "my-food-alergies-" + foodCount,
+                            inputName: "fam-food-alergies-" + foodCount,
                             inputPlaceholder: "Food Alergies?",
                             isRequired: "false",
                         },
@@ -38,10 +38,10 @@
                 break;
             case "med":
                 medCount += 1;
-                myMedicalAlergies.update((n) =>
+                famMedicalAlergies.update((n) =>
                     n.concat([
                         {
-                            inputName: "my-med-alergies-" + medCount,
+                            inputName: "fam-med-alergies-" + medCount,
                             inputPlaceholder: "Medical Alergies?",
                             isRequired: "false",
                         },
@@ -54,11 +54,8 @@
 </script>
 
 <div class="MainContainer">
-    <Router url="personal-allergies" basepath="personal-allergies">
+    <Router url="family-allergies" basepath="family-allergies">
         <FormViewer
-            header="Your Allergies"
-            onboardingText="Let's collect a list of your allergies."
-            avatar="allergy"
         >
             <div id="content" slot="slot1">
                 <div id="allergy-slot">
@@ -281,7 +278,7 @@
                                     font-family="Roboto-Regular, Roboto"
                                     letter-spacing="0.018em"
                                     ><tspan x="0" y="0"
-                                        >Do you have any food allergies?</tspan
+                                        >Any family food allergies?</tspan
                                     ></text
                                 >
                                 <text
@@ -301,10 +298,10 @@
                         </div>
                     </div>
                 </div>
-                {#each $myMedicalAlergies as item}
+                {#each $famMedicalAlergies as item}
                 <svelte:component this={InputText} {...item} />
                 {/each}
-                {#each $myFoodAlergies as item}
+                {#each $famFoodAlergies as item}
                     <svelte:component this={InputText} {...item} />
                 {/each}
             </div>

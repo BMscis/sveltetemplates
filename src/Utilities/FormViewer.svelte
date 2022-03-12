@@ -4,7 +4,7 @@
     export let isIngredients = false
     export let avatar
 </script>
-<div id="form-header">
+<!-- <div id="form-header">
     <svg id="Dark_Card_ΩElements_2._Text_tiles_7_States_" data-name="Dark 🌑 / Card /ΩElements/2. Text tiles (7 States)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="70" viewBox="0 0 300 70">
         <defs>
           <clipPath id="clip-path-allergy">
@@ -104,9 +104,9 @@
           </svg>
         </foreignObject>
       </svg>
-    <!-- <span id="form-header-text">{header}</span>
-    <p id = #onboarding-text>{onboardingText}</p> -->
-</div>
+    <span id="form-header-text">{header}</span>
+    <p id = #onboarding-text>{onboardingText}</p>
+</div> -->
 <div id="ingredient-slot">
     <slot name="ingredient-slot"></slot>
 </div>

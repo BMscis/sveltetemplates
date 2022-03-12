@@ -73,7 +73,6 @@ input:-webkit-autofill{
 body,html{
   margin:0;
   height: 100%;
-  display: grid;
   display: -ms-grid;
   align-content: space-between;
 }
@@ -192,6 +191,7 @@ button {
 .main-content{
   height: 100%;
   width: 100%;
+  display: flex;
 }
 #content{}
 .input-container {

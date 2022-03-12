@@ -1,13 +1,9 @@
 <script>
-    import butterChickenImage from "../docs/assets/butterChiken.jpg"
     import IngredientComponent from "./IngredientComponent.svelte";
-    import IngredientsHeader from "./IngredientsHeader.svelte";
-    import { butterChickenIngredient } from "./ingredients/ingredientsBook";
     import { Router } from "svelte-routing";
     import FormViewer from "./FormViewer.svelte";
     import { afterUpdate, onMount } from "svelte";
     import {setNavigateTo,setPageName} from "./functions/setNavigateTo"
-
     let ingredientCount = 0
     for(let i = 0; i < butterChickenIngredient.ingredients.length; i++){
       ingredientCount = i * 30

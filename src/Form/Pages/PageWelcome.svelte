@@ -1,20 +1,11 @@
 <script>
-    import { onMount } from "svelte";
-
     import { navigate, Router } from "svelte-routing";
-    import { navigatorCount } from "./functions/formAccumulator";
-    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
-    import { setDimensions } from "./dimensions/svgSettings";
     export let windowHeight
     let isFormReady = false;
     let svgWidth = 216/2;
     let svgHeight = 72/2;
     let svgRx = 30/2;
     let svgTranslate;
-    onMount(() => {
-        return 
-        //[svgWidth, svgHeight, svgRx, svgTranslate] = setDimensions();
-    });
 </script>
 
 <div class="MainContainer" style="height: {windowHeight};">
@@ -767,7 +758,7 @@
         <button
             id="navigation-button-continue"
             on:click={() => {
-                navigate("/page-recipes",false);
+                navigate("/basic-information",false);
             }}
         >
             <svg

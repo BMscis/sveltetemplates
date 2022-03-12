@@ -1,13 +1,11 @@
 <script>
-    import { accumulator, navigatorCount } from "./functions/formAccumulator";
-    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
-    import InputNumber from "./InputNumber.svelte";
-    import PopDialog from "./PopDialog.svelte";
-    import InputText from "./InputText.svelte";
+    import { setNavigateTo,setPageName } from "../../functions/setNavigateTo";
+    import InputNumber from "../Inputs/InputNumber.svelte"
+    import PopDialog from "../Inputs/PopDialog.svelte";
+    import InputText from "../Inputs/InputText.svelte";
     import { Router } from "svelte-routing";
-    import { get } from "svelte/store";
     import { afterUpdate, onMount } from "svelte";
-    import FormViewer from "./FormViewer.svelte";
+    import FormViewer from "../../Utilities/FormViewer.svelte";
     export let isFormReady = false;
     let bmi = 0;
     let helpDialog1 = false;
@@ -15,7 +13,7 @@
     const bgColor = "#a3f501";
     onMount(() => {
         document.body.scrollIntoView();
-        setPageName("BMI")
+        setPageName(["Body Mass","Form"],"This info is private and wil help alot.","weights")
     });
     afterUpdate(() => {
         //console.log(isFormReady)
@@ -30,9 +28,6 @@
 <div class="MainContainer">
     <Router url="/anthro-measurements" basepath="/anthro-measurements">
         <FormViewer
-            header="Body Mass"
-            onboardingText="This info is private and wil help alot."
-            avatar="weights"
         >
             <div id="content" slot="slot1">
                 <InputText

@@ -2,7 +2,7 @@
     import { afterUpdate, onMount } from "svelte";
     import { Router, navigate } from "svelte-routing";
     import { get } from "svelte/store";
-    import { navigateTo } from "./functions/formAccumulator";
+    import { navigateTo } from "../functions/formAccumulator";
     let lokation = "";
     onMount(() => {
         return navigateTo.subscribe((value) => {

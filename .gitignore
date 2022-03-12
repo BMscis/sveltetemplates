@@ -1,4 +1,5 @@
 /node_modules/
 /public/build/
 /docs/assets/Nanju-Health-Kit
+/src/other
 .DS_Store

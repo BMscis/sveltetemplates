@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
 
     import { Router, navigate } from "svelte-routing";
-    import { setProfile } from "./functions/getProfile";
+    import { setProfile } from "../functions/getProfile";
     let userName;
     let bmi;
     let age;

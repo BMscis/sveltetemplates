@@ -1,9 +1,9 @@
 <script>
-    import { timeConverter, requiredRange } from "./functions/validators.js";
-    import { createFieldValidator } from "./functions/validation.js";
+    import { timeConverter, requiredRange } from "../../functions/validators.js";
+    import { createFieldValidator } from "../../functions/validation.js";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
-    import { mountComponent, typeOfInput } from "./functions/mountComponent";
+    import { mountComponent, typeOfInput } from "../../functions/mountComponent";
     import {onMount } from "svelte";
     export let isTimeBound = false;
     export let isRequired = false;

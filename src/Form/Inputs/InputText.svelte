@@ -4,13 +4,13 @@
         nameValidator,
         heightValidator,
         chekiSaa
-    } from "./functions/validators.js";
-    import { createFieldValidator } from "./functions/validation.js";
+    } from "../../functions/validators.js";
+    import { createFieldValidator } from "../../functions/validation.js";
     import { afterUpdate, onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
-    import { mountComponent, typeOfInput } from "./functions/mountComponent";
-    import {setDimensions} from "./dimensions/svgSettings"
+    import { mountComponent, typeOfInput } from "../../functions/mountComponent";
+    import {setDimensions} from "../../dimensions/svgSettings"
     export let inputPlaceholder = "";
     export let helpTextHeading = "";
     export let isRequired = false;

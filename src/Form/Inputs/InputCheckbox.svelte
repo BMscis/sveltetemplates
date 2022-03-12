@@ -1,9 +1,9 @@
 <script>
     import InputContainer from "./InputContainer.svelte";
-    import { createFieldValidator } from "./functions/validation.js";
-    import { mountComponent, typeOfInput } from "./functions/mountComponent";
+    import { createFieldValidator } from "../../functions/validation.js";
+    import { mountComponent, typeOfInput } from "../../functions/mountComponent";
     import { onMount } from "svelte";
-    import {setDimensions} from "./dimensions/svgSettings"
+    import {setDimensions} from "../../dimensions/svgSettings"
     export let extracheckboxtext = "";
     export let extracheckbox = false;
     export let inputValue = undefined;

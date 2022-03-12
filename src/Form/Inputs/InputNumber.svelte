@@ -3,13 +3,13 @@
         requiredRange,
         requiredValidator,
         calculateBMI
-    } from "./functions/validators.js";
-    import { createFieldValidator } from "./functions/validation.js";
-    import { mountComponent,typeOfInput } from "./functions/mountComponent";
+    } from "../../functions/validators.js";
+    import { createFieldValidator } from "../../functions/validation.js";
+    import { mountComponent,typeOfInput } from "../../functions/mountComponent";
     import { onMount } from "svelte";
     import InputContainer from "./InputContainer.svelte";
     import PopDialog from "./PopDialog.svelte";
-    import {setDimensions} from "./dimensions/svgSettings"
+    import {setDimensions} from "../../dimensions/svgSettings"
     export let isRequired = false;
     export let inputPlaceholder;
     export let levelRange = 0;

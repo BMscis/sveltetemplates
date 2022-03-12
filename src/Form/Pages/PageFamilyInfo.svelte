@@ -1,17 +1,16 @@
 <script>
     import { Router } from "svelte-routing";
-    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
-    import InputCheckbox from "./InputCheckbox.svelte";
+    import { setNavigateTo,setPageName } from "../../functions/setNavigateTo";
+    import InputCheckbox from "../Inputs/InputCheckbox.svelte";
     import { onMount } from "svelte";
-    import FormViewer from "./FormViewer.svelte";
-    import { navigatorCount } from "./functions/formAccumulator";
+    import FormViewer from "../../Utilities/FormViewer.svelte";
     export let isFormReady = false;
     const bgColor = "#a300f5";
 
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = false;
-        setPageName("Nucleus Family")
+        setPageName(["Family Information","Form"],"Tell us abit about your family.","nucleus")
         return setNavigateTo("/anthro-measurements", true);
     });
 </script>
@@ -19,9 +18,7 @@
 <div class="MainContainer">
     <Router basepath="/family-information" url="/family-information">
         <FormViewer
-            header="Family Information"
-            onboardingText="Tell us abit about your family."
-            avatar="nucleus"
+            
         >
             <div id="content" slot="slot1">
                 <InputCheckbox

@@ -1,22 +1,15 @@
 <script>
     import { Router } from "svelte-routing";
-    import { setNavigateTo,setPageName } from "./functions/setNavigateTo";
-    import InputCheckbox from "./InputCheckbox.svelte";
-    import InputText from "./InputText.svelte";
-    import {
-        famFoodAlergies,
-        famMedicalAlergies,
-        navigatorCount,
-    } from "./functions/formAccumulator";
-    import {setDimensions} from "./dimensions/svgSettings"
-    import { afterUpdate, onMount } from "svelte";
-    import FormViewer from "./FormViewer.svelte";
+    import { setNavigateTo,setPageName } from "../../functions/setNavigateTo";
+    import InputCheckbox from "../Inputs/InputCheckbox.svelte"
+    import { onMount } from "svelte";
+    import FormViewer from "../../Utilities/FormViewer.svelte";
     export let isFormReady = false;
     let svgHeight1
     onMount(() => {
         document.body.scrollIntoView();
         isFormReady = true;
-        setPageName("Family Health")
+        setPageName(["Family Health History","Form"],"Anyone in your family have any of these ?","allergy")
         return setNavigateTo("/family-allergies", true);
     });
 </script>
@@ -24,9 +17,7 @@
 <div class="MainContainer">
     <Router url="family-health-history" basepath="family-health-history">
         <FormViewer
-            header="Family Health History"
-            onboardingText="Anyone in your family have any of these ?"
-            avatar="allergy"
+            
         >
             <div id="content" slot="slot1">
                 <InputCheckbox

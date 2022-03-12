@@ -1,15 +1,14 @@
 <script>
     import { Router } from "svelte-routing";
-    import InputText from "./InputText.svelte";
-    import FormViewer from "./FormViewer.svelte";
+    import InputText from "../Inputs/InputText.svelte";
+    import FormViewer from "../../Utilities/FormViewer.svelte";
     import { onMount } from "svelte";
-    import { setNavigateTo, setPageName } from "./functions/setNavigateTo";
-    import { navigatorCount } from "./functions/formAccumulator";
+    import { setNavigateTo, setPageName } from "../../functions/setNavigateTo";
     export let isFormReady;
     const bgColor = "#21aaf5";
     onMount(() => {
         document.body.scrollIntoView();
-        setPageName("Personal Information")
+        setPageName(["Basic Information","Form"],"Lets create a profile for you.","basic")
     });
     $: if (isFormReady) {
         setNavigateTo("/family-information");
@@ -19,9 +18,6 @@
 <div class="MainContainer">
     <Router basepath="/basic-information" url="/basic-information">
         <FormViewer
-            header="Basic Information"
-            onboardingText="Lets create a profile for you."
-            avatar="basic"
         >
             <div id="content" slot="slot1">
                 <InputText
