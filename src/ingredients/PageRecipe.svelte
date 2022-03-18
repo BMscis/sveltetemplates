@@ -5,7 +5,7 @@
   import { setPageName } from "../functions/setNavigateTo";
   import RecipeCard from "../ComponentCards/RecipeCard.svelte";
   import { afterUpdate, onMount, xlink_attr } from "svelte/internal";
-  import { instructionParameter } from "../functions/formAccumulator";
+  import { instructionParameter, navbarHeight } from "../functions/formAccumulator";
   import { get } from "svelte/store";
   import { ingredientBook } from "../functions/formAccumulator";
   export let isFormReady;
@@ -30,7 +30,7 @@
     return instructionParameter.subscribe((value) => {
       isLarge = value.isLarge;
       windowWidth = value.width;
-      windowHeight = value.height;
+      windowHeight = value.height - get(navbarHeight);
     });
   });
   afterUpdate(() => {
@@ -43,7 +43,7 @@
   });
 </script>
 
-<div class="Maincontainer" style="height: {windowHeight};">
+<div class="Maincontainer" style="height:{windowHeight}px;">
   <Router basepath="/page-recipes" url="/page-recipes">
     <FormViewer
       header="Recipes"

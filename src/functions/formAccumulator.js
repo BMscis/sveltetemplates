@@ -12,7 +12,7 @@ export const windowSize = (() =>{
           return
         }
     
-        validate([window.innerWidth,window.outerHeight],false)
+        validate([window.innerWidth,window.innerHeight],false)
     
         return {
           update(value) {
@@ -30,3 +30,4 @@ export const myMedicalAlergies = writable([])
 export const famFoodAlergies = writable([])
 export const famMedicalAlergies = writable([])
 export const ingredientBook = writable([])
+export const navbarHeight = writable(0)

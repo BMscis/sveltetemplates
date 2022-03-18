@@ -1,5 +1,6 @@
 <script>
 import { afterUpdate } from "svelte";
+import { navbarHeight } from "../functions/formAccumulator";
 
 
   export let windowWidth
@@ -11,7 +12,7 @@ import { afterUpdate } from "svelte";
   let translateRightEnd = windowWidth - 44
   let translateRightNext = translateRightEnd - 44
   let translateTitleCenter = (windowWidth/2) - 50
-
+  navbarHeight.set(56)
   afterUpdate(() => {
       translateRightEnd = windowWidth - 44
       translateRightNext = translateRightEnd - 44

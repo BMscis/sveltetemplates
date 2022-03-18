@@ -19,7 +19,8 @@
 	import { onMount } from "svelte";
 	import { Router, Route} from "svelte-routing";
 	import { setNavigateTo } from "./functions/setNavigateTo";
-	import {accumulator,navigatorCount,windowSize,} from "./functions/formAccumulator";
+	import {accumulator,navbarHeight,navigatorCount,windowSize,} from "./functions/formAccumulator";
+import { get } from "svelte/store";
 
 	let isFormReady = false;
 	let url = "/";
@@ -31,6 +32,7 @@
 	let navCollection = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	let windowWidth = window.innerWidth;
 	let windowHeight = window.innerHeight;
+	let appHeight = windowHeight - get(navbarHeight)
 	const [windowSizeSub, windowValidate] = windowSize();
 	onMount(() => {
 		uploadIngredients();
@@ -47,6 +49,9 @@
 		navigatorCount.subscribe((value) => {
 			navCount = value;
 		});
+		navbarHeight.subscribe((value) => {
+			appHeight = windowHeight - value
+		})
 		windowValidate();
 		return setNavigateTo("/");
 	});
@@ -59,43 +64,43 @@
 </script>
 
 <NanjuNavbar {isFormReady} {windowWidth} />
-<main style="height:{windowHeight - 104}px">
+<main style="height:{appHeight}px">
 	<Router {url} basepath={url}>
 		<Route path="/loading">
 			<LoadingPage />
 		</Route>
 		<Route path="/">
-			<PageWelcome {isFormReady} height={windowHeight} />
+			<PageWelcome {isFormReady} height={appHeight} />
 		</Route>
 		<Route path="/basic-information">
-			<PageBasicInformation {isFormReady} />
+			<PageBasicInformation {isFormReady} windowHeight={appHeight}/>
 		</Route>
-		<Route path="/family-information">
+		<Route path="/family-information" windowHeight={appHeight}>
 			<PageFamilyInfo {isFormReady} />
 		</Route>
-		<Route path="/anthro-measurements">
+		<Route path="/anthro-measurements" windowHeight={appHeight}>
 			<PageAnthropometricMeasurments {isFormReady} />
 		</Route>
-		<Route path="/personal-health-history">
+		<Route path="/personal-health-history" windowHeight={appHeight}>
 			<PagePersonalHealthHistory {isFormReady} />
 		</Route>
-		<Route path="/personal-allergies">
+		<Route path="/personal-allergies" windowHeight={appHeight}>
 			<PersonalAllergies {isFormReady} />
 		</Route>
-		<Route path="/family-health-history">
+		<Route path="/family-health-history" windowHeight={appHeight}>
 			<PageFamilyHealthHistory {isFormReady} />
 		</Route>
-		<Route path="/family-allergies">
+		<Route path="/family-allergies" windowHeight={appHeight}>
 			<FamilyAllergies {isFormReady} />
 		</Route>
-		<Route path="/user-profile">
+		<Route path="/user-profile" windowHeight={appHeight}>
 			<Profile />
 		</Route>
 		<Route path="/page-recipes">
-			<PageRecipe {windowWidth} height={windowHeight} />
+			<PageRecipe {windowWidth} windowHeight={appHeight} />
 		</Route>
 		<Route path="/recipe">
-			<RecipeContainer {windowWidth} {windowHeight} />
+			<RecipeContainer {windowWidth} windowHeight={appHeight} />
 		</Route>
 	</Router>
 </main>

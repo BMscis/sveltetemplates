@@ -1,25 +1,34 @@
 <script>
-import { afterUpdate } from "svelte";
-
+import { afterUpdate, onMount } from "svelte";
+import TabBarButton from "./TabBarButton.svelte";
+import { navbarHeight } from "../functions/formAccumulator";
+import { isRecipeCardNavButtonActive } from "./ActiveButton";
 
     export let windowWidth
     export let image;
     export let avatar;
     export let heading;
     export let subHeading;
-
+    let isButtonActive = true
     let translateRightEnd = windowWidth - 44
     let translateRightNext = translateRightEnd - 44
     let translateTitleCenter = (windowWidth/2) - 50
-    let translateExtendedNavCenter = (windowWidth/2) - (240/2)
+    let translateExtendedNavCenter = windowWidth/2 - 120
+    navbarHeight.set(127)
     afterUpdate(() => {
       translateRightEnd = windowWidth - 44
       translateRightNext = translateRightEnd - 44
       translateTitleCenter = (windowWidth/2) - 50
-      translateExtendedNavCenter = (windowWidth/2) - (360/2)
+      translateExtendedNavCenter = windowWidth/2 - 120
+    })
+    onMount(() => {
+      return isRecipeCardNavButtonActive.subscribe((value) => {
+        isButtonActive = value
+        console.log(isButtonActive)
+      })
     })
 </script>
-<svg id="navbar-component" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{windowWidth}" height="139.5" viewBox="0 0 {windowWidth} 139.5">
+<svg id="navbar-component" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{windowWidth}" height="127" viewBox="0 0 {windowWidth} 127">
     <defs>
       <filter id="extended-rectangle" x="0" y="93" width="{windowWidth}" height="34" filterUnits="userSpaceOnUse">
         <feOffset dy="3" input="SourceAlpha"/>
@@ -48,31 +57,13 @@ import { afterUpdate } from "svelte";
       </pattern>
     </defs>
     <g data-type="innerShadowGroup">
-      <path id="extended-rectangle-2" data-name="extended-rectangle" d="M0,0H{windowWidth}a0,0,0,0,1,0,0V26a8,8,0,0,1-8,8H8a8,8,0,0,1-8-8V0A0,0,0,0,1,0,0Z" transform="translate(0 93)" fill="rgba(225,136,106,0.87)"/>
-      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#extended-rectangle)">
-        <path id="extended-rectangle-3" data-name="extended-rectangle" d="M0,0H{windowWidth}a0,0,0,0,1,0,0V26a8,8,0,0,1-8,8H8a8,8,0,0,1-8-8V0A0,0,0,0,1,0,0Z" transform="translate(0 93)" fill="#fff"/>
-      </g>
+      <rect id="extended-rectangle-2" data-name="extended-rectangle" width={windowWidth} height=34 transform="translate(0 93)" fill="rgba(225,136,106,0.87)"/>
     </g>
     <rect id="navbar-rectangle" width="{windowWidth}" height="93" fill="#e1886a"/>
-    <g id="extended-navbar" transform="translate(75 93)">
-      <rect id="navbar-rectangle-extended" width="210" height="34" fill="rgba(54,54,54,0)"/>
+    <g id="extended-navbar" transform="translate(0 93)">
       <g id="tabs" transform="translate({translateExtendedNavCenter})">
-        <g id="tab-bar">
-          <rect id="tab-square-bg" width="120" height="32" transform="translate(0 1.5)" fill="none"/>
-          <rect id="tab-square" width="120" height="32" fill="none"/>
-          <text id="_Dark_Theme_2._Subtitle_Subtitle_1" data-name="🌑 Dark Theme/2. Subtitle/Subtitle 1" transform="translate(20 23)" font-size="16" font-family="Roboto-Regular, Roboto" letter-spacing="0.009em"><tspan x="0" y="0">Ingredients</tspan></text>
-          <g transform="matrix(1, 0, 0, 1, -75, -93)" filter="url(#hover-line)">
-            <path id="hover-line-3" data-name="hover-line" d="M0,0H120" transform="translate(75 126.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="2"/>
-          </g>
-        </g>
-        <g id="tab-bar-2" data-name="tab-bar" transform="translate(120)">
-          <rect id="tab-square-bg-2" data-name="tab-square-bg" width="120" height="32" transform="translate(0 1.5)" fill="none"/>
-          <rect id="tab-square-2" data-name="tab-square" width="120" height="32" fill="none"/>
-          <text id="_Dark_Theme_2._Subtitle_Subtitle_1-2" data-name="🌑 Dark Theme/2. Subtitle/Subtitle 1" transform="translate(17 23)" fill="rgba(0,0,0,0.6)" font-size="16" font-family="Roboto-Regular, Roboto" letter-spacing="0.009em"><tspan x="0" y="0">Instructions</tspan></text>
-          <g transform="matrix(1, 0, 0, 1, -195, -93)" filter="url(#hover-line-2)">
-            <line id="hover-line-4" data-name="hover-line" x2="110" transform="translate(202.5 126.5)" fill="none" stroke="#a6bcd0" stroke-linecap="round" stroke-width="1"/>
-          </g>
-        </g>
+        <TabBarButton buttonName="Ingredients" isActive={isButtonActive}></TabBarButton>
+        <TabBarButton buttonName="Instructions" transform=120 isActive={!isButtonActive}></TabBarButton>
       </g>
     </g>
     <g id="title-card" transform="translate(0 23)">

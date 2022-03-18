@@ -758,7 +758,7 @@
         <button
             id="navigation-button-continue"
             on:click={() => {
-                navigate("/basic-information",false);
+                navigate("/page-recipes",false);
             }}
         >
             <svg

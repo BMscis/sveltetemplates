@@ -1,6 +1,7 @@
 <script>
   import { afterUpdate } from "svelte";
   import { navigate } from "svelte-routing";
+import { navbarHeight } from "../functions/formAccumulator";
   
       export let windowWidth
       let image ='';
@@ -12,6 +13,7 @@
       let translateRightNext = translateRightEnd - 44
       let translateTitleCenter = (windowWidth/2) - (174.8/2)
       let translateExtendedNavCenter = (windowWidth/2) - (240/2)
+      navbarHeight.set(126)
       afterUpdate(() => {
         translateRightEnd = windowWidth - 44
         translateRightNext = translateRightEnd - 44
